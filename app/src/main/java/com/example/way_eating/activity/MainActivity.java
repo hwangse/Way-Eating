@@ -1,7 +1,8 @@
-package com.example.way_eating;
+package com.example.way_eating.activity;
 
 import android.os.Bundle;
 
+import com.example.way_eating.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
