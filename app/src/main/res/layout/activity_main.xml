@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:paddingTop="?attr/actionBarSize">
 
+    //view를 java코드에서 제어하려면 id 속성 추가 필요
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"
         android:layout_width="0dp"
