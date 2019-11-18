@@ -150,7 +150,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
 
                 for(int a=0;a<parsedData.places.size();a++){
                     if(parsedData.places.get(a).name==target){
-                       // Toast.makeText(getActivity(),target,Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(),target,Toast.LENGTH_SHORT).show();
                         targetX=Double.parseDouble(parsedData.places.get(a).x);
                         targetY=Double.parseDouble(parsedData.places.get(a).y);
                         break;
