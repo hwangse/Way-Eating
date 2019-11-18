@@ -3,4 +3,13 @@
     <color name="colorPrimary">#ffad4f</color>
     <color name="colorPrimaryDark">#c7873e</color>
     <color name="colorAccent">#D81B60</color>
+
+    <!--colors for profile-->
+    <color name="profilePrimaryDark">#FF3B30</color>
+    <color name="profileAccentColor">#F7F7F7</color>
+    <color name="whiteTextColor">#fff</color>
+    <color name="profileBackground">#fff</color>
+    <color name="blackTextColor">#000</color>
+    <color name="profileEditTextColor">#707070</color>
+    <color name="profileListColor">#c2c2c2</color>
 </resources>

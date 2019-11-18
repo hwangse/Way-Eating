@@ -1,19 +1,229 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/text_mypage"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.way_eating.ui.mypage.MypageFragment"
+    android:background="@color/profileBackground">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:fitsSystemWindows="true"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        app:layout_constraintEnd_toStartOf="@+id/toolbar_layout"
+        app:layout_constraintStart_toStartOf="@+id/toolbar_layout">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/toolbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
+            app:contentScrim="@color/profilePrimaryDark"
+            app:expandedTitleMarginEnd="64dp"
+            app:expandedTitleMarginStart="48dp"
+            app:expandedTitleTextAppearance="@style/TransparentText"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:padding="10dp"
+                android:background="@drawable/profile_bk"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/profile_round" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="\김철수철수"
+                    android:textSize="28dp"
+                    android:textStyle="bold" />
+<!--
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="chulsoo1@naver.com"
+                    android:textSize="12dp"
+                    android:textStyle="bold" />
+-->
+            </LinearLayout>
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/profileBackground"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context="com.example.way_eating.ui.mypage.MypageFragment">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/linearLayout3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="parent"
+                app:layout_constraintEnd_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+                        <!--
+                        <TextView
+                            style="@style/headerText"
+                            android:text="My Page" />
+                        -->
+                        <RelativeLayout style="@style/profileDetailsLayout">
+
+                            <ImageView
+                                android:id="@+id/nameImageView"
+                                style="@style/profileDetailsImage"
+                                android:src="@drawable/ic_name" />
+
+                            <TextView
+                                android:id="@+id/nameTextView"
+                                style="@style/profileDetailsTextMain"
+                                android:layout_toRightOf="@id/nameImageView"
+                                android:text="이름" />
+
+                            <TextView
+                                style="@style/profileDetailsMiniText"
+                                android:layout_toRightOf="@id/nameImageView"
+                                android:text="김철수" />
+
+                        </RelativeLayout>
+
+                        <View style="@style/profileDetailsView" />
+
+                        <RelativeLayout style="@style/profileDetailsLayout">
+
+                            <ImageView
+                                android:id="@+id/mobileImageView"
+                                style="@style/profileDetailsImage"
+                                android:src="@drawable/ic_mobile" />
+
+                            <TextView
+                                style="@style/profileDetailsTextMain"
+                                android:layout_toRightOf="@id/mobileImageView"
+                                android:text="연락처" />
+
+                            <TextView
+                                style="@style/profileDetailsMiniText"
+                                android:layout_toRightOf="@id/mobileImageView"
+                                android:text="010-1234-5678" />
+
+                        </RelativeLayout>
+
+                        <View style="@style/profileDetailsView" />
+
+                        <RelativeLayout style="@style/profileDetailsLayout">
+
+                            <ImageView
+                                android:id="@+id/emailImageView"
+                                style="@style/profileDetailsImage"
+                                android:src="@drawable/ic_email" />
+
+                            <TextView
+                                style="@style/profileDetailsTextMain"
+                                android:layout_toRightOf="@id/emailImageView"
+                                android:text="이메일" />
+
+                            <TextView
+                                style="@style/profileDetailsMiniText"
+                                android:layout_toRightOf="@id/emailImageView"
+                                android:text="chulsoo1@naver.com" />
+
+                        </RelativeLayout>
+            </LinearLayout>
+
+            <!-- 예약 히스토리 -->
+            <LinearLayout
+                android:id="@+id/linearLayout4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginRight="20dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="parent"
+                app:layout_constraintEnd_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    style="@style/headerText"
+                    android:text="예약 히스토리" />
+                <LinearLayout
+                    style="@style/profileListLayout">
+                    <ImageView
+                        style="@style/profileListImage"
+                        tools:src="@drawable/food1" />
+                    <ImageView
+                        style="@style/profileListImage"
+                        tools:src="@drawable/food2" />
+                    <ImageView
+                        style="@style/profileListImage"
+                        tools:src="@drawable/food3" />
+                    <ImageView
+                        style="@style/profileListImage"
+                        tools:src="@drawable/food4" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- 즐겨찾기 -->
+            <LinearLayout
+                android:id="@+id/linearLayout5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="parent"
+                app:layout_constraintEnd_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    style="@style/headerText"
+                    android:text="즐겨찾기" />
+                <LinearLayout style="@style/profileListLayout">
+                    <ImageView
+                        style="@style/profileListImage"
+                        tools:src="@drawable/food5" />
+                    <ImageView
+                        style="@style/profileListImage"
+                        tools:src="@drawable/food6" />
+                    <ImageView
+                        style="@style/profileListImage"
+                        tools:src="@drawable/food7" />
+                    <ImageView
+                        style="@style/profileListImage"
+                        tools:src="@drawable/food8" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
