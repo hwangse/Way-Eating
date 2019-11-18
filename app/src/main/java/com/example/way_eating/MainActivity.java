@@ -14,17 +14,21 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState); // super메소드 호출. activity의 시스템적인 요소 초기화
-        setContentView(R.layout.activity_main); //activity에 사용할 layout 지정.
+
+
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home, R.id.navigation_list, R.id.navigation_status, R.id.navigation_mypage)
+                R.id.navigation_map, R.id.navigation_list, R.id.navigation_status, R.id.navigation_mypage)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
+
+
     }
 
 }
