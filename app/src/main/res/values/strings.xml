@@ -1,7 +1,10 @@
 <resources>
-    <string name="app_name">Way-Eating</string>
-    <string name="title_home">Home</string>
+    <string name="app_name">WayEating</string>
+    <string name="title_map">Map</string>
     <string name="title_list">List</string>
     <string name="title_status">Status</string>
     <string name="title_mypage">My Page</string>
+
+    <string name="title_activity_profile">Profile</string>
+    <string name="action_settings">Settings</string>
 </resources>

@@ -14,7 +14,12 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.way_eating.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MypageFragment extends Fragment {
+    //이미지 리스트 생성
+    List<Integer> galleryID = new ArrayList<Integer>();
 
     private MypageViewModel mypageViewModel;
 
@@ -23,13 +28,25 @@ public class MypageFragment extends Fragment {
         mypageViewModel =
                 ViewModelProviders.of(this).get(MypageViewModel.class);
         View root = inflater.inflate(R.layout.fragment_mypage, container, false);
-        final TextView textView = root.findViewById(R.id.text_mypage);
-        mypageViewModel.getText().observe(this, new Observer<String>() {
+
+/*
+        TextView mypageName = root.findViewById(R.id.mypage_name);
+        TextView mypageId = root.findViewById(R.id.mypage_id);
+        TextView mypageEmail = root.findViewById(R.id.mypage_email);
+        TextView mypagePhone = root.findViewById(R.id.mypage_phone);
+
+        mypageName.setText("김철수");
+        mypageId.setText("chulsoo1");
+        mypageEmail.setText("chulsoo1@naver.com");
+        mypagePhone.setText("010-1234-5678");
+*/
+        //final TextView textView = root.findViewById(R.id.text_mypage);
+        /*mypageViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
             }
-        });
+        });*/
         return root;
     }
 }
