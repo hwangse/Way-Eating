@@ -14,8 +14,8 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.way_eating.R;
 
-public class ListFragment extends Fragment {
 
+public class ListFragment extends Fragment {
     private ListViewModel listViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -30,6 +30,9 @@ public class ListFragment extends Fragment {
                 textView.setText(s);
             }
         });
+
         return root;
     }
 }
+
+

@@ -6,13 +6,13 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -21,6 +21,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.way_eating.R;
+import com.example.way_eating.Store;
+import com.example.way_eating.SystemData;
+import com.example.way_eating.network.GetStore;
 import com.google.gson.Gson;
 
 import com.naver.maps.geometry.LatLng;
@@ -32,6 +35,9 @@ import com.naver.maps.map.OnMapReadyCallback;
 import com.naver.maps.map.overlay.LocationOverlay;
 import com.naver.maps.map.overlay.Marker;
 import com.naver.maps.map.util.FusedLocationSource;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -67,6 +73,9 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
     // search result will be stored here
     public ParsedData parsedData=new ParsedData();
 
+    // 시스템 정보를 저장할 클래스 선언
+    public SystemData systemData=null;
+    TextView tvData;
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // create 2 kinds of async thread and Handler for searching function
         handler=new Handler(){
@@ -131,12 +140,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                 searchButtonClicked=false;
                 // 검색어가 변경되었을 때, 계속해서 검색 결과가 바뀐다.
                 searchQueryRestaurant(s,userLocation);
-//
-//                if(parsedData!=null && parsedData.places!=null) {
-//
-//                    searchChangeAction(s);
-//                }
-
                 return false;
             }
         });
@@ -150,7 +153,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
 
                 for(int a=0;a<parsedData.places.size();a++){
                     if(parsedData.places.get(a).name==target){
-                        Toast.makeText(getActivity(),target,Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getActivity(),target,Toast.LENGTH_SHORT).show();
                         targetX=Double.parseDouble(parsedData.places.get(a).x);
                         targetY=Double.parseDouble(parsedData.places.get(a).y);
                         break;
@@ -170,6 +173,39 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
         adapter = new SearchAdapter(list,getContext());
         // 리스트뷰에 아답터를 연결한다.
         listView.setAdapter(adapter);
+
+        // 만약 시스템 데이터 정보가 없다면 이를 생성한다.
+        if(systemData==null) systemData=new SystemData();
+        // 만약 상점 데이터 정보가 없다면 시스템 내에 상점 정보를 받아온다.
+
+        if(systemData.stores==null){
+            GetStore getStore=new GetStore(new GetStore.AsyncResponse() {
+                @Override
+                public void processFinish(String output) {
+                    tvData= (TextView)root.findViewById(R.id.textView);
+                    // 받아온 상점 JSON 파일을 파싱하여 class를 생성한다.
+                    try {
+                        JSONObject jsonObject = new JSONObject(output);
+                        systemData.stores=new ArrayList<Store>();
+                        for(int i=0;i<jsonObject.length();i++){
+                            JSONObject jsonObj= jsonObject.getJSONObject(i+"");
+                            Integer tmpId=jsonObj.getInt("id");
+                            String tmpName=jsonObj.getString("name");
+                            String tmpType=jsonObj.getString("type");
+                            String tmpEmail=jsonObj.getString("email");
+                            String tmpPhone=jsonObj.getString("phone");
+                            Integer tmpLunch=jsonObj.getInt("timeLunch");
+                            Integer tmpDinner=jsonObj.getInt("timeDinner");
+                            systemData.stores.add(new Store(tmpId,tmpName,tmpType,tmpEmail,tmpPhone,tmpLunch,tmpDinner));
+                            tvData.setText(systemData.stores.get(i).name);
+                        }
+                    }catch(JSONException e){
+                        e.printStackTrace();
+                    }
+                }
+            });
+            getStore.execute();
+        }
 
         return root;
     }
