@@ -94,6 +94,9 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
 
         userLocation=new Location("");
         camLocation=new Location("");
+        camLocation.setLongitude(127);
+        camLocation.setLatitude(37.6);
+
         targetMarker=new Marker();
 
         // this is for the Showing the Naver Map
@@ -184,29 +187,32 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                 public void processFinish(String output) {
                     tvData= (TextView)root.findViewById(R.id.textView);
                     // 받아온 상점 JSON 파일을 파싱하여 class를 생성한다.
-                    try {
-                        JSONObject jsonObject = new JSONObject(output);
-                        systemData.stores=new ArrayList<Store>();
-                        for(int i=0;i<jsonObject.length();i++){
-                            JSONObject jsonObj= jsonObject.getJSONObject(i+"");
-                            Integer tmpId=jsonObj.getInt("id");
-                            String tmpName=jsonObj.getString("name");
-                            String tmpType=jsonObj.getString("type");
-                            String tmpEmail=jsonObj.getString("email");
-                            String tmpPhone=jsonObj.getString("phone");
-                            Integer tmpLunch=jsonObj.getInt("timeLunch");
-                            Integer tmpDinner=jsonObj.getInt("timeDinner");
-                            systemData.stores.add(new Store(tmpId,tmpName,tmpType,tmpEmail,tmpPhone,tmpLunch,tmpDinner));
-                            tvData.setText(systemData.stores.get(i).name);
+                    if(output!=null){
+                        try {
+                            JSONObject jsonObject = new JSONObject(output);
+                            systemData.stores=new ArrayList<Store>();
+                            for(int i=0;i<jsonObject.length();i++){
+                                JSONObject jsonObj= jsonObject.getJSONObject(i+"");
+                                Integer tmpId=jsonObj.getInt("id");
+                                String tmpName=jsonObj.getString("name");
+                                String tmpType=jsonObj.getString("type");
+                                String tmpEmail=jsonObj.getString("email");
+                                String tmpPhone=jsonObj.getString("phone");
+                                Integer tmpLunch=jsonObj.getInt("timeLunch");
+                                Integer tmpDinner=jsonObj.getInt("timeDinner");
+                                systemData.stores.add(new Store(tmpId,tmpName,tmpType,tmpEmail,tmpPhone,tmpLunch,tmpDinner));
+                                tvData.setText(systemData.stores.get(i).name);
+                            }
+                        }catch(JSONException e){
+                            e.printStackTrace();
                         }
-                    }catch(JSONException e){
-                        e.printStackTrace();
+                    }else{
+                        Toast.makeText(getActivity(),"Error : 서버 접속 불가",Toast.LENGTH_SHORT).show();
                     }
                 }
             });
             getStore.execute();
         }
-
         return root;
     }
     // update list view when searching places
