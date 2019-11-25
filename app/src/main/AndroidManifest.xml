@@ -21,7 +21,6 @@
             </intent-filter>
         </activity>
 
-<<<<<<< HEAD
         <activity
             android:name = ".activity.MainActivity">
         </activity>
@@ -29,12 +28,10 @@
         <activity
             android:name = ".activity.JoinActivity">
         </activity>
-=======
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
             android:value="lvd8yed6xo" />
 
->>>>>>> c8c7cd223ec9c1892725b1f7cea35537daff4a1f
     </application>
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />

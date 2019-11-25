@@ -10,17 +10,20 @@
         android:layout_height="wrap_content"
         android:layout_margin="50dp"
         android:orientation="vertical">
-        <!--아이디-->
+        <!--이메일-->
         <EditText
+            android:id="@+id/loginEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="아이디"
-            android:inputType="textWebEmailAddress" />
+            android:hint="이메일"
+            android:inputType = "textEmailAddress"/>
         <!--비밀번호-->
         <EditText
+            android:id="@+id/loginPW"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="비밀번호" />
+            android:hint="비밀번호"
+            android:inputType = "textPassword"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -30,17 +33,24 @@
             android:orientation="horizontal">
             <!--로그인 버튼-->
             <Button
-                android:id="@+id/btnLogin"
+                android:id="@+id/loginLogin"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:hint="로그인"/>
             <!--회원가입 버튼-->
             <Button
-                android:id="@+id/btnJoin"
+                android:id="@+id/loginJoin"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:hint="회원가입"/>
         </LinearLayout>
     </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/loginProgress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone" />
 
 </LinearLayout>
