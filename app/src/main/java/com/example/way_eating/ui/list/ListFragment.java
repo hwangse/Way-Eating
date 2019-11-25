@@ -1,9 +1,11 @@
 package com.example.way_eating.ui.list;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -15,6 +17,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.way_eating.R;
+import com.example.way_eating.activity.InfoActivity;
 
 
 public class ListFragment extends Fragment {
@@ -128,6 +131,24 @@ public class ListFragment extends Fragment {
             @Override
             public void onPageScrollStateChanged(int state) {
 
+            }
+        });
+
+/*
+        viewPager_nearby.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(getActivity(), InfoActivity.class);
+                startActivity(intent1);
+            }
+        });*/
+
+        Button btnInfo = (Button) root.findViewById(R.id.btnInfo);
+        btnInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(getActivity(), InfoActivity.class);
+                startActivity(intent1);
             }
         });
 

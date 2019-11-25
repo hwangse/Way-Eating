@@ -35,7 +35,7 @@ public class StatusFragment extends Fragment {
         restaurantName.setText(getResources().getString(R.string.restaurantName));
         restaurantOrder.setText("나의 순서 : " + getResources().getString(R.string.restaurantOrder) + "번째");
         restaurantTime.setText("예상 대기시간 : " + getResources().getString(R.string.restaurantTime) + "분");
-
+/*
         //info용 버튼 **연습용임
         Button btnInfo = (Button) root.findViewById(R.id.btnInfo);
         btnInfo.setOnClickListener(new View.OnClickListener(){
@@ -45,7 +45,7 @@ public class StatusFragment extends Fragment {
                 mainActivity.onFragmentChanged();
             }
         });
-
+*/
         return root;
     }
 

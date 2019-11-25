@@ -29,6 +29,9 @@
         <activity
             android:name = ".activity.JoinActivity">
         </activity>
+        <activity
+            android:name = ".activity.InfoActivity">
+        </activity>
 
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
