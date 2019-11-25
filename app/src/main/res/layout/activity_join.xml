@@ -9,19 +9,22 @@
         android:layout_height="wrap_content"
         android:layout_margin="50dp"
         android:orientation="vertical">
-        <!--아이디-->
+        <!--이메일-->
         <EditText
+            android:id="@+id/joinEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="아이디"
-            android:inputType="textWebEmailAddress" />
+            android:hint="이메일"/>
         <!--비밀번호-->
         <EditText
+            android:id="@+id/joinPW"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="비밀번호" />
+            android:hint="비밀번호"
+            android:inputType = "textPassword"/>
         <!--이름-->
         <EditText
+            android:id="@+id/joinName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="이름" />
@@ -32,13 +35,52 @@
             android:gravity="center"
             android:layout_marginTop="10dp"
             android:orientation="horizontal">
-            <!--회원가입 버튼-->
-            <Button
-                android:id="@+id/btnJoin"
+
+            <!--나이-->
+            <EditText
+                android:id="@+id/joinAge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="      나이      " />
+            <!--성별-->
+            <RadioGroup
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="회원가입"/>
+                android:layout_height="wrap_content"
+                android:orientation = "horizontal">
+
+                <RadioButton
+                    android:id="@+id/joinFemale"
+                    android:text="여"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <RadioButton
+                    android:id="@+id/joinMale"
+                    android:text="남"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RadioGroup>
         </LinearLayout>
+
+        <!--휴대폰 번호-->
+        <EditText
+            android:id="@+id/joinPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="phone"
+            android:hint="휴대폰 번호" />
+        <!--회원가입 버튼-->
+        <Button
+            android:id="@+id/joinJoin"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="회원가입"/>
     </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/joinProgress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone" />
 
 </LinearLayout>
