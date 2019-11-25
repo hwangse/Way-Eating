@@ -43,6 +43,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:hint="회원가입"/>
+            <!--마스터 버튼-->
+            <Button
+                android:id="@+id/loginMaster"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:hint="마스터"/>
         </LinearLayout>
     </LinearLayout>
 
