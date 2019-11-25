@@ -45,12 +45,12 @@
                     android:src="@drawable/profile_round" />
 
                 <TextView
+                    android:id="@+id/textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="\김철수철수"
-                    android:textSize="28dp"
-                    android:textStyle="bold" />
-<!--
+                    />
+
+                <!--
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -107,9 +107,11 @@
                                 android:text="이름" />
 
                             <TextView
+                                android:id="@+id/nameTextView2"
                                 style="@style/profileDetailsMiniText"
-                                android:layout_toRightOf="@id/nameImageView"
-                                android:text="김철수" />
+                                android:layout_toRightOf="@id/nameImageView" />
+                                //android:text="김철수"
+
 
                         </RelativeLayout>
 
@@ -128,9 +130,10 @@
                                 android:text="연락처" />
 
                             <TextView
+                                android:id="@+id/mobilePhoneView"
                                 style="@style/profileDetailsMiniText"
-                                android:layout_toRightOf="@id/mobileImageView"
-                                android:text="010-1234-5678" />
+                                android:layout_toRightOf="@id/mobileImageView" />
+                                //android:text="010-1234-5678" />
 
                         </RelativeLayout>
 
@@ -149,9 +152,10 @@
                                 android:text="이메일" />
 
                             <TextView
+                                android:id="@+id/emailView"
                                 style="@style/profileDetailsMiniText"
-                                android:layout_toRightOf="@id/emailImageView"
-                                android:text="chulsoo1@naver.com" />
+                                android:layout_toRightOf="@id/emailImageView" />
+                                //android:text="chulsoo1@naver.com" />
 
                         </RelativeLayout>
             </LinearLayout>
@@ -226,4 +230,5 @@
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
