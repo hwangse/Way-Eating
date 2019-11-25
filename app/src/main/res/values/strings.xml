@@ -1,10 +1,23 @@
 <resources>
     <string name="app_name">WayEating</string>
-    <string name="title_map">Map</string>
-    <string name="title_list">List</string>
-    <string name="title_status">Status</string>
-    <string name="title_mypage">My Page</string>
+    <string name="title_map">내 주변 웨이팅</string>
+    <string name="title_list">내 주변 맛집</string>
+    <string name="title_status">나의 Way-Eating</string>
+    <string name="title_mypage">마이페이지</string>
+    <string name="title_info">음식점 상세정보</string>
 
-    <string name="title_activity_profile">Profile</string>
-    <string name="action_settings">Settings</string>
+    <!--내가 넣은 임의의 data-->
+    <string name="restaurantName">마카로니</string>
+    <string name="restaurantContactNumber">02-704-1234</string>
+    <string name="restaurantLocation">서울시 마포구 백범로 123길 45</string>
+    <string name="restaurantMenu">1급 등심 + 안심가츠 \t 14000원\n
+        1+급 등심 + 안심가츠 \t 15000원\n
+        1급 등심가츠 \t 13000원\n
+        1+급 등심가츠 \t 14000원</string>
+    <string name="restaurantSite">https://www.dongats.com</string>
+    <string name="restaurantOrder">5</string>
+    <string name="restaurantTime">20</string>
+    <string name="nearbyRestaurantName">홍두깨</string>
+    <string name="customerName">김펭수</string>
+
 </resources>

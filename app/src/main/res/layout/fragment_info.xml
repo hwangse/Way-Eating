@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--선택한 음식점의 상세 사진-->
+    <LinearLayout
+        style="@style/info_Image"
+        android:id="@+id/selected"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewPager_selected"
+            android:layout_width="170dp"
+            android:layout_height="170dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="120dp"
+            android:gravity="center_horizontal|center_vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/sliderDotspanel_selected"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/viewPager_selected"
+            android:gravity="center_vertical|center_horizontal"
+            android:orientation="horizontal" />
+    </LinearLayout>
+    <!--선택한 음식점 정보-->
+    <LinearLayout
+        style="@style/info_DetailLayout"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/selected">
+
+        <!--선택한 음식점 이름-->
+        <TextView
+            android:id="@+id/restaurantName"
+            style="@style/info_NameText" />
+
+        <!--선택한 음식점의 상세 정보-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:orientation="vertical"
+            android:background="@color/grayBoxColor">
+            <!--음식점 전화번호-->
+            <RelativeLayout style="@style/info_DetailsLayout">
+
+                <ImageView
+                    android:id="@+id/restaurantContactNumberImage"
+                    style="@style/info_DetailsImage"
+                    android:src="@drawable/ic_027" />
+
+                <TextView
+                    android:id="@+id/restaurantContactNumber"
+                    style="@style/info_DetailsText"
+                    android:layout_toRightOf="@id/restaurantContactNumberImage" />
+
+            </RelativeLayout>
+            <!--음식점 주소-->
+            <RelativeLayout style="@style/info_DetailsLayout">
+
+                <ImageView
+                    android:id="@+id/restaurantLocationImage"
+                    style="@style/info_DetailsImage"
+                    android:src="@drawable/ic_028" />
+
+                <TextView
+                    android:id="@+id/restaurantLocation"
+                    style="@style/info_DetailsText"
+                    android:layout_toRightOf="@id/restaurantLocationImage" />
+
+            </RelativeLayout>
+            <!--음식점 메뉴-->
+            <RelativeLayout style="@style/info_DetailsLayout">
+
+                <ImageView
+                    android:id="@+id/restaurantMenuImage"
+                    style="@style/info_DetailsImage"
+                    android:src="@drawable/ic_022" />
+
+                <TextView
+                    android:id="@+id/restaurantMenu"
+                    style="@style/info_DetailsText"
+                    android:layout_toRightOf="@id/restaurantMenuImage" />
+
+            </RelativeLayout>
+            <!--음식점 사이트주소-->
+            <RelativeLayout style="@style/info_DetailsLayout">
+
+                <ImageView
+                    android:id="@+id/restaurantSiteImage"
+                    style="@style/info_DetailsImage"
+                    android:src="@drawable/ic_021" />
+
+                <TextView
+                    android:id="@+id/restaurantSite"
+                    style="@style/info_DetailsText"
+                    android:layout_toRightOf="@id/restaurantSiteImage" />
+
+            </RelativeLayout>
+        </LinearLayout>
+
+        <!--대기 명단 등록 버튼-->
+        <Button
+            style="@style/info_Button"
+            android:text="대기 명단 등록하기"/>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
