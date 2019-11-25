@@ -17,10 +17,9 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <!--styles for profile-->
-    <style name="AppTheme.ProfileTheme">
-        <item name="colorPrimaryDark">@color/profilePrimaryDark</item>
-        <item name="colorAccent">@color/profileAccentColor</item>
+    <style name="AppTheme.MypageTheme">
+        <item name="colorPrimaryDark">@color/mypage_PrimaryDark</item>
+        <item name="colorAccent">@color/mypage_AccentColor</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:textColor">@color/whiteTextColor</item>
@@ -53,55 +52,52 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
 
-    <style name="profileDetailsLayout" parent="parent">
+    <style name="view">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:padding">10dp</item>
+    </style>
+    <!--styles for mypage-->
+    <style name="mypage_DetailsLayout" parent="parent">
         <item name="android:layout_marginTop">20dp</item>
     </style>
-
-    <style name="profileDetailsImage">
+    <style name="mypage_DetailsImage">
         <item name="android:layout_width">40dp</item>
         <item name="android:layout_height">40dp</item>
         <item name="android:layout_alignParentTop">true</item>
         <item name="android:layout_alignParentLeft">true</item>
     </style>
-
-    <style name="profileDetailsTextMain" parent="viewParent">
+    <style name="mypage_DetailsTextMain" parent="viewParent">
         <item name="android:textColor">@color/blackTextColor</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">16sp</item>
         <item name="android:layout_marginLeft">10dp</item>
     </style>
-
-    <style name="profileDetailsMiniText" parent="viewParent">
+    <style name="mypage_DetailsMiniText" parent="viewParent">
         <item name="android:layout_alignParentBottom">true</item>
         <item name="android:textColor">@color/blackTextColor</item>
         <item name="android:textSize">14sp</item>
         <item name="android:layout_marginLeft">10dp</item>
     </style>
-
-    <style name="profileDetailsView">
+    <style name="mypage_DetailsView">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">2dp</item>
-        <item name="android:background">@color/profileAccentColor</item>
+        <item name="android:background">@color/mypage_AccentColor</item>
         <item name="android:layout_marginTop">5dp</item>
     </style>
-
-    <!-- 일단 내가 추가 -->
-    <style name="profileListLayout">
+    <style name="mypage_ListLayout">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@color/profileListColor</item>
+        <item name="android:background">@color/grayBoxColor</item>
         <item name="android:layout_marginTop">5dp</item>
         <item name="android:padding">5dp</item>
     </style>
-
-    <style name="profileListImage">
+    <style name="mypage_ListImage">
         <item name="android:layout_width">70dp</item>
         <item name="android:layout_height">70dp</item>
         <item name="android:layout_margin">10dp</item>
     </style>
-
-    <!--styles for profile-->
-    <style name="profileStyledBackButton">
+    <style name="mypage_StyledBackButton">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:background">@drawable/profile_back_button</item>
@@ -110,11 +106,89 @@
         <item name="android:paddingRight">50dp</item>
         <item name="android:paddingTop">10dp</item>
         <item name="android:paddingBottom">10dp</item>
-        <item name="android:drawableLeft">@drawable/back_to_home_button</item>
         <item name="android:textStyle">bold</item>
         <item name="android:layout_centerHorizontal">true</item>
         <item name="android:layout_alignParentTop">true</item>
         <item name="android:minWidth">250dp</item>
     </style>
 
+    <!--styles for info-->
+    <style name="info_NameText" parent="parent">
+        <item name="android:textSize">33sp</item>
+        <item name="android:textColor">@color/blackTextColor</item>
+        <item name="android:gravity">left</item>
+        <item name="android:layout_marginBottom">5dp</item>
+    </style>
+    <style name="info_Image" parent="parent">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">left</item>
+        <item name="android:padding">10dp</item>
+    </style>
+    <style name="info_DetailLayout" parent="parent">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:layout_marginTop">25dp</item>
+        <item name="android:gravity">center_vertical|center_horizontal</item>
+    </style>
+    <style name="info_DetailsLayout" parent="parent">
+        <item name="android:layout_marginTop">5dp</item>
+    </style>
+    <style name="info_DetailsImage">
+        <item name="android:layout_width">30dp</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:layout_alignParentLeft">true</item>
+    </style>
+    <style name="info_DetailsText" parent="viewParent">
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:textColor">@color/blackTextColor</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+    <style name="info_Button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:textColor">@color/blackTextColor</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:gravity">center_vertical|center_horizontal</item>
+    </style>
+
+    <!--styles for list-->
+    <style name="list_DetailLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:padding">10dp</item>
+    </style>
+    <style name="list_NameText" parent="parent">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/blackTextColor</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">left</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+    </style>
+
+    <!--styles for status-->
+    <style name="status_Avatars">
+        <item name="android:layout_width">130dp</item>
+        <item name="android:layout_height">130dp</item>
+        <item name="android:layout_margin">10dp</item>
+    </style>
+    <style name="status_NameText" parent="parent">
+        <item name="android:textSize">60sp</item>
+        <item name="android:textColor">@color/blackTextColor</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+    <style name="status_PlusText" parent="parent">
+        <item name="android:textSize">35sp</item>
+        <item name="android:textColor">@color/blackTextColor</item>
+        <item name="android:gravity">center_horizontal</item>
+    </style>
 </resources>
