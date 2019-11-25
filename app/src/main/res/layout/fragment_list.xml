@@ -17,6 +17,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <!--주변 맛집-->
     <LinearLayout
         style="@style/list_DetailLayout"

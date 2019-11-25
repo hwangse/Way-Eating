@@ -4,7 +4,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
-    private final static String BASE_URL = "할당받은 public dns 작성";
+    private final static String BASE_URL = "http://ec2-15-164-226-100.ap-northeast-2.compute.amazonaws.com:3000";    //서버 public dns
     private static Retrofit retrofit = null;
 
     private RetrofitClient() {

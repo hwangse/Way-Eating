@@ -19,6 +19,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.example.way_eating.R;
 import com.example.way_eating.activity.InfoActivity;
 
+
 public class ListFragment extends Fragment {
     ViewPager viewPager_nearby;
     ViewPager viewPager_suggest;
@@ -154,3 +155,5 @@ public class ListFragment extends Fragment {
         return root;
     }
 }
+
+
