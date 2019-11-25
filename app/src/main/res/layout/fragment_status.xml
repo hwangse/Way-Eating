@@ -1,72 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    style="@style/view">
-    <!--예약 정보-->
-    <LinearLayout
-        android:id="@+id/statusInformation"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/Avatars">
-        <TextView
-            android:id="@+id/restaurantName"
-            style="@style/status_NameText" />
-        <TextView
-            android:id="@+id/restaurantOrder"
-            style="@style/status_PlusText" />
-        <TextView
-            android:id="@+id/restaurantTime"
-            style="@style/status_PlusText" />
-    </LinearLayout>
-    <!--아바타-->
-    <LinearLayout
-        android:id="@+id/Avatars"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        app:layout_constraintTop_toBottomOf="@id/statusInformation"
-        app:layout_constraintBottom_toBottomOf="parent">
-        <TableLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools">
 
-            <TableRow
+    <androidx.constraintlayout.widget.ConstraintLayout
+        style="@style/view">
+        <!--예약 정보-->
+        <LinearLayout
+            android:id="@+id/statusInformation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@id/Avatars"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/restaurantName"
+                style="@style/status_NameText" />
+
+            <TextView
+                android:id="@+id/restaurantOrder"
+                style="@style/status_PlusText" />
+
+            <TextView
+                android:id="@+id/restaurantTime"
+                style="@style/status_PlusText" />
+        </LinearLayout>
+        <!--아바타-->
+        <LinearLayout
+            android:id="@+id/Avatars"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/statusInformation">
+
+            <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-                <ImageView
-                    style="@style/status_Avatars"
-                    android:src="@drawable/avatar_01" />
-                <ImageView
-                    style="@style/status_Avatars"
-                    android:src="@drawable/avatar_02" />
-                <ImageView
-                    style="@style/status_Avatars"
-                    android:src="@drawable/avatar_03" />
-            </TableRow>
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-                <ImageView
-                    style="@style/status_Avatars"
-                    android:src="@drawable/avatar_04" />
-                <ImageView
-                    style="@style/status_Avatars"
-                    android:src="@drawable/avatar_05"
-                    android:background="@color/colorPrimary"/>
-            </TableRow>
 
-        </TableLayout>
-    </LinearLayout>
-    <Button
-        android:id="@+id/btnInfo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="info용"
-        android:onClick="onClick"
-        app:layout_constraintTop_toBottomOf="@id/Avatars"
-        app:layout_constraintBottom_toBottomOf="parent"/>
-</androidx.core.widget.NestedScrollView>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        style="@style/status_Avatars"
+                        android:src="@drawable/avatar_01" />
+
+                    <ImageView
+                        style="@style/status_Avatars"
+                        android:src="@drawable/avatar_02" />
+
+                    <ImageView
+                        style="@style/status_Avatars"
+                        android:src="@drawable/avatar_03" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        style="@style/status_Avatars"
+                        android:src="@drawable/avatar_04" />
+
+                    <ImageView
+                        style="@style/status_Avatars"
+                        android:background="@color/colorPrimary"
+                        android:src="@drawable/avatar_05" />
+                </TableRow>
+
+            </TableLayout>
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
