@@ -176,8 +176,8 @@
 
     <!--styles for status-->
     <style name="status_Avatars">
-        <item name="android:layout_width">130dp</item>
-        <item name="android:layout_height">130dp</item>
+        <item name="android:layout_width">100dp</item>
+        <item name="android:layout_height">100dp</item>
         <item name="android:layout_margin">10dp</item>
     </style>
     <style name="status_NameText" parent="parent">

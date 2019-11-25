@@ -28,6 +28,7 @@ public class LogInActivity extends Activity {
     private EditText pw;
     private Button login;
     private Button join;
+    private Button master;
     private ProgressBar progress;
     private ServiceApi service;
 
@@ -42,6 +43,7 @@ public class LogInActivity extends Activity {
         login = (Button) findViewById(R.id.loginLogin);
         join = (Button) findViewById(R.id.loginJoin);
         progress = (ProgressBar) findViewById(R.id.loginProgress);
+        master = (Button) findViewById(R.id.loginMaster);
 
         service = RetrofitClient.getClient().create(ServiceApi.class);
 
@@ -50,6 +52,11 @@ public class LogInActivity extends Activity {
             @Override
             public void onClick(View v) {
                 switch (v.getId()) {
+                    case R.id.loginMaster:
+                        Intent intent2 = new Intent(LogInActivity.this, MainActivity.class);
+                        startActivity(intent2);
+                        finish();
+                        break;
                     case R.id.loginLogin: //로그인
                         attemptLogin();
                         break;
@@ -62,6 +69,7 @@ public class LogInActivity extends Activity {
         };
         login.setOnClickListener(listener);
         join.setOnClickListener(listener);
+        master.setOnClickListener(listener);
     }
 
     //뒤로 버튼 눌렸을 때 이벤트 처리
