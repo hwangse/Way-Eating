@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.way_eating.ui.mypage.MypageFragment"
-    android:background="@color/profileBackground">
+    android:background="@color/pageBackground">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"
@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fitsSystemWindows="true"
-            app:contentScrim="@color/profilePrimaryDark"
+            app:contentScrim="@color/mypage_PrimaryDark"
             app:expandedTitleMarginEnd="64dp"
             app:expandedTitleMarginStart="48dp"
             app:expandedTitleTextAppearance="@style/TransparentText"
@@ -40,24 +40,18 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
                     android:src="@drawable/profile_round" />
 
                 <TextView
                     android:id="@+id/textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    />
-
-                <!--
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="chulsoo1@naver.com"
-                    android:textSize="12dp"
+                    android:text="\김펭수"
+                    android:textSize="28dp"
                     android:textStyle="bold" />
--->
+
             </LinearLayout>
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
@@ -66,7 +60,7 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/profileBackground"
+        android:background="@color/pageBackground"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:context="com.example.way_eating.ui.mypage.MypageFragment">
 
@@ -75,8 +69,8 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <!--마이 페이지-->
             <LinearLayout
-                android:id="@+id/linearLayout3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -93,76 +87,71 @@
                             style="@style/headerText"
                             android:text="My Page" />
                         -->
-                        <RelativeLayout style="@style/profileDetailsLayout">
+                        <RelativeLayout style="@style/mypage_DetailsLayout">
 
                             <ImageView
                                 android:id="@+id/nameImageView"
-                                style="@style/profileDetailsImage"
+                                style="@style/mypage_DetailsImage"
                                 android:src="@drawable/ic_name" />
 
                             <TextView
                                 android:id="@+id/nameTextView"
-                                style="@style/profileDetailsTextMain"
+                                style="@style/mypage_DetailsTextMain"
                                 android:layout_toRightOf="@id/nameImageView"
                                 android:text="이름" />
 
                             <TextView
-                                android:id="@+id/nameTextView2"
-                                style="@style/profileDetailsMiniText"
-                                android:layout_toRightOf="@id/nameImageView" />
-                                //android:text="김철수"
-
+                                style="@style/mypage_DetailsMiniText"
+                                android:layout_toRightOf="@id/nameImageView"
+                                android:text="김펭수" />
 
                         </RelativeLayout>
 
-                        <View style="@style/profileDetailsView" />
+                        <View style="@style/mypage_DetailsView" />
 
-                        <RelativeLayout style="@style/profileDetailsLayout">
+                        <RelativeLayout style="@style/mypage_DetailsLayout">
 
                             <ImageView
                                 android:id="@+id/mobileImageView"
-                                style="@style/profileDetailsImage"
+                                style="@style/mypage_DetailsImage"
                                 android:src="@drawable/ic_mobile" />
 
                             <TextView
-                                style="@style/profileDetailsTextMain"
+                                style="@style/mypage_DetailsTextMain"
                                 android:layout_toRightOf="@id/mobileImageView"
                                 android:text="연락처" />
 
                             <TextView
-                                android:id="@+id/mobilePhoneView"
-                                style="@style/profileDetailsMiniText"
-                                android:layout_toRightOf="@id/mobileImageView" />
-                                //android:text="010-1234-5678" />
+                                style="@style/mypage_DetailsMiniText"
+                                android:layout_toRightOf="@id/mobileImageView"
+                                android:text="010-1234-5678" />
 
                         </RelativeLayout>
 
-                        <View style="@style/profileDetailsView" />
+                        <View style="@style/mypage_DetailsView" />
 
-                        <RelativeLayout style="@style/profileDetailsLayout">
+                        <RelativeLayout style="@style/mypage_DetailsLayout">
 
                             <ImageView
                                 android:id="@+id/emailImageView"
-                                style="@style/profileDetailsImage"
+                                style="@style/mypage_DetailsImage"
                                 android:src="@drawable/ic_email" />
 
                             <TextView
-                                style="@style/profileDetailsTextMain"
+                                style="@style/mypage_DetailsTextMain"
                                 android:layout_toRightOf="@id/emailImageView"
                                 android:text="이메일" />
 
                             <TextView
-                                android:id="@+id/emailView"
-                                style="@style/profileDetailsMiniText"
-                                android:layout_toRightOf="@id/emailImageView" />
-                                //android:text="chulsoo1@naver.com" />
+                                style="@style/mypage_DetailsMiniText"
+                                android:layout_toRightOf="@id/emailImageView"
+                                android:text="chulsoo1@naver.com" />
 
                         </RelativeLayout>
             </LinearLayout>
 
             <!-- 예약 히스토리 -->
             <LinearLayout
-                android:id="@+id/linearLayout4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -178,26 +167,29 @@
                 <TextView
                     style="@style/headerText"
                     android:text="예약 히스토리" />
-                <LinearLayout
-                    style="@style/profileListLayout">
+                <TableLayout
+                    style="@style/mypage_ListLayout">
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
                     <ImageView
-                        style="@style/profileListImage"
-                        tools:src="@drawable/food1" />
+                        style="@style/mypage_ListImage"
+                        android:src="@drawable/food1" />
                     <ImageView
-                        style="@style/profileListImage"
-                        tools:src="@drawable/food2" />
+                        style="@style/mypage_ListImage"
+                        android:src="@drawable/food2" />
                     <ImageView
-                        style="@style/profileListImage"
-                        tools:src="@drawable/food3" />
+                        style="@style/mypage_ListImage"
+                        android:src="@drawable/food3" />
                     <ImageView
-                        style="@style/profileListImage"
-                        tools:src="@drawable/food4" />
-                </LinearLayout>
+                        style="@style/mypage_ListImage"
+                        android:src="@drawable/food4" />
+                    </TableRow>
+                </TableLayout>
             </LinearLayout>
 
             <!-- 즐겨찾기 -->
             <LinearLayout
-                android:id="@+id/linearLayout5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -212,23 +204,26 @@
                 <TextView
                     style="@style/headerText"
                     android:text="즐겨찾기" />
-                <LinearLayout style="@style/profileListLayout">
+                <TableLayout style="@style/mypage_ListLayout">
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
                     <ImageView
-                        style="@style/profileListImage"
-                        tools:src="@drawable/food5" />
+                        style="@style/mypage_ListImage"
+                        android:src="@drawable/food5" />
                     <ImageView
-                        style="@style/profileListImage"
-                        tools:src="@drawable/food6" />
+                        style="@style/mypage_ListImage"
+                        android:src="@drawable/food6" />
                     <ImageView
-                        style="@style/profileListImage"
-                        tools:src="@drawable/food7" />
+                        style="@style/mypage_ListImage"
+                        android:src="@drawable/food7" />
                     <ImageView
-                        style="@style/profileListImage"
-                        tools:src="@drawable/food8" />
-                </LinearLayout>
+                        style="@style/mypage_ListImage"
+                        android:src="@drawable/food8" />
+                    </TableRow>
+                </TableLayout>
             </LinearLayout>
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
