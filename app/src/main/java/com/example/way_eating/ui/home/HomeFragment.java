@@ -25,7 +25,6 @@ import com.example.way_eating.Store;
 import com.example.way_eating.SystemData;
 import com.example.way_eating.network.GetStore;
 import com.google.gson.Gson;
-
 import com.naver.maps.geometry.LatLng;
 import com.naver.maps.map.CameraUpdate;
 import com.naver.maps.map.LocationTrackingMode;
@@ -42,7 +41,6 @@ import org.json.JSONObject;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -213,6 +211,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
             });
             getStore.execute();
         }
+
         return root;
     }
     // update list view when searching places
