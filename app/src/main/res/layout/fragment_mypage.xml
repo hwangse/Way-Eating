@@ -48,9 +48,9 @@
                     android:id="@+id/textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="\김펭수"
                     android:textSize="28dp"
                     android:textStyle="bold" />
+                    //android:text="\김펭수"
 
             </LinearLayout>
 
@@ -101,9 +101,10 @@
                                 android:text="이름" />
 
                             <TextView
+                                android:id="@+id/nameTextView2"
                                 style="@style/mypage_DetailsMiniText"
-                                android:layout_toRightOf="@id/nameImageView"
-                                android:text="김펭수" />
+                                android:layout_toRightOf="@id/nameImageView" />
+                                //android:text="김펭수" />
 
                         </RelativeLayout>
 
@@ -122,9 +123,10 @@
                                 android:text="연락처" />
 
                             <TextView
+                                android:id="@+id/mobilePhoneView"
                                 style="@style/mypage_DetailsMiniText"
-                                android:layout_toRightOf="@id/mobileImageView"
-                                android:text="010-1234-5678" />
+                                android:layout_toRightOf="@id/mobileImageView" />
+                                //android:text="010-1234-5678" />
 
                         </RelativeLayout>
 
@@ -143,6 +145,7 @@
                                 android:text="이메일" />
 
                             <TextView
+                                android:id="@+id/emailView"
                                 style="@style/mypage_DetailsMiniText"
                                 android:layout_toRightOf="@id/emailImageView"
                                 android:text="chulsoo1@naver.com" />
