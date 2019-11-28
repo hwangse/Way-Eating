@@ -3,14 +3,14 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.way_eating.ui.mypage.MypageFragment"
-    android:background="@color/pageBackground">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white1">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/app_bar"
+        android:id="@+id/mypageLayout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
@@ -40,15 +40,17 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
+                    android:id="@+id/customerPhoto"
+                    android:layout_width="@dimen/mypage_customer_image"
+                    android:layout_height="@dimen/mypage_customer_image"
                     android:src="@drawable/profile_round" />
 
                 <TextView
+                    android:id="@+id/customerName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="\김펭수"
-                    android:textSize="28dp"
+                    android:textSize="@dimen/mypage_customer_text"
                     android:textStyle="bold" />
 
             </LinearLayout>
@@ -57,92 +59,87 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/mypageLayout2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/pageBackground"
+        android:background="@color/white1"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:context="com.example.way_eating.ui.mypage.MypageFragment">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="20dp"
             android:orientation="vertical">
 
             <!--마이 페이지-->
             <LinearLayout
+                android:id="@+id/mypageDetails"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="20dp"
                 android:orientation="vertical"
-                app:layout_constraintBottom_toTopOf="parent"
-                app:layout_constraintEnd_toStartOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-                        <!--
-                        <TextView
-                            style="@style/headerText"
-                            android:text="My Page" />
-                        -->
-                        <RelativeLayout style="@style/mypage_DetailsLayout">
+                app:layout_constraintEnd_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="parent">
+
+                        <RelativeLayout style="@style/mypage_details_layout">
 
                             <ImageView
                                 android:id="@+id/nameImageView"
-                                style="@style/mypage_DetailsImage"
+                                style="@style/mypage_details_image"
                                 android:src="@drawable/ic_name" />
 
                             <TextView
                                 android:id="@+id/nameTextView"
-                                style="@style/mypage_DetailsTextMain"
+                                style="@style/mypage_details_mainText"
                                 android:layout_toRightOf="@id/nameImageView"
                                 android:text="이름" />
 
                             <TextView
-                                style="@style/mypage_DetailsMiniText"
+                                style="@style/mypage_details_miniText"
                                 android:layout_toRightOf="@id/nameImageView"
                                 android:text="김펭수" />
 
                         </RelativeLayout>
 
-                        <View style="@style/mypage_DetailsView" />
+                        <View style="@style/mypage_details_view" />
 
-                        <RelativeLayout style="@style/mypage_DetailsLayout">
+                        <RelativeLayout style="@style/mypage_details_layout">
 
                             <ImageView
                                 android:id="@+id/mobileImageView"
-                                style="@style/mypage_DetailsImage"
+                                style="@style/mypage_details_image"
                                 android:src="@drawable/ic_mobile" />
 
                             <TextView
-                                style="@style/mypage_DetailsTextMain"
+                                style="@style/mypage_details_mainText"
                                 android:layout_toRightOf="@id/mobileImageView"
                                 android:text="연락처" />
 
                             <TextView
-                                style="@style/mypage_DetailsMiniText"
+                                style="@style/mypage_details_miniText"
                                 android:layout_toRightOf="@id/mobileImageView"
                                 android:text="010-1234-5678" />
 
                         </RelativeLayout>
 
-                        <View style="@style/mypage_DetailsView" />
+                        <View style="@style/mypage_details_view" />
 
-                        <RelativeLayout style="@style/mypage_DetailsLayout">
+                        <RelativeLayout style="@style/mypage_details_layout">
 
                             <ImageView
                                 android:id="@+id/emailImageView"
-                                style="@style/mypage_DetailsImage"
+                                style="@style/mypage_details_image"
                                 android:src="@drawable/ic_email" />
 
                             <TextView
-                                style="@style/mypage_DetailsTextMain"
+                                style="@style/mypage_details_mainText"
                                 android:layout_toRightOf="@id/emailImageView"
                                 android:text="이메일" />
 
                             <TextView
-                                style="@style/mypage_DetailsMiniText"
+                                style="@style/mypage_details_miniText"
                                 android:layout_toRightOf="@id/emailImageView"
                                 android:text="chulsoo1@naver.com" />
 
@@ -151,37 +148,34 @@
 
             <!-- 예약 히스토리 -->
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
-                android:layout_marginRight="20dp"
+                android:id="@+id/mypageHistory"
+                style="@style/mypage_layout"
                 android:orientation="vertical"
-                app:layout_constraintBottom_toTopOf="parent"
-                app:layout_constraintEnd_toStartOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintEnd_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="parent">
 
                 <TextView
                     style="@style/headerText"
                     android:text="예약 히스토리" />
+
                 <TableLayout
-                    style="@style/mypage_ListLayout">
+                    style="@style/mypage_list_layout">
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
                     <ImageView
-                        style="@style/mypage_ListImage"
+                        style="@style/mypage_list_image"
                         android:src="@drawable/food1" />
                     <ImageView
-                        style="@style/mypage_ListImage"
+                        style="@style/mypage_list_image"
                         android:src="@drawable/food2" />
                     <ImageView
-                        style="@style/mypage_ListImage"
+                        style="@style/mypage_list_image"
                         android:src="@drawable/food3" />
                     <ImageView
-                        style="@style/mypage_ListImage"
+                        style="@style/mypage_list_image"
                         android:src="@drawable/food4" />
                     </TableRow>
                 </TableLayout>
@@ -189,35 +183,32 @@
 
             <!-- 즐겨찾기 -->
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="20dp"
+                android:id="@+id/mypageFavorites"
+                style="@style/mypage_layout"
                 android:orientation="vertical"
-                app:layout_constraintBottom_toTopOf="parent"
-                app:layout_constraintEnd_toStartOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintEnd_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="parent">
 
                 <TextView
                     style="@style/headerText"
                     android:text="즐겨찾기" />
-                <TableLayout style="@style/mypage_ListLayout">
+                <TableLayout style="@style/mypage_list_layout">
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
                     <ImageView
-                        style="@style/mypage_ListImage"
+                        style="@style/mypage_list_image"
                         android:src="@drawable/food5" />
                     <ImageView
-                        style="@style/mypage_ListImage"
+                        style="@style/mypage_list_image"
                         android:src="@drawable/food6" />
                     <ImageView
-                        style="@style/mypage_ListImage"
+                        style="@style/mypage_list_image"
                         android:src="@drawable/food7" />
                     <ImageView
-                        style="@style/mypage_ListImage"
+                        style="@style/mypage_list_image"
                         android:src="@drawable/food8" />
                     </TableRow>
                 </TableLayout>

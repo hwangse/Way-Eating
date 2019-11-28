@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#ffad4f</color>
-    <color name="colorPrimaryDark">#c7873e</color>
+    <color name="colorPrimaryTint">#ffbd72</color>
+    <color name="colorPrimaryDark">#cc8a3f</color>
     <color name="colorAccent">#D81B60</color>
-
-    <!--colors for mypage-->
     <color name="mypage_PrimaryDark">#FF3B30</color>
-    <color name="mypage_AccentColor">#F7F7F7</color>
-    <color name="whiteTextColor">#fff</color>
 
-    <color name="blackTextColor">#000</color>
-    <color name="mypage_EditTextColor">#707070</color>
-
-    <!--계속해서 사용하는 color-->
-    <color name="pageBackground">#fff</color>
-    <color name="grayBoxColor">#c2c2c2</color>
+    <color name="white1">#fff</color>
+    <color name="white2">#F7F7F7</color>
+    <color name="gray1">#707070</color>
+    <color name="gray2">#c2c2c2</color>
+    <color name="black">#000</color>
 </resources>

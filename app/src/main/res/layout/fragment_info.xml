@@ -7,8 +7,8 @@
 
     <!--선택한 음식점의 상세 사진-->
     <LinearLayout
-        style="@style/info_Image"
-        android:id="@+id/selected"
+        style="@style/info_image"
+        android:id="@+id/infoImage"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,77 +35,79 @@
     </LinearLayout>
     <!--선택한 음식점 정보-->
     <LinearLayout
-        style="@style/info_DetailLayout"
+        android:id="@+id/infoDetail"
+        style="@style/info_detail_layout"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/selected">
+        app:layout_constraintTop_toBottomOf="@id/infoImage">
 
         <!--선택한 음식점 이름-->
         <TextView
             android:id="@+id/restaurantName"
-            style="@style/info_NameText" />
+            style="@style/info_title" />
 
         <!--선택한 음식점의 상세 정보-->
         <LinearLayout
+            android:id="@+id/infoDetails"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:orientation="vertical"
-            android:background="@color/grayBoxColor">
+            android:background="@color/gray2">
             <!--음식점 전화번호-->
-            <RelativeLayout style="@style/info_DetailsLayout">
+            <RelativeLayout style="@style/info_details_layout">
 
                 <ImageView
                     android:id="@+id/restaurantContactNumberImage"
-                    style="@style/info_DetailsImage"
+                    style="@style/info_details_image"
                     android:src="@drawable/ic_027" />
 
                 <TextView
                     android:id="@+id/restaurantContactNumber"
-                    style="@style/info_DetailsText"
+                    style="@style/info_details_text"
                     android:layout_toRightOf="@id/restaurantContactNumberImage" />
 
             </RelativeLayout>
             <!--음식점 주소-->
-            <RelativeLayout style="@style/info_DetailsLayout">
+            <RelativeLayout style="@style/info_details_layout">
 
                 <ImageView
                     android:id="@+id/restaurantLocationImage"
-                    style="@style/info_DetailsImage"
+                    style="@style/info_details_image"
                     android:src="@drawable/ic_028" />
 
                 <TextView
                     android:id="@+id/restaurantLocation"
-                    style="@style/info_DetailsText"
+                    style="@style/info_details_text"
                     android:layout_toRightOf="@id/restaurantLocationImage" />
 
             </RelativeLayout>
             <!--음식점 메뉴-->
-            <RelativeLayout style="@style/info_DetailsLayout">
+            <RelativeLayout style="@style/info_details_layout">
 
                 <ImageView
                     android:id="@+id/restaurantMenuImage"
-                    style="@style/info_DetailsImage"
+                    style="@style/info_details_image"
                     android:src="@drawable/ic_022" />
 
                 <TextView
                     android:id="@+id/restaurantMenu"
-                    style="@style/info_DetailsText"
+                    style="@style/info_details_text"
                     android:layout_toRightOf="@id/restaurantMenuImage" />
 
             </RelativeLayout>
             <!--음식점 사이트주소-->
-            <RelativeLayout style="@style/info_DetailsLayout">
+            <RelativeLayout style="@style/info_details_layout">
 
                 <ImageView
                     android:id="@+id/restaurantSiteImage"
-                    style="@style/info_DetailsImage"
+                    style="@style/info_details_image"
                     android:src="@drawable/ic_021" />
 
                 <TextView
                     android:id="@+id/restaurantSite"
-                    style="@style/info_DetailsText"
+                    style="@style/info_details_text"
                     android:layout_toRightOf="@id/restaurantSiteImage" />
 
             </RelativeLayout>
@@ -113,7 +115,8 @@
 
         <!--대기 명단 등록 버튼-->
         <Button
-            style="@style/info_Button"
+            android:id="@+id/infoButton"
+            style="@style/info_button"
             android:text="대기 명단 등록하기"/>
 
     </LinearLayout>

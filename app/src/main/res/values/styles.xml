@@ -1,8 +1,7 @@
 <resources>
 
-    <!-- Base application theme. -->
+    <!--=============== base ===============-->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -17,14 +16,6 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="AppTheme.MypageTheme">
-        <item name="colorPrimaryDark">@color/mypage_PrimaryDark</item>
-        <item name="colorAccent">@color/mypage_AccentColor</item>
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-        <item name="android:textColor">@color/whiteTextColor</item>
-    </style>
-
     <style name="TransparentText" parent="@android:style/TextAppearance">
         <item name="android:textColor">#00000000</item>
     </style>
@@ -35,15 +26,8 @@
     </style>
 
     <style name="headerText" parent="parent">
-        <item name="android:textSize">@dimen/headerTextSize</item>
-        <item name="android:textColor">@color/blackTextColor</item>
-        <item name="android:textStyle">bold</item>
-    </style>
-
-    <style name="textInputHintStyle" parent="TextAppearance.AppCompat.Medium.Inverse">
-        <item name="android:textColorHint">@color/blackTextColor</item>
-        <item name="android:textColor">@color/blackTextColor</item>
-        <item name="android:textSize">17sp</item>
+        <item name="android:textSize">@dimen/text_title</item>
+        <item name="android:textColor">@color/black</item>
         <item name="android:textStyle">bold</item>
     </style>
 
@@ -52,143 +36,147 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
 
-    <style name="view">
+    <style name="body">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:padding">10dp</item>
+        <item name="android:padding">20dp</item>
     </style>
-    <!--styles for mypage-->
-    <style name="mypage_DetailsLayout" parent="parent">
-        <item name="android:layout_marginTop">20dp</item>
+
+    <!--=============== MyPage ===============-->
+    <style name="mypage_layout" parent="parent">
+        <item name="android:layout_marginTop">@dimen/margin_big</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
     </style>
-    <style name="mypage_DetailsImage">
-        <item name="android:layout_width">40dp</item>
-        <item name="android:layout_height">40dp</item>
+    <style name="mypage_details_layout" parent="parent">
+        <item name="android:layout_marginTop">@dimen/margin_big</item>
+    </style>
+    <style name="mypage_details_image">
+        <item name="android:layout_width">@dimen/image_detail</item>
+        <item name="android:layout_height">@dimen/image_detail</item>
         <item name="android:layout_alignParentTop">true</item>
         <item name="android:layout_alignParentLeft">true</item>
     </style>
-    <style name="mypage_DetailsTextMain" parent="viewParent">
-        <item name="android:textColor">@color/blackTextColor</item>
+    <style name="mypage_details_mainText" parent="viewParent">
+        <item name="android:textColor">@color/black</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textSize">16sp</item>
-        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:textSize">@dimen/text_main</item>
+        <item name="android:layout_marginLeft">@dimen/margin_normal</item>
     </style>
-    <style name="mypage_DetailsMiniText" parent="viewParent">
+    <style name="mypage_details_miniText" parent="viewParent">
         <item name="android:layout_alignParentBottom">true</item>
-        <item name="android:textColor">@color/blackTextColor</item>
-        <item name="android:textSize">14sp</item>
-        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/text_mini</item>
+        <item name="android:layout_marginLeft">@dimen/margin_normal</item>
     </style>
-    <style name="mypage_DetailsView">
+    <style name="mypage_details_view">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">2dp</item>
-        <item name="android:background">@color/mypage_AccentColor</item>
+        <item name="android:background">@color/white2</item>
         <item name="android:layout_marginTop">5dp</item>
     </style>
-    <style name="mypage_ListLayout">
+    <style name="mypage_list_layout">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@color/grayBoxColor</item>
-        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:background">@color/gray2</item>
+        <item name="android:layout_marginTop">@dimen/margin_small</item>
         <item name="android:padding">5dp</item>
     </style>
-    <style name="mypage_ListImage">
-        <item name="android:layout_width">70dp</item>
-        <item name="android:layout_height">70dp</item>
-        <item name="android:layout_margin">10dp</item>
-    </style>
-    <style name="mypage_StyledBackButton">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@drawable/profile_back_button</item>
-        <!-- <item name="android:textAlignment">center</item> -->
-        <item name="android:paddingLeft">30dp</item>
-        <item name="android:paddingRight">50dp</item>
-        <item name="android:paddingTop">10dp</item>
-        <item name="android:paddingBottom">10dp</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:layout_centerHorizontal">true</item>
-        <item name="android:layout_alignParentTop">true</item>
-        <item name="android:minWidth">250dp</item>
+    <style name="mypage_list_image">
+        <item name="android:layout_width">@dimen/image_list</item>
+        <item name="android:layout_height">@dimen/image_list</item>
+        <item name="android:layout_margin">@dimen/margin_normal</item>
     </style>
 
-    <!--styles for info-->
-    <style name="info_NameText" parent="parent">
-        <item name="android:textSize">33sp</item>
-        <item name="android:textColor">@color/blackTextColor</item>
+    <!--=============== Info ===============-->
+    <style name="info_title" parent="parent">
+        <item name="android:textSize">@dimen/text_title</item>
+        <item name="android:textColor">@color/black</item>
         <item name="android:gravity">left</item>
-        <item name="android:layout_marginBottom">5dp</item>
+        <item name="android:layout_marginBottom">@dimen/margin_small</item>
     </style>
-    <style name="info_Image" parent="parent">
+    <style name="info_image" parent="parent">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:gravity">left</item>
         <item name="android:padding">10dp</item>
     </style>
-    <style name="info_DetailLayout" parent="parent">
+    <style name="info_detail_layout" parent="parent">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:padding">10dp</item>
         <item name="android:layout_marginTop">25dp</item>
         <item name="android:gravity">center_vertical|center_horizontal</item>
     </style>
-    <style name="info_DetailsLayout" parent="parent">
-        <item name="android:layout_marginTop">5dp</item>
+    <style name="info_details_layout" parent="parent">
+        <item name="android:layout_marginTop">@dimen/margin_small</item>
     </style>
-    <style name="info_DetailsImage">
-        <item name="android:layout_width">30dp</item>
-        <item name="android:layout_height">30dp</item>
+    <style name="info_details_image">
+        <item name="android:layout_width">@dimen/image_detail</item>
+        <item name="android:layout_height">@dimen/image_detail</item>
         <item name="android:layout_alignParentLeft">true</item>
     </style>
-    <style name="info_DetailsText" parent="viewParent">
+    <style name="info_details_text" parent="viewParent">
         <item name="android:layout_alignParentRight">true</item>
-        <item name="android:textColor">@color/blackTextColor</item>
-        <item name="android:textSize">18sp</item>
-        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/text_main</item>
+        <item name="android:layout_marginLeft">@dimen/margin_normal</item>
         <item name="android:gravity">center_vertical</item>
     </style>
-    <style name="info_Button">
+    <style name="info_button">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginTop">10dp</item>
-        <item name="android:textColor">@color/blackTextColor</item>
-        <item name="android:textSize">16sp</item>
+        <item name="android:layout_marginTop">@dimen/margin_normal</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/text_main</item>
         <item name="android:textStyle">bold</item>
         <item name="android:background">@color/colorPrimary</item>
         <item name="android:gravity">center_vertical|center_horizontal</item>
     </style>
 
-    <!--styles for list-->
-    <style name="list_DetailLayout">
+    <!--=============== List ===============-->
+    <style name="list_layout">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_margin">10dp</item>
+        <item name="android:layout_margin">@dimen/margin_normal</item>
         <item name="android:padding">10dp</item>
     </style>
-    <style name="list_NameText" parent="parent">
-        <item name="android:textSize">20sp</item>
-        <item name="android:textColor">@color/blackTextColor</item>
+    <style name="list_mainText" parent="parent">
+        <item name="android:textSize">@dimen/text_subtitle</item>
+        <item name="android:textColor">@color/black</item>
         <item name="android:textStyle">bold</item>
         <item name="android:gravity">left</item>
         <item name="android:layout_marginTop">8dp</item>
         <item name="android:layout_marginBottom">8dp</item>
     </style>
 
-    <!--styles for status-->
-    <style name="status_Avatars">
-        <item name="android:layout_width">100dp</item>
-        <item name="android:layout_height">100dp</item>
-        <item name="android:layout_margin">10dp</item>
+    <!--=============== Status ===============-->
+    <style name="status_avatars">
+        <item name="android:layout_width">@dimen/status_avatar_image</item>
+        <item name="android:layout_height">@dimen/status_avatar_image</item>
+        <item name="android:layout_margin">@dimen/margin_normal</item>
     </style>
-    <style name="status_NameText" parent="parent">
+    <style name="status_detail_mainText" parent="parent">
         <item name="android:textSize">60sp</item>
-        <item name="android:textColor">@color/blackTextColor</item>
+        <item name="android:textColor">@color/black</item>
         <item name="android:textStyle">bold</item>
         <item name="android:gravity">center_horizontal</item>
     </style>
-    <style name="status_PlusText" parent="parent">
+    <style name="status_detail_miniText" parent="parent">
         <item name="android:textSize">35sp</item>
-        <item name="android:textColor">@color/blackTextColor</item>
+        <item name="android:textColor">@color/black</item>
         <item name="android:gravity">center_horizontal</item>
     </style>
 </resources>
+    <!--=============== Home ===============-->
+
+    <!--=============== Join ===============-->
+
+    <!--=============== Login ===============-->
+
+
+
+
+
+
+
