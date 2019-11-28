@@ -6,10 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.way_eating.R;
@@ -29,24 +27,15 @@ public class MypageFragment extends Fragment {
                 ViewModelProviders.of(this).get(MypageViewModel.class);
         View root = inflater.inflate(R.layout.fragment_mypage, container, false);
 
-/*
-        TextView mypageName = root.findViewById(R.id.mypage_name);
-        TextView mypageId = root.findViewById(R.id.mypage_id);
-        TextView mypageEmail = root.findViewById(R.id.mypage_email);
-        TextView mypagePhone = root.findViewById(R.id.mypage_phone);
+        //text값 넣기
+        TextView customerName = (TextView) root.findViewById(R.id.customerName);
+        TextView customerPhoneNumber = (TextView) root.findViewById(R.id.customerPhoneNumber);
+        TextView customerEmailAddress  = (TextView) root.findViewById(R.id.customerEmailAddress);
 
-        mypageName.setText("김철수");
-        mypageId.setText("chulsoo1");
-        mypageEmail.setText("chulsoo1@naver.com");
-        mypagePhone.setText("010-1234-5678");
-*/
-        //final TextView textView = root.findViewById(R.id.text_mypage);
-        /*mypageViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });*/
+        customerName.setText(getResources().getString(R.string.customerName));
+        customerPhoneNumber.setText(getResources().getString(R.string.customerPhoneNumber));
+        customerEmailAddress.setText(getResources().getString(R.string.customerEmailAddress));
+
         return root;
     }
 }

@@ -46,7 +46,7 @@
                     android:src="@drawable/profile_round" />
 
                 <TextView
-                    android:id="@+id/customerName"
+                    android:id="@+id/customerNameBig"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="\김펭수"
@@ -67,6 +67,7 @@
         tools:context="com.example.way_eating.ui.mypage.MypageFragment">
 
         <LinearLayout
+            android:id="@+id/mypageDetail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="20dp"
@@ -86,20 +87,20 @@
                         <RelativeLayout style="@style/mypage_details_layout">
 
                             <ImageView
-                                android:id="@+id/nameImageView"
+                                android:id="@+id/customerNameImage"
                                 style="@style/mypage_details_image"
                                 android:src="@drawable/ic_name" />
 
                             <TextView
-                                android:id="@+id/nameTextView"
+                                android:id="@+id/customerNameTitle"
                                 style="@style/mypage_details_mainText"
-                                android:layout_toRightOf="@id/nameImageView"
+                                android:layout_toRightOf="@id/customerNameImage"
                                 android:text="이름" />
 
                             <TextView
+                                android:id="@+id/customerName"
                                 style="@style/mypage_details_miniText"
-                                android:layout_toRightOf="@id/nameImageView"
-                                android:text="김펭수" />
+                                android:layout_toRightOf="@id/customerNameImage" />
 
                         </RelativeLayout>
 
@@ -108,19 +109,20 @@
                         <RelativeLayout style="@style/mypage_details_layout">
 
                             <ImageView
-                                android:id="@+id/mobileImageView"
+                                android:id="@+id/customerPhoneImage"
                                 style="@style/mypage_details_image"
                                 android:src="@drawable/ic_mobile" />
 
                             <TextView
+                                android:id="@+id/customerPhoneTitle"
                                 style="@style/mypage_details_mainText"
-                                android:layout_toRightOf="@id/mobileImageView"
+                                android:layout_toRightOf="@id/customerPhoneImage"
                                 android:text="연락처" />
 
                             <TextView
+                                android:id="@+id/customerPhoneNumber"
                                 style="@style/mypage_details_miniText"
-                                android:layout_toRightOf="@id/mobileImageView"
-                                android:text="010-1234-5678" />
+                                android:layout_toRightOf="@id/customerPhoneImage" />
 
                         </RelativeLayout>
 
@@ -129,19 +131,20 @@
                         <RelativeLayout style="@style/mypage_details_layout">
 
                             <ImageView
-                                android:id="@+id/emailImageView"
+                                android:id="@+id/customerEmailImage"
                                 style="@style/mypage_details_image"
                                 android:src="@drawable/ic_email" />
 
                             <TextView
+                                android:id="@+id/customerEmailTitle"
                                 style="@style/mypage_details_mainText"
-                                android:layout_toRightOf="@id/emailImageView"
+                                android:layout_toRightOf="@id/customerEmailImage"
                                 android:text="이메일" />
 
                             <TextView
+                                android:id="@+id/customerEmailAddress"
                                 style="@style/mypage_details_miniText"
-                                android:layout_toRightOf="@id/emailImageView"
-                                android:text="chulsoo1@naver.com" />
+                                android:layout_toRightOf="@id/customerEmailImage" />
 
                         </RelativeLayout>
             </LinearLayout>
@@ -157,10 +160,12 @@
                 app:layout_constraintBottom_toTopOf="parent">
 
                 <TextView
+                    android:id="@+id/mypageHistoryTitle"
                     style="@style/headerText"
                     android:text="예약 히스토리" />
 
                 <TableLayout
+                    android:id="@+id/mypageHistoryImages"
                     style="@style/mypage_list_layout">
                     <TableRow
                         android:layout_width="match_parent"
@@ -192,9 +197,12 @@
                 app:layout_constraintBottom_toTopOf="parent">
 
                 <TextView
+                    android:id="@+id/mypageFavoritesTitle"
                     style="@style/headerText"
                     android:text="즐겨찾기" />
-                <TableLayout style="@style/mypage_list_layout">
+                <TableLayout
+                    android:id="@+id/mypageFavoritesImages"
+                    style="@style/mypage_list_layout">
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">

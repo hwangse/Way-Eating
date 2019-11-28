@@ -19,5 +19,6 @@
     <string name="restaurantTime">20</string>
     <string name="nearbyRestaurantName">홍두깨</string>
     <string name="customerName">김펭수</string>
-
+    <string name="customerPhoneNumber">010-1234-5678</string>
+    <string name="customerEmailAddress">chulsoo1@naver.com</string>
 </resources>
