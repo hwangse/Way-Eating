@@ -21,8 +21,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.way_eating.R;
-import com.example.way_eating.Store;
-import com.example.way_eating.SystemData;
+import com.example.way_eating.data.Store;
+import com.example.way_eating.data.SystemData;
 import com.example.way_eating.network.GetStore;
 import com.google.gson.Gson;
 import com.naver.maps.geometry.LatLng;

@@ -1,4 +1,4 @@
-package com.example.way_eating;
+package com.example.way_eating.data;
 
 /* 서버가 DB에서 Store 정보를 가져와서 각각의 상점에 대해 생성할 class */
 public class Store {

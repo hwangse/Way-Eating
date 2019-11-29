@@ -52,7 +52,7 @@ public class LogInActivity extends Activity {
             @Override
             public void onClick(View v) {
                 switch (v.getId()) {
-                    case R.id.loginMaster:
+                    case R.id.loginMaster:  //마스터버튼
                         Intent intent2 = new Intent(LogInActivity.this, MainActivity.class);
                         startActivity(intent2);
                         finish();
@@ -69,7 +69,7 @@ public class LogInActivity extends Activity {
         };
         login.setOnClickListener(listener);
         join.setOnClickListener(listener);
-        master.setOnClickListener(listener);
+        master.setOnClickListener(listener);    //마스터버튼
     }
 
     //뒤로 버튼 눌렸을 때 이벤트 처리
@@ -78,7 +78,7 @@ public class LogInActivity extends Activity {
         backPressCloseHandler.onBackPressed();
     }
 
-    //로그인 정보 유효성 검사
+    //로그인 양식 유효성 검사
     private void attemptLogin() {
         email.setError(null);
         pw.setError(null);
@@ -88,19 +88,7 @@ public class LogInActivity extends Activity {
         boolean cancel = false;
         View focusView = null;
 
-        //패스워드 유효성 검사
-        if (strPW.isEmpty()) {
-            pw.setError("비밀번호를 입력해주세요.");
-            focusView = pw;
-            cancel = true;
-        }
-        else if (strPW.length() < 6) {
-            pw.setError("6자 이상의 비밀번호를 입력해주세요.");
-            focusView = pw;
-            cancel = true;
-        }
-
-        //아이디 유효성 검사
+        //이메일 유효성 검사
         if (strEmail.isEmpty()) {
             email.setError("이메일을 입력해주세요.");
             focusView = email;
@@ -117,29 +105,41 @@ public class LogInActivity extends Activity {
             cancel = true;
         }
 
+        //패스워드 유효성 검사
+        if (strPW.isEmpty()) {
+            pw.setError("비밀번호를 입력해주세요.");
+            focusView = pw;
+            cancel = true;
+        }
+        else if (strPW.length() < 6) {
+            pw.setError("6자 이상의 비밀번호를 입력해주세요.");
+            focusView = pw;
+            cancel = true;
+        }
+
         if (cancel) //오류가 있는 경우 경고창
             focusView.requestFocus();
-        else {  //오류가 없는 경우 로그인
+        else {  //오류가 없는 경우 로그인 시도
             startLogin(new LoginData(strEmail, strPW));
             showProgress(true);
         }
     }
 
-    //유효한 정보에 대해 서버에 로그인 요청을 보냄
+    //유효한 양식에 대해 서버에 로그인 요청을 보냄
     private void startLogin(LoginData data) {
         service.userLogin(data).enqueue(new Callback<LoginResponse>() {
             //통신이 성공했을 경우 호출되는 메소드. response 객체에 응답으로 돌려받은 데이터가 들어있음
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                 LoginResponse result = response.body();
-                //Toast.makeText(LogInActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(LogInActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
                 showProgress(false);
-                //if (result.getCode() == 200) {
-                Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
+                if (result.getCode() == 200) {
+                    //Toast.makeText(getApplic:ationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(LogInActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
-                //}
+                }
             }
 
             @Override

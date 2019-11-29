@@ -1,4 +1,4 @@
-package com.example.way_eating;
+package com.example.way_eating.data;
 
 
 import java.util.ArrayList;

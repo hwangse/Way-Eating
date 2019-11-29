@@ -1,4 +1,4 @@
-package com.example.way_eating;
+package com.example.way_eating.data;
 
 /* 유저가 로그인에 성공한다면 만들어질 클래스 */
 public class User {

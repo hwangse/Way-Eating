@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.example.way_eating.R;
@@ -20,25 +22,39 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class JoinActivity extends Activity {
-    private ServiceApi service;
+    private EditText name;
     private EditText email;
     private EditText pw;
-    private EditText name;
+    private EditText age;
+    private RadioGroup sex;
+    private RadioButton sexSelected;
+    private EditText phone;
     private Button join;
     private ProgressBar progress;
+    private ServiceApi service;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_join);
 
+        name = (EditText) findViewById(R.id.joinName);
         email = (EditText) findViewById(R.id.joinEmail);
         pw = (EditText) findViewById(R.id.joinPW);
-        name = (EditText) findViewById(R.id.joinName);
+        age = (EditText) findViewById(R.id.joinAge);
+        sex = (RadioGroup) findViewById(R.id.joinSex);
+        phone = (EditText) findViewById(R.id.joinPhone);
         join = (Button) findViewById(R.id.joinJoin);
         progress = (ProgressBar) findViewById(R.id.joinProgress);
-
         service = RetrofitClient.getClient().create(ServiceApi.class);
+
+        //성별 받아오기
+        sex.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int id) {
+                sexSelected = (RadioButton) findViewById(id);
+            }
+        });
 
         //회원가입 버튼이 눌렸을 때
         join.setOnClickListener(new View.OnClickListener() {
@@ -49,15 +65,22 @@ public class JoinActivity extends Activity {
         });
     }
 
-    //회원가입 정보 유효성 검사
+    //회원가입 양식 유효성 검사
     private void attemptJoin() {
+        name.setError(null);
         email.setError(null);
         pw.setError(null);
-        name.setError(null);
+        age.setError(null);
+        phone.setError(null);
 
+        //JoinData에 넘겨줄 파라미터
         String strName = name.getText().toString();
         String strEmail = email.getText().toString();
         String strPW = pw.getText().toString();
+        Integer intAge = Integer.parseInt(age.getText().toString());
+        String strSex = sexSelected.getText().toString();
+        String strPhone = phone.getText().toString();
+
         boolean cancel = false;
         View focusView = null;
 
@@ -65,6 +88,24 @@ public class JoinActivity extends Activity {
         if (strName.isEmpty()) {
             name.setError("이름을 입력해주세요.");
             focusView = name;
+            cancel = true;
+        }
+
+        //이메일 유효성 검사
+        if (strEmail.isEmpty()) {
+            email.setError("이메일을 입력해주세요.");
+            focusView = email;
+            cancel = true;
+        }
+        else if (strEmail.length() < 6) {
+            email.setError("6자 이상의 이메일을 입력해주세요.");
+            focusView = email;
+            cancel = true;
+        }
+        else if (!strEmail.contains("@")) {
+
+            email.setError("올바른 이메일 양식이 아닙니다.");
+            focusView = email;
             cancel = true;
         }
 
@@ -80,45 +121,27 @@ public class JoinActivity extends Activity {
             cancel = true;
         }
 
-        //아이디 유효성 검사
-        if (strEmail.isEmpty()) {
-            email.setError("이메일을 입력해주세요.");
-            focusView = email;
-            cancel = true;
-        }
-        else if (strEmail.length() < 6) {
-            email.setError("6자 이상의 이메일을 입력해주세요.");
-            focusView = email;
-            cancel = true;
-        }
-        else if (!strEmail.contains("@")) {
-            email.setError("올바른 이메일 양식이 아닙니다.");
-            focusView = email;
-            cancel = true;
-        }
-
         if (cancel) //오류가 있는 경우 경고창
             focusView.requestFocus();
-        else {  //오류가 없는 경우 회원가입
-            startJoin(new JoinData(strName, strEmail, strPW));
+        else {  //오류가 없는 경우 회원가입 시도
+            startJoin(new JoinData(strName, strEmail, strPW, intAge, strSex, strPhone));
             showProgress(true);
         }
     }
 
-    //유효한 정보에 대해 서버에 회원가입 요청을 보냄
+    //유효한 양식에 대해 서버에 회원가입 요청을 보냄
     private void startJoin(JoinData data) {
         service.userJoin(data).enqueue(new Callback<JoinResponse>() {
                                                                                          //통신이 성공했을 경우 호출되는 메소드. response 객체에 응답으로 돌려받은 데이터가 들어있음
             @Override
             public void onResponse(Call<JoinResponse> call, Response<JoinResponse> response) {
                 JoinResponse result = response.body();
-                //Toast.makeText(JoinActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(JoinActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
                 showProgress(false);
 
-                //if (result.getCode() == 200) {
-                Toast.makeText(JoinActivity.this, "회원가입 완료", Toast.LENGTH_SHORT).show();
-                //finish();
-                //}
+                if (result.getCode() == 200) {
+                    finish();
+                }
             }
 
             //통신이 실패했을 경우 호출되는 메소드
