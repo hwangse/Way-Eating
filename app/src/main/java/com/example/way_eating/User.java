@@ -18,4 +18,24 @@ public class User {
         this.phoneNum=phoneNum;
         this.email=email;
     }
+    /*
+    public Integer getId(){
+        return this.id;
+    }
+    public String getName(){
+        return this.name;
+    }
+    public String getSex(){
+        return this.sex;
+    }
+    public Integer getAge(){
+        return this.age;
+    }
+    public String getPhoneNum(){
+        return this.phoneNum;
+    }
+    public String getEmail(){
+        return this.email;
+    }
+     */
 }
