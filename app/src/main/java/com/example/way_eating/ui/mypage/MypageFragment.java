@@ -22,7 +22,7 @@ public class MypageFragment extends Fragment {
 
     private MypageViewModel mypageViewModel;
     //현선 추가
-    public TextView t = null;
+    public TextView customerNameBig = null;
     public TextView nameTextView2 = null;
     public TextView mobilePhoneView = null;
     public TextView emailView = null;
@@ -33,7 +33,7 @@ public class MypageFragment extends Fragment {
                 ViewModelProviders.of(this).get(MypageViewModel.class);
         View root = inflater.inflate(R.layout.fragment_mypage, container, false);
 
-        /*
+
         //text값 넣기 - 기본 설정 by 지안
         TextView customerName = (TextView) root.findViewById(R.id.customerName);
         TextView customerPhoneNumber = (TextView) root.findViewById(R.id.customerPhoneNumber);
@@ -42,7 +42,7 @@ public class MypageFragment extends Fragment {
         customerName.setText(getResources().getString(R.string.customerName));
         customerPhoneNumber.setText(getResources().getString(R.string.customerPhoneNumber));
         customerEmailAddress.setText(getResources().getString(R.string.customerEmailAddress));
-        */
+
 
         //systemData 대신 더미 클래스 만들어서 보여주기 by 현선
         if(customerNameBig == null)  customerNameBig = (TextView)root.findViewById(R.id.customerNameBig);
