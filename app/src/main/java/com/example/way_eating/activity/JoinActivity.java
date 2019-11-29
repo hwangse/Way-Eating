@@ -30,6 +30,7 @@ public class JoinActivity extends Activity {
     private RadioButton sexSelected;
     private EditText phone;
     private Button join;
+    private Button master;
     private ProgressBar progress;
     private ServiceApi service;
 
@@ -45,6 +46,7 @@ public class JoinActivity extends Activity {
         sex = (RadioGroup) findViewById(R.id.joinSex);
         phone = (EditText) findViewById(R.id.joinPhone);
         join = (Button) findViewById(R.id.joinJoin);
+        master = (Button) findViewById(R.id.joinMaster);
         progress = (ProgressBar) findViewById(R.id.joinProgress);
         service = RetrofitClient.getClient().create(ServiceApi.class);
 
@@ -61,6 +63,15 @@ public class JoinActivity extends Activity {
             @Override
             public void onClick(View v) {
                 attemptJoin();
+            }
+        });
+
+        //마스터 버튼
+        master.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startJoin(new JoinData("admin", "admin@way", "123456", 24, "여", "01012345678"));
+                showProgress(true);
             }
         });
     }

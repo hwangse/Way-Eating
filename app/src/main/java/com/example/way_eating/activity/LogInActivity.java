@@ -53,9 +53,7 @@ public class LogInActivity extends Activity {
             public void onClick(View v) {
                 switch (v.getId()) {
                     case R.id.loginMaster:  //마스터버튼
-                        Intent intent2 = new Intent(LogInActivity.this, MainActivity.class);
-                        startActivity(intent2);
-                        finish();
+                        startLogin(new LoginData("admin@way", "123456"));
                         break;
                     case R.id.loginLogin: //로그인
                         attemptLogin();
@@ -134,11 +132,11 @@ public class LogInActivity extends Activity {
                 LoginResponse result = response.body();
                 Toast.makeText(LogInActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
                 showProgress(false);
-                if (result.getCode() == 200) {
-                    //Toast.makeText(getApplic:ationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(LogInActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish();
+                if (result.getCode() == 200) {  //해당 회원 정보가 있는 경우
+                    //Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(LogInActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
                 }
             }
 
