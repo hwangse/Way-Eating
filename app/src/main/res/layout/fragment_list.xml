@@ -6,10 +6,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 <androidx.constraintlayout.widget.ConstraintLayout
-    style="@style/view">
+    style="@style/body">
 
     <SearchView
-        android:id="@+id/searchRestaurant"
+        android:id="@+id/listSearchRestaurant"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:queryHint="찾으시려는 장소를 입력하세요"
@@ -20,23 +20,23 @@
 
     <!--주변 맛집-->
     <LinearLayout
-        style="@style/list_DetailLayout"
-        android:id="@+id/nearby"
+        style="@style/list_layout"
+        android:id="@+id/listNearby"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/searchRestaurant">
+        app:layout_constraintTop_toBottomOf="@id/listSearchRestaurant">
 
         <TextView
             android:id="@+id/nearbyRestaurantName"
-            style="@style/list_NameText" />
+            style="@style/list_mainText" />
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/viewPager_nearby"
             android:layout_width="250dp"
             android:layout_height="250dp"
             android:layout_marginBottom="8dp"
-            android:gravity="center_vertical" />
+            android:gravity="center" />
 
         <LinearLayout
             android:id="@+id/sliderDotspanel_nearby"
@@ -49,16 +49,16 @@
 
     <!--주변 추천 맛집-->
     <LinearLayout
-        style="@style/list_DetailLayout"
-        android:id="@+id/suggest"
+        style="@style/list_layout"
+        android:id="@+id/listSuggest"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/nearby">
+        app:layout_constraintTop_toBottomOf="@id/listNearby">
 
         <TextView
             android:id="@+id/suggestRestaurantList"
-            style="@style/list_NameText" />
+            style="@style/list_mainText" />
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/viewPager_suggest"
@@ -81,7 +81,7 @@
         android:layout_height="wrap_content"
         android:text="info용"
         android:onClick="onClick"
-        app:layout_constraintTop_toBottomOf="@id/suggest"
+        app:layout_constraintTop_toBottomOf="@id/listSuggest"
         app:layout_constraintBottom_toBottomOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

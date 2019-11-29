@@ -1,43 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        style="@style/view">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+        style="@style/body"
+        android:layout_height="match_parent">
         <!--예약 정보-->
         <LinearLayout
-            android:id="@+id/statusInformation"
+            android:id="@+id/statusDetail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintBottom_toTopOf="@id/Avatars"
+            app:layout_constraintBottom_toTopOf="@id/statusAvatars"
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 android:id="@+id/restaurantName"
-                style="@style/status_NameText" />
+                style="@style/status_detail_mainText" />
 
             <TextView
                 android:id="@+id/restaurantOrder"
-                style="@style/status_PlusText" />
+                style="@style/status_detail_miniText" />
 
             <TextView
                 android:id="@+id/restaurantTime"
-                style="@style/status_PlusText" />
+                style="@style/status_detail_miniText" />
         </LinearLayout>
         <!--아바타-->
         <LinearLayout
-            android:id="@+id/Avatars"
+            android:id="@+id/statusAvatars"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/statusInformation">
+            app:layout_constraintTop_toBottomOf="@id/statusDetail">
 
             <TableLayout
                 android:layout_width="match_parent"
@@ -48,15 +47,15 @@
                     android:layout_height="match_parent">
 
                     <ImageView
-                        style="@style/status_Avatars"
+                        style="@style/status_avatars"
                         android:src="@drawable/avatar_01" />
 
                     <ImageView
-                        style="@style/status_Avatars"
+                        style="@style/status_avatars"
                         android:src="@drawable/avatar_02" />
 
                     <ImageView
-                        style="@style/status_Avatars"
+                        style="@style/status_avatars"
                         android:src="@drawable/avatar_03" />
                 </TableRow>
 
@@ -65,11 +64,11 @@
                     android:layout_height="match_parent">
 
                     <ImageView
-                        style="@style/status_Avatars"
+                        style="@style/status_avatars"
                         android:src="@drawable/avatar_04" />
 
                     <ImageView
-                        style="@style/status_Avatars"
+                        style="@style/status_avatars"
                         android:background="@color/colorPrimary"
                         android:src="@drawable/avatar_05" />
                 </TableRow>
@@ -77,4 +76,3 @@
             </TableLayout>
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>

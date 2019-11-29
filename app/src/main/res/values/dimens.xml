@@ -1,11 +1,42 @@
 <resources>
-    <!-- Default screen margins, per the Android Design guidelines. -->
+    <!--============================== DIMENS_BASE ==============================-->
+    <!--=============== Space ===============-->
+    <dimen name="space_20dp">20dp</dimen>
+    <!--=============== Text ===============-->
+    <dimen name="text_title">28sp</dimen>
+    <dimen name="text_subtitle">20sp</dimen>
+    <dimen name="text_main">16sp</dimen>
+    <dimen name="text_mini">14sp</dimen>
+    <!--=============== Image ===============-->
+    <dimen name="image_detail">40dp</dimen>
+    <dimen name="image_list">70dp</dimen>
+    <dimen name="image_viewPager">20dp</dimen>
+
+    <!--=============== Padding ===============-->
+    <dimen name="padding_20dp">20dp</dimen>
+    <!--=============== Margin ===============-->
+    <dimen name="margin_big">20dp</dimen>
+    <dimen name="margin_normal">10dp</dimen>
+    <dimen name="margin_small">5dp</dimen>
+
+    <!--============================== DIMENS ==============================-->
+
+    <!--=============== Home ===============-->
+
+    <!--=============== List ===============-->
+
+    <!--=============== Status ===============-->
+    <dimen name="status_avatar_image">100dp</dimen>
+    <!--=============== MyPage ===============-->
+    <dimen name="mypage_customer_image">150dp</dimen>
+    <dimen name="mypage_customer_text">28dp</dimen>
+    <!--=============== Info ===============-->
+
+
+
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
-
-    <!--dimens for profile-->
     <dimen name="app_bar_height">180dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="text_margin">16dp</dimen>
-    <dimen name="headerTextSize">28sp</dimen>
 </resources>

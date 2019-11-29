@@ -33,17 +33,27 @@ public class MypageFragment extends Fragment {
                 ViewModelProviders.of(this).get(MypageViewModel.class);
         View root = inflater.inflate(R.layout.fragment_mypage, container, false);
 
-        //systemData 대신 더미 클래스 만들어서 보여주기
-        if(t == null)  t = (TextView)root.findViewById(R.id.textView);
-        if(nameTextView2 == null) nameTextView2 = (TextView)root.findViewById(R.id.nameTextView2);
-        if(mobilePhoneView == null) mobilePhoneView = (TextView)root.findViewById(R.id.mobilePhoneView);
-        if(emailView == null) emailView = (TextView)root.findViewById(R.id.emailView);
+        /*
+        //text값 넣기 - 기본 설정 by 지안
+        TextView customerName = (TextView) root.findViewById(R.id.customerName);
+        TextView customerPhoneNumber = (TextView) root.findViewById(R.id.customerPhoneNumber);
+        TextView customerEmailAddress  = (TextView) root.findViewById(R.id.customerEmailAddress);
 
+        customerName.setText(getResources().getString(R.string.customerName));
+        customerPhoneNumber.setText(getResources().getString(R.string.customerPhoneNumber));
+        customerEmailAddress.setText(getResources().getString(R.string.customerEmailAddress));
+        */
 
-        t.setText(UserInfoTemp.name);
-        nameTextView2.setText(UserInfoTemp.name);
-        mobilePhoneView.setText(UserInfoTemp.phoneNum);
-        emailView.setText(UserInfoTemp.email);
+        //systemData 대신 더미 클래스 만들어서 보여주기 by 현선
+        if(customerNameBig == null)  customerNameBig = (TextView)root.findViewById(R.id.customerNameBig);
+        if(customerName == null) customerName = (TextView)root.findViewById(R.id.customerName);
+        if(customerPhoneNumber == null) customerPhoneNumber = (TextView)root.findViewById(R.id.customerPhoneNumber);
+        if(customerEmailAddress == null) customerEmailAddress = (TextView)root.findViewById(R.id.customerEmailAddress);
+
+        customerNameBig.setText(UserInfoTemp.name);
+        customerName.setText(UserInfoTemp.name);
+        customerPhoneNumber.setText(UserInfoTemp.phoneNum);
+        customerEmailAddress.setText(UserInfoTemp.email);
         /*
         if(HomeFragment.systemData != null){
             t.setText(HomeFragment.systemData.user.getName());
@@ -51,7 +61,6 @@ public class MypageFragment extends Fragment {
             mobilePhoneView.setText(HomeFragment.systemData.user.getPhoneNum());
             emailView.setText(HomeFragment.systemData.user.getEmail());
         }
-
 
         //현선 User 추가
         Log.v("태그","user");
@@ -89,25 +98,6 @@ public class MypageFragment extends Fragment {
         }
          */
 
-
-/*
-        TextView mypageName = root.findViewById(R.id.mypage_name);
-        TextView mypageId = root.findViewById(R.id.mypage_id);
-        TextView mypageEmail = root.findViewById(R.id.mypage_email);
-        TextView mypagePhone = root.findViewById(R.id.mypage_phone);
-
-        mypageName.setText("김철수");
-        mypageId.setText("chulsoo1");
-        mypageEmail.setText("chulsoo1@naver.com");
-        mypagePhone.setText("010-1234-5678");
-*/
-        //final TextView textView = root.findViewById(R.id.text_mypage);
-        /*mypageViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });*/
 
         return root;
     }
