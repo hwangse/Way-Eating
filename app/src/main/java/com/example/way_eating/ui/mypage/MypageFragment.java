@@ -34,8 +34,6 @@ public class MypageFragment extends Fragment {
         mypageViewModel =
                 ViewModelProviders.of(this).get(MypageViewModel.class);
         View root = inflater.inflate(R.layout.fragment_mypage, container, false);
-        //homefragment의 systemdata
-        //systemData.user
 
         //text값 넣기 - 기본 설정 by 지안
         customerNameBig = (TextView)root.findViewById(R.id.customerNameBig);
@@ -111,11 +109,11 @@ public class MypageFragment extends Fragment {
     }
 }
 
-class UserInfoTemp{ //삭제할 예정
+/*class UserInfoTemp{ //삭제할 예정
     public static Integer id = 0;
     public static String name = "김펭수";
     public static String sex = "M";
     public static Integer age = 10;
     public static String phoneNum = "01012345678";
     public static String email = "pengsu@sogang.ac.kr";
-}
+}*/

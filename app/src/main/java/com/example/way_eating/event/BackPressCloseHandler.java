@@ -22,7 +22,7 @@ public class BackPressCloseHandler {
         }
         //back 키를 누르고 1초가 지나면 종료
         else {
-            systemData.user = null;
+            systemData.user = null; //유저 정보 초기화
             activity.finish();
         }
     }

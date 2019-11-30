@@ -7,7 +7,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.way_eating.R;
-import com.example.way_eating.Store;
+import com.example.way_eating.data.Store;
 import com.example.way_eating.ui.list.ListFragment;
 import com.example.way_eating.ui.list.SearchListAdapter;
 
