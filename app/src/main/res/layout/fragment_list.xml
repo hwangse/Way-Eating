@@ -5,83 +5,88 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-<androidx.constraintlayout.widget.ConstraintLayout
-    style="@style/body">
 
-    <SearchView
-        android:id="@+id/listSearchRestaurant"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:queryHint="찾으시려는 장소를 입력하세요"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        style="@style/body"
+        app:layout_constraintBottom_toBottomOf="@+id/listNearby"
+        app:layout_constraintTop_toBottomOf="@+id/listNearby">
+
+        <SearchView
+            android:id="@+id/listSearchRestaurant"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:queryHint="찾으시려는 장소를 입력하세요"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-    <!--주변 맛집-->
-    <LinearLayout
-        style="@style/list_layout"
-        android:id="@+id/listNearby"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/listSearchRestaurant">
 
-        <TextView
-            android:id="@+id/nearbyRestaurantName"
-            style="@style/list_mainText" />
-
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/viewPager_nearby"
-            android:layout_width="250dp"
-            android:layout_height="250dp"
-            android:layout_marginBottom="8dp"
-            android:gravity="center" />
-
+        <!--주변 맛집-->
         <LinearLayout
-            android:id="@+id/sliderDotspanel_nearby"
+            android:id="@+id/listNearby"
+            style="@style/list_layout"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/listSearchRestaurant">
+
+            <TextView
+                android:id="@+id/nearbyRestaurantName"
+                style="@style/list_mainText" />
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewPager_nearby"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:layout_marginBottom="8dp"
+                android:gravity="center" />
+
+            <LinearLayout
+                android:id="@+id/sliderDotspanel_nearby"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/viewPager_nearby"
+                android:gravity="center_vertical|center_horizontal"
+                android:orientation="horizontal" />
+        </LinearLayout>
+
+        <!--주변 추천 맛집-->
+        <LinearLayout
+            android:id="@+id/listSuggest"
+            style="@style/list_layout"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/listNearby">
+
+            <TextView
+                android:id="@+id/suggestRestaurantList"
+                style="@style/list_mainText" />
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewPager_suggest"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:layout_marginBottom="8dp"
+                android:gravity="center_vertical" />
+
+            <LinearLayout
+                android:id="@+id/sliderDotspanel_suggest"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/viewPager_suggest"
+                android:gravity="center_vertical|center_horizontal"
+                android:orientation="horizontal" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnInfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/viewPager_nearby"
-            android:gravity="center_vertical|center_horizontal"
-            android:orientation="horizontal" />
-    </LinearLayout>
-
-    <!--주변 추천 맛집-->
-    <LinearLayout
-        style="@style/list_layout"
-        android:id="@+id/listSuggest"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/listNearby">
-
-        <TextView
-            android:id="@+id/suggestRestaurantList"
-            style="@style/list_mainText" />
-
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/viewPager_suggest"
-            android:layout_width="250dp"
-            android:layout_height="250dp"
-            android:layout_marginBottom="8dp"
-            android:gravity="center_vertical" />
-
-        <LinearLayout
-            android:id="@+id/sliderDotspanel_suggest"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/viewPager_suggest"
-            android:gravity="center_vertical|center_horizontal"
-            android:orientation="horizontal" />
-    </LinearLayout>
-    <Button
-        android:id="@+id/btnInfo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="info용"
-        android:onClick="onClick"
-        app:layout_constraintTop_toBottomOf="@id/listSuggest"
-        app:layout_constraintBottom_toBottomOf="parent"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+            android:onClick="onClick"
+            android:text="info용"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/listSuggest" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
