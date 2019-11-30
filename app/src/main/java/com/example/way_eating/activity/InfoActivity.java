@@ -1,25 +1,20 @@
 package com.example.way_eating.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
-import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.way_eating.R;
 import com.example.way_eating.ui.info.InfoViewModel;
 import com.example.way_eating.ui.info.ViewPagerAdapter;
+
+import static com.example.way_eating.ui.home.HomeFragment.systemData;
 
 public class InfoActivity extends Activity {
     ViewPager viewPager_selected;
@@ -34,6 +29,9 @@ public class InfoActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_info);
 
+        Intent intent1 = getIntent();
+        int position = intent1.getIntExtra("position",1);
+
         //text값 넣기
         TextView restaurantName = (TextView) findViewById(R.id.restaurantName);
         TextView restaurantContactNumber = (TextView) findViewById(R.id.restaurantContactNumber);
@@ -41,11 +39,19 @@ public class InfoActivity extends Activity {
         TextView restaurantMenu = (TextView) findViewById(R.id.restaurantMenu);
         TextView restaurantSite = (TextView) findViewById(R.id.restaurantSite);
 
+        restaurantName.setText(systemData.stores.get(position - 1).name);
+        restaurantContactNumber.setText(systemData.stores.get(position - 1).getPhoneNum());
+        restaurantLocation.setText(getResources().getString(R.string.restaurantLocation)); //store 클래스에 address가 없음
+        restaurantMenu.setText(getResources().getString(R.string.restaurantMenu)); //store 클래스에 menu가 없음
+        restaurantSite.setText(getResources().getString(R.string.restaurantSite)); //store 클래스에 email이 없음
+        /*
         restaurantName.setText(getResources().getString(R.string.restaurantName));
         restaurantContactNumber.setText(getResources().getString(R.string.restaurantContactNumber));
         restaurantLocation.setText(getResources().getString(R.string.restaurantLocation));
         restaurantMenu.setText(getResources().getString(R.string.restaurantMenu));
         restaurantSite.setText(getResources().getString(R.string.restaurantSite));
+        */
+
 
         //이미지뷰어용
         viewPager_selected = (ViewPager) findViewById(R.id.viewPager_selected);

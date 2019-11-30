@@ -22,4 +22,28 @@ public class Store {
         this.waitTimeLunch=waitTimeLunch;
         this.waitTimeDinner=waitTimeDinner;
     }
+    public Integer getId(){
+        return this.id;
+    }
+    public String getName(){
+        return this.name;
+    }
+    public String getType(){
+        return this.type;
+    }
+    public String getEmail(){
+        return this.email;
+    }
+    public String getPhoneNum(){
+        return this.phoneNum;
+    }
+    public String getAddress(){
+        return this.address;
+    }
+    public Integer waitTimeLunch(){
+        return this.waitTimeLunch;
+    }
+    public Integer waitTimeDinner(){
+        return this.waitTimeDinner;
+    }
 }

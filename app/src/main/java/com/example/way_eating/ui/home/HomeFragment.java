@@ -72,7 +72,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
     public ParsedData parsedData=new ParsedData();
 
     // 시스템 정보를 저장할 클래스 선언
-    public SystemData systemData=null;
+    public static SystemData systemData=null;
     TextView tvData;
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // create 2 kinds of async thread and Handler for searching function

@@ -32,6 +32,9 @@
         <activity
             android:name = ".activity.InfoActivity">
         </activity>
+        <activity
+            android:name = ".activity.SearchRestaurantActivity">
+        </activity>
 
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"

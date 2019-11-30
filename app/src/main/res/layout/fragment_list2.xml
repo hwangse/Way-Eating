@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:textSize="30sp"
+        android:text="찾으시는 식당이\n없습니다 :(" />
+
+    <ListView
+        android:id="@+id/listSearchRestaurantView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:baselineAligned="false"
+        tools:layout_editor_absoluteX="59dp"
+        tools:layout_editor_absoluteY="0dp"
+        />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
