@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.example.way_eating.R;
 import com.example.way_eating.data.LoginData;
 import com.example.way_eating.data.LoginResponse;
+import com.example.way_eating.data.User;
 import com.example.way_eating.event.BackPressCloseHandler;
 import com.example.way_eating.network.RetrofitClient;
 import com.example.way_eating.network.ServiceApi;
@@ -22,7 +23,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LogInActivity extends Activity {
-
     private BackPressCloseHandler backPressCloseHandler;
     private EditText email;
     private EditText pw;
@@ -52,10 +52,8 @@ public class LogInActivity extends Activity {
             @Override
             public void onClick(View v) {
                 switch (v.getId()) {
-                    case R.id.loginMaster:
-                        Intent intent2 = new Intent(LogInActivity.this, MainActivity.class);
-                        startActivity(intent2);
-                        finish();
+                    case R.id.loginMaster:  //마스터버튼
+                        startLogin(new LoginData("admin@way", "123456"));
                         break;
                     case R.id.loginLogin: //로그인
                         attemptLogin();
@@ -69,7 +67,7 @@ public class LogInActivity extends Activity {
         };
         login.setOnClickListener(listener);
         join.setOnClickListener(listener);
-        master.setOnClickListener(listener);
+        master.setOnClickListener(listener);    //마스터버튼
     }
 
     //뒤로 버튼 눌렸을 때 이벤트 처리
@@ -78,13 +76,15 @@ public class LogInActivity extends Activity {
         backPressCloseHandler.onBackPressed();
     }
 
-    //로그인 정보 유효성 검사
+    //로그인 양식 유효성 검사
     private void attemptLogin() {
         email.setError(null);
         pw.setError(null);
 
+        //LoginData에 넘겨줄 파라미터
         String strEmail = email.getText().toString();
         String strPW = pw.getText().toString();
+
         boolean cancel = false;
         View focusView = null;
 
@@ -99,8 +99,7 @@ public class LogInActivity extends Activity {
             focusView = pw;
             cancel = true;
         }
-
-        //아이디 유효성 검사
+        //이메일 유효성 검사
         if (strEmail.isEmpty()) {
             email.setError("이메일을 입력해주세요.");
             focusView = email;
@@ -119,27 +118,30 @@ public class LogInActivity extends Activity {
 
         if (cancel) //오류가 있는 경우 경고창
             focusView.requestFocus();
-        else {  //오류가 없는 경우 로그인
+        else {  //오류가 없는 경우 로그인 시도
             startLogin(new LoginData(strEmail, strPW));
             showProgress(true);
         }
     }
 
-    //유효한 정보에 대해 서버에 로그인 요청을 보냄
+    //유효한 양식에 대해 서버에 로그인 요청을 보냄
     private void startLogin(LoginData data) {
         service.userLogin(data).enqueue(new Callback<LoginResponse>() {
             //통신이 성공했을 경우 호출되는 메소드. response 객체에 응답으로 돌려받은 데이터가 들어있음
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                 LoginResponse result = response.body();
-                //Toast.makeText(LogInActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
+
+                Toast.makeText(LogInActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
                 showProgress(false);
-                //if (result.getCode() == 200) {
-                Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(LogInActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish();
-                //}
+                if (result.getCode() == 200) {  //해당 회원 정보가 있는 경우 user 데이터를 MainActivity로 넘겨주며 액티비티 전환
+                    User user = new User(result.getUserID(), result.getUserName(), result.getUserSex(),
+                            result.getUserAge(), result.getUserPhone(), result.getUserEmail()); //systemData에 넣어줄 user 데이터
+                    Intent intent = new Intent(LogInActivity.this, MainActivity.class);
+                    intent.putExtra("user", user);  //user 데이터 넘겨줌
+                    startActivity(intent);
+                    finish();
+                }
             }
 
             @Override

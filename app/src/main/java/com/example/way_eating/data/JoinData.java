@@ -9,12 +9,24 @@ public class JoinData {
     @SerializedName("userEmail")
     private String userEmail;
 
-    @SerializedName("userPwd")
-    private String userPwd;
+    @SerializedName("userPW")
+    private String userPW;
 
-    public JoinData(String userName, String userEmail, String userPwd) {
+    @SerializedName("userAge")
+    private Integer userAge;
+
+    @SerializedName("userSex")
+    private String userSex;
+
+    @SerializedName("userPhone")
+    private String userPhone;
+
+    public JoinData(String userName, String userEmail, String userPW, Integer userAge, String userSex, String userPhone) {
         this.userName = userName;
         this.userEmail = userEmail;
-        this.userPwd = userPwd;
+        this.userPW = userPW;
+        this.userAge = userAge;
+        this.userSex = userSex;
+        this.userPhone  = userPhone;
     }
 }

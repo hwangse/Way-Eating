@@ -22,8 +22,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.way_eating.R;
-import com.example.way_eating.Store;
-import com.example.way_eating.SystemData;
+import com.example.way_eating.activity.MainActivity;
+import com.example.way_eating.data.Store;
+import com.example.way_eating.data.SystemData;
 import com.example.way_eating.network.GetStore;
 import com.google.gson.Gson;
 import com.naver.maps.geometry.LatLng;
@@ -73,10 +74,15 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
     // search result will be stored here
     public ParsedData parsedData=new ParsedData();
 
+<<<<<<< HEAD
+    // 시스템 정보를 저장할 클래스 선언
+    public static SystemData systemData=null;
+=======
     // 시스템 정보를 저장할 클래스 선언, Systemdata의 Stores 에는 현재 저장된 음식점의 정보가, User에는 User의 정보가 저장된다.
     // 외부에서 사용할 경우 반드시 SystemData클래스를 생성하는게 아닌, homefragment의 systemdata를 가져와서 하도록!!!
     static public SystemData systemData=null;
     // 테스트용 textView
+>>>>>>> 08cac1d96406c64bc8278fd82c14194460736738
     TextView tvData;
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // create 2 kinds of async thread and Handler for searching function
@@ -187,6 +193,40 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
         // 리스트뷰에 아답터를 연결한다.
         listView.setAdapter(adapter);
 
+<<<<<<< HEAD
+        // 만약 시스템 데이터 정보가 없다면 이를 생성한다.
+        if(systemData==null) systemData=new SystemData();
+        // 만약 유저 정보가 생성되지 않았다면 이를 생성한다.
+        if(systemData.user==null){
+            systemData.user= MainActivity.userInMain;
+            Toast.makeText(getActivity(), systemData.user.getName() + " 님 안녕하세요!", Toast.LENGTH_SHORT).show();
+        }
+        // 만약 상점 데이터 정보가 없다면 시스템 내에 상점 정보를 받아온다.
+        if(systemData.stores==null){
+            GetStore getStore=new GetStore(new GetStore.AsyncResponse() {
+                @Override
+                public void processFinish(String output) {
+                    tvData= (TextView)root.findViewById(R.id.textView);
+                    // 받아온 상점 JSON 파일을 파싱하여 class를 생성한다.
+                    if(output!=null){
+                        try {
+                            JSONObject jsonObject = new JSONObject(output);
+                            systemData.stores=new ArrayList<Store>();
+                            for(int i=0;i<jsonObject.length();i++){
+                                JSONObject jsonObj= jsonObject.getJSONObject(i+"");
+                                Integer tmpId=jsonObj.getInt("id");
+                                String tmpName=jsonObj.getString("name");
+                                String tmpType=jsonObj.getString("type");
+                                String tmpEmail=jsonObj.getString("email");
+                                String tmpPhone=jsonObj.getString("phone");
+                                Integer tmpLunch=jsonObj.getInt("timeLunch");
+                                Integer tmpDinner=jsonObj.getInt("timeDinner");
+                                systemData.stores.add(new Store(tmpId,tmpName,tmpType,tmpEmail,tmpPhone,tmpLunch,tmpDinner));
+                                tvData.setText(systemData.stores.get(i).name);
+                            }
+                        }catch(JSONException e){
+                            e.printStackTrace();
+=======
         return root;
     }
 
@@ -230,6 +270,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                             marker.setCaptionHaloColor(Color.rgb(200, 255, 200));
                             marker.setCaptionTextSize(16);
                             systemData.markers.add(marker);
+>>>>>>> 08cac1d96406c64bc8278fd82c14194460736738
                         }
 
                     }catch(JSONException e){
