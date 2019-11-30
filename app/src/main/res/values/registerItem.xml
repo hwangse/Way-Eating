@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="spinnerArray">
+        <item> 1 - 2 명 </item>
+        <item> 3 - 4 명 </item>
+        <item> 5명 이상 </item>
+    </string-array>
+</resources>

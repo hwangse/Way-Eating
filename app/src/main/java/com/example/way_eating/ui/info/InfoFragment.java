@@ -1,14 +1,15 @@
 package com.example.way_eating.ui.info;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -19,7 +20,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.example.way_eating.R;
 import com.example.way_eating.ui.info.InfoViewModel;
 import com.example.way_eating.ui.info.ViewPagerAdapter;
-
+/////////////**************************** 이 프래그먼트 안쓰이는듯???******************************/////////////////////////////
 public class InfoFragment extends Fragment {
     ViewPager viewPager_selected;
     LinearLayout sliderDotspanel_selected;
@@ -27,6 +28,7 @@ public class InfoFragment extends Fragment {
     private ImageView[] dots;
     private InfoViewModel listViewModel;
     private InfoViewModel infoViewModel;
+    private Button btnRegister;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -54,6 +56,17 @@ public class InfoFragment extends Fragment {
         viewPager_selected.setAdapter(viewPagerAdapter);
         dotscount = viewPagerAdapter.getCount();
         dots = new ImageView[dotscount];
+
+//        // 대기 등록버튼 클릭시 -> 정보 입력 팝업을 띄워준다.
+//        btnRegister= root.findViewById(R.id.btnRegister);
+//        btnRegister.setOnClickListener((View v)->{
+//            ////////////////////////////////이 부분 대기 등록하기 전에 유효성 검사할 수 있도록 수정하기(중복 대기 등록 여부)/////////////////////////////////
+//            //데이터 담아서 팝업(액티비티) 호출
+//            Intent intent = new Intent(getActivity(), RegisterInfoActivity.class);
+//            intent.putExtra("data", "Test Popup");
+//            startActivityForResult(intent, 1);
+//            Toast.makeText(getActivity(),"whatalkjflkdjf",Toast.LENGTH_SHORT).show();
+//        });
 
         for(int i = 0; i < dotscount; i++){
 

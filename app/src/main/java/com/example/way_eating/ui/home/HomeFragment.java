@@ -1,5 +1,6 @@
 package com.example.way_eating.ui.home;
 
+import android.graphics.Color;
 import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -31,6 +32,7 @@ import com.naver.maps.map.LocationTrackingMode;
 import com.naver.maps.map.MapFragment;
 import com.naver.maps.map.NaverMap;
 import com.naver.maps.map.OnMapReadyCallback;
+import com.naver.maps.map.overlay.Align;
 import com.naver.maps.map.overlay.LocationOverlay;
 import com.naver.maps.map.overlay.Marker;
 import com.naver.maps.map.util.FusedLocationSource;
@@ -43,6 +45,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 public class HomeFragment extends Fragment implements OnMapReadyCallback {
@@ -53,7 +56,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
     private Location userLocation;
     private Location camLocation;
     private CameraUpdate cameraUpdate;
-    private Marker targetMarker;
     private boolean searchButtonClicked=false;
 
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1000;
@@ -71,8 +73,15 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
     // search result will be stored here
     public ParsedData parsedData=new ParsedData();
 
+<<<<<<< HEAD
     // 시스템 정보를 저장할 클래스 선언
     public static SystemData systemData=null;
+=======
+    // 시스템 정보를 저장할 클래스 선언, Systemdata의 Stores 에는 현재 저장된 음식점의 정보가, User에는 User의 정보가 저장된다.
+    // 외부에서 사용할 경우 반드시 SystemData클래스를 생성하는게 아닌, homefragment의 systemdata를 가져와서 하도록!!!
+    static public SystemData systemData=null;
+    // 테스트용 textView
+>>>>>>> develop
     TextView tvData;
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // create 2 kinds of async thread and Handler for searching function
@@ -95,7 +104,15 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
         camLocation.setLongitude(127);
         camLocation.setLatitude(37.6);
 
-        targetMarker=new Marker();
+        ////////테스트용 textData
+        tvData= (TextView)root.findViewById(R.id.textView);
+
+        // 만약 시스템 데이터 정보가 없다면 이를 생성한다.
+        if(systemData==null) systemData=new SystemData();
+        // 안드로이드 시스템 상에 store정보가 없다면 GetStore 호출을 통해 store array를 생성해준다.
+        if(systemData.stores==null){
+            makeStoreClasses();
+        }
 
         // this is for the Showing the Naver Map
         FragmentManager fm = getChildFragmentManager();
@@ -144,7 +161,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                 return false;
             }
         });
-        // setting search engine adapter
+        // setting search engine adapter (검색시에 아래 나오는 음식점 리스트를 제어해줄 어댑터)
         listView = (ListView) root.findViewById(R.id.listView);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -175,44 +192,59 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
         // 리스트뷰에 아답터를 연결한다.
         listView.setAdapter(adapter);
 
-        // 만약 시스템 데이터 정보가 없다면 이를 생성한다.
-        if(systemData==null) systemData=new SystemData();
-        // 만약 상점 데이터 정보가 없다면 시스템 내에 상점 정보를 받아온다.
-
-        if(systemData.stores==null){
-            GetStore getStore=new GetStore(new GetStore.AsyncResponse() {
-                @Override
-                public void processFinish(String output) {
-                    tvData= (TextView)root.findViewById(R.id.textView);
-                    // 받아온 상점 JSON 파일을 파싱하여 class를 생성한다.
-                    if(output!=null){
-                        try {
-                            JSONObject jsonObject = new JSONObject(output);
-                            systemData.stores=new ArrayList<Store>();
-                            for(int i=0;i<jsonObject.length();i++){
-                                JSONObject jsonObj= jsonObject.getJSONObject(i+"");
-                                Integer tmpId=jsonObj.getInt("id");
-                                String tmpName=jsonObj.getString("name");
-                                String tmpType=jsonObj.getString("type");
-                                String tmpEmail=jsonObj.getString("email");
-                                String tmpPhone=jsonObj.getString("phone");
-                                Integer tmpLunch=jsonObj.getInt("timeLunch");
-                                Integer tmpDinner=jsonObj.getInt("timeDinner");
-                                systemData.stores.add(new Store(tmpId,tmpName,tmpType,tmpEmail,tmpPhone,tmpLunch,tmpDinner));
-                                tvData.setText(systemData.stores.get(i).name);
-                            }
-                        }catch(JSONException e){
-                            e.printStackTrace();
-                        }
-                    }else{
-                        Toast.makeText(getActivity(),"Error : 서버 접속 불가",Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
-            getStore.execute();
-        }
-
         return root;
+    }
+
+    // 어플리케이션내에 storeData를 생성하는 메소드
+    public void makeStoreClasses(){
+        GetStore getStore=new GetStore((String output)->{
+                // 받아온 상점 JSON 파일을 파싱하여 class를 생성한다.
+                if(output!=null){
+                    try {
+                        // 서버로부터 받아온 JSON 객체
+                        JSONObject jsonObject = new JSONObject(output);
+                        // 시스템 데이터의 Store과 Marker 리스트를 생성한다.
+                        systemData.stores=new ArrayList<>();
+                        systemData.markers=new ArrayList<>();
+
+                        for(int i=0;i<jsonObject.length();i++){
+                            JSONObject jsonObj= jsonObject.getJSONObject(i+"");
+                            JSONObject location=jsonObj.getJSONObject("location");
+
+                            Integer tmpId=jsonObj.getInt("id");
+                            String tmpName=jsonObj.getString("name");
+                            String tmpType=jsonObj.getString("type");
+                            String tmpEmail=jsonObj.getString("email");
+                            String tmpPhone=jsonObj.getString("phone");
+                            Integer tmpLunch=jsonObj.getInt("timeLunch");
+                            Integer tmpDinner=jsonObj.getInt("timeDinner");
+                            double tmpX=location.getDouble("x");
+                            double tmpY=location.getDouble("y");
+                            systemData.stores.add(new Store(tmpId,tmpName,tmpType,tmpEmail,tmpPhone,tmpLunch,tmpDinner,tmpX,tmpY));
+
+                            // time marker 생성
+                            Marker marker=new Marker();
+                            //////이거 대모용으로 만들어놓은 임시 대기 시간임!!!!/////
+                            Random r=new Random();
+                            int num=r.nextInt(20)+5;
+                            marker.setCaptionText(num+"분");
+                            ///////////////////////////////////////////
+                            marker.setPosition(new LatLng(tmpY, tmpX));
+                            marker.setCaptionAligns(Align.Top);
+                            marker.setCaptionColor(Color.BLUE);
+                            marker.setCaptionHaloColor(Color.rgb(200, 255, 200));
+                            marker.setCaptionTextSize(16);
+                            systemData.markers.add(marker);
+                        }
+
+                    }catch(JSONException e){
+                        e.printStackTrace();
+                    }
+                }else{
+                    Toast.makeText(getActivity(),"Error : 서버 접속 불가",Toast.LENGTH_SHORT).show();
+                }
+        });
+        getStore.execute();
     }
     // update list view when searching places
     public void updateListView(String s){
@@ -221,7 +253,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
         }
     }
     @Override
-    // Automatically Called After 'getMapAsync' method
+    // Automatically Called After 'getMapAsync' method, 지도에 대해 모든 초기화를 진행하는 함수
     public void onMapReady(@NonNull final NaverMap naverMap) {
         // Setting Location Overlay
         locationOverlay = naverMap.getLocationOverlay();
@@ -250,12 +282,11 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
         naverMap.moveCamera(cameraUpdate);
         naverMap.addOnLocationChangeListener(listener);
 
-        // set marker when user search the places
-        if(searchButtonClicked){
-            targetMarker.setPosition(new LatLng(camLocation.getLatitude(), camLocation.getLongitude()));
-            targetMarker.setMap(naverMap);
-        }else
-            targetMarker.setMap(null);
+        // 만약에 timeMarker가 null이 아니라면 각각을 지도 상에 띄워준다.
+        if(systemData.markers!=null){
+            for(int i=0;i<systemData.markers.size();i++)
+                systemData.markers.get(i).setMap(naverMap);
+        }
     }
 
     @Override
@@ -269,6 +300,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                 requestCode, permissions, grantResults);
     }
 
+    // 음식점 검색시에 네이버 API를 이용하여 검색어와 관련된 사용자 주변의 5개 장소를 보여준다. (새로운 쓰레드 생성)
     public void searchQueryRestaurant(final String query,final Location loc){
         // Making Background Thread for Networking connection
         AsyncTask.execute(new Runnable() {
