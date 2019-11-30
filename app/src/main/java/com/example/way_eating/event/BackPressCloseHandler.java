@@ -21,7 +21,7 @@ public class BackPressCloseHandler {
             Toast.makeText(activity, "뒤로 버튼을 한번 더 누르시면 종료됩니다.", Toast.LENGTH_SHORT).show();
         }
         //back 키를 누르고 1초가 지나면 종료
-        else {햣 
+        else {
             systemData.user = null;
             activity.finish();
         }
