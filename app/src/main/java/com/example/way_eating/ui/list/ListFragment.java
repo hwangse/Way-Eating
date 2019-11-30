@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,9 +19,11 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.way_eating.R;
 import com.example.way_eating.activity.InfoActivity;
+import com.example.way_eating.activity.SearchRestaurantActivity;
 
 
 public class ListFragment extends Fragment {
+    public static String parameterToSearchRestaurantActivity;
     ViewPager viewPager_nearby;
     ViewPager viewPager_suggest;
     LinearLayout sliderDotspanel_nearby;
@@ -149,6 +152,26 @@ public class ListFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent1 = new Intent(getActivity(), InfoActivity.class);
                 startActivity(intent1);
+            }
+        });
+
+        //검색기능 by 현선
+        SearchView sv = (SearchView) root.findViewById(R. id. listSearchRestaurant);
+
+        sv.setOnQueryTextListener(new SearchView.OnQueryTextListener(){
+            //검색버튼을 눌렀을 때
+            @Override
+            public boolean onQueryTextSubmit(String query){
+                parameterToSearchRestaurantActivity = query;
+                Intent intent2 = new Intent(getActivity(), SearchRestaurantActivity.class);
+                startActivity(intent2);
+                return true;
+            }
+
+            //텍스트가 바뀔때마다 호출
+            @Override
+            public boolean onQueryTextChange(String newText){
+                return true;
             }
         });
 
