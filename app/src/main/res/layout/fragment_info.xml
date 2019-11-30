@@ -114,11 +114,19 @@
         </LinearLayout>
 
         <!--대기 명단 등록 버튼-->
-        <Button
-            android:id="@+id/infoButton"
-            style="@style/info_button"
-            android:text="대기 명단 등록하기"/>
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/btnRegister"
+        style="@style/info_button"
+        android:layout_width="345dp"
+        android:layout_height="49dp"
+        android:text="대기 명단 등록하기"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/infoDetail"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
