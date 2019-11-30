@@ -45,6 +45,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 public class HomeFragment extends Fragment implements OnMapReadyCallback {
@@ -191,9 +192,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
 
     // 어플리케이션내에 storeData를 생성하는 메소드
     public void makeStoreClasses(){
-        GetStore getStore=new GetStore(new GetStore.AsyncResponse() {
-            @Override
-            public void processFinish(String output) {
+        GetStore getStore=new GetStore((String output)->{
                 // 받아온 상점 JSON 파일을 파싱하여 class를 생성한다.
                 if(output!=null){
                     try {
@@ -220,7 +219,11 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
 
                             // time marker 생성
                             Marker marker=new Marker();
-                            marker.setCaptionText(tmpName);
+                            //////이거 대모용으로 만들어놓은 임시 대기 시간임!!!!/////
+                            Random r=new Random();
+                            int num=r.nextInt(20)+5;
+                            marker.setCaptionText(num+"분");
+                            ///////////////////////////////////////////
                             marker.setPosition(new LatLng(tmpY, tmpX));
                             marker.setCaptionAligns(Align.Top);
                             marker.setCaptionColor(Color.BLUE);
@@ -235,7 +238,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                 }else{
                     Toast.makeText(getActivity(),"Error : 서버 접속 불가",Toast.LENGTH_SHORT).show();
                 }
-            }
         });
         getStore.execute();
     }
