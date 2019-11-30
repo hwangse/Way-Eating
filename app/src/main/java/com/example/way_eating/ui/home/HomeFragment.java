@@ -73,15 +73,11 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
     // search result will be stored here
     public ParsedData parsedData=new ParsedData();
 
-<<<<<<< HEAD
-    // 시스템 정보를 저장할 클래스 선언
-    public static SystemData systemData=null;
-=======
     // 시스템 정보를 저장할 클래스 선언, Systemdata의 Stores 에는 현재 저장된 음식점의 정보가, User에는 User의 정보가 저장된다.
     // 외부에서 사용할 경우 반드시 SystemData클래스를 생성하는게 아닌, homefragment의 systemdata를 가져와서 하도록!!!
     static public SystemData systemData=null;
     // 테스트용 textView
->>>>>>> develop
+
     TextView tvData;
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // create 2 kinds of async thread and Handler for searching function

@@ -3,11 +3,8 @@ package com.example.way_eating.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-<<<<<<< HEAD
-=======
 import android.view.View;
 import android.widget.Button;
->>>>>>> develop
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
