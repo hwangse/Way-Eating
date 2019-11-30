@@ -88,20 +88,50 @@ public class JoinActivity extends Activity {
         String strName = name.getText().toString();
         String strEmail = email.getText().toString();
         String strPW = pw.getText().toString();
-        Integer intAge = Integer.parseInt(age.getText().toString());
-        String strSex = sexSelected.getText().toString();
+        String strAge = age.getText().toString();
+        Integer intAge = null;
+        String strSex = null;
         String strPhone = phone.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
 
-        //이름 유효성 검사
-        if (strName.isEmpty()) {
-            name.setError("이름을 입력해주세요.");
-            focusView = name;
+        //휴대폰 번호 유효성 검사
+        if (strPhone.isEmpty()) {
+            phone.setError("휴대폰 번호를 입력해주세요.");
+            focusView = phone;
             cancel = true;
         }
-
+        //성별 유효성 검사
+        if (sexSelected == null) {
+            sexSelected = findViewById(R.id.joinMale);
+            sexSelected.setError("성별을 입력해주세요.");
+            focusView = sexSelected;
+            cancel = true;
+        }
+        else {
+            sexSelected.setError(null);
+            strSex = sexSelected.getText().toString();
+        }
+        //나이 유효성 검사
+        if (strAge.isEmpty()) {
+            age.setError("나이를 입력해주세요.");
+            focusView = age;
+            cancel = true;
+        }
+        else
+            intAge = Integer.parseInt(age.getText().toString());
+        //패스워드 유효성 검사
+        if (strPW.isEmpty()) {
+            pw.setError("비밀번호를 입력해주세요.");
+            focusView = pw;
+            cancel = true;
+        }
+        else if (strPW.length() < 6) {
+            pw.setError("6자 이상의 비밀번호를 입력해주세요.");
+            focusView = pw;
+            cancel = true;
+        }
         //이메일 유효성 검사
         if (strEmail.isEmpty()) {
             email.setError("이메일을 입력해주세요.");
@@ -119,16 +149,10 @@ public class JoinActivity extends Activity {
             focusView = email;
             cancel = true;
         }
-
-        //패스워드 유효성 검사
-        if (strPW.isEmpty()) {
-            pw.setError("비밀번호를 입력해주세요.");
-            focusView = pw;
-            cancel = true;
-        }
-        else if (strPW.length() < 6) {
-            pw.setError("6자 이상의 비밀번호를 입력해주세요.");
-            focusView = pw;
+        //이름 유효성 검사
+        if (strName.isEmpty()) {
+            name.setError("이름을 입력해주세요.");
+            focusView = name;
             cancel = true;
         }
 
@@ -143,14 +167,14 @@ public class JoinActivity extends Activity {
     //유효한 양식에 대해 서버에 회원가입 요청을 보냄
     private void startJoin(JoinData data) {
         service.userJoin(data).enqueue(new Callback<JoinResponse>() {
-                                                                                         //통신이 성공했을 경우 호출되는 메소드. response 객체에 응답으로 돌려받은 데이터가 들어있음
+            //통신이 성공했을 경우 호출되는 메소드. response 객체에 응답으로 돌려받은 데이터가 들어있음
             @Override
             public void onResponse(Call<JoinResponse> call, Response<JoinResponse> response) {
                 JoinResponse result = response.body();
+
                 Toast.makeText(JoinActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
                 showProgress(false);
-
-                if (result.getCode() == 200) {
+                if (result.getCode() == 200) {  //성공적으로 회원가입을 완료한 경우 액티비티 종료
                     finish();
                 }
             }

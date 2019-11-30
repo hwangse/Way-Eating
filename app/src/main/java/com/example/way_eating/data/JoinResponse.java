@@ -10,10 +10,10 @@ public class JoinResponse {
     private String message;
 
     public int getCode() {
-        return code;
+        return this.code;
     }
 
     public String getMessage() {
-        return message;
+        return this.message;
     }
 }

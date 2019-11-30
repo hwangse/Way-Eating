@@ -1,6 +1,5 @@
 package com.example.way_eating.data;
 
-
 import java.util.ArrayList;
 
 /* wayEating 시스템의 전체 데이터를 저장하는 클래스 */

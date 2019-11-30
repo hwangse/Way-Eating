@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.example.way_eating.R;
 import com.example.way_eating.data.LoginData;
 import com.example.way_eating.data.LoginResponse;
+import com.example.way_eating.data.User;
 import com.example.way_eating.event.BackPressCloseHandler;
 import com.example.way_eating.network.RetrofitClient;
 import com.example.way_eating.network.ServiceApi;
@@ -22,7 +23,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LogInActivity extends Activity {
-
     private BackPressCloseHandler backPressCloseHandler;
     private EditText email;
     private EditText pw;
@@ -81,11 +81,24 @@ public class LogInActivity extends Activity {
         email.setError(null);
         pw.setError(null);
 
+        //LoginData에 넘겨줄 파라미터
         String strEmail = email.getText().toString();
         String strPW = pw.getText().toString();
+
         boolean cancel = false;
         View focusView = null;
 
+        //패스워드 유효성 검사
+        if (strPW.isEmpty()) {
+            pw.setError("비밀번호를 입력해주세요.");
+            focusView = pw;
+            cancel = true;
+        }
+        else if (strPW.length() < 6) {
+            pw.setError("6자 이상의 비밀번호를 입력해주세요.");
+            focusView = pw;
+            cancel = true;
+        }
         //이메일 유효성 검사
         if (strEmail.isEmpty()) {
             email.setError("이메일을 입력해주세요.");
@@ -100,18 +113,6 @@ public class LogInActivity extends Activity {
         else if (!strEmail.contains("@")) {
             email.setError("올바른 이메일 양식이 아닙니다.");
             focusView = email;
-            cancel = true;
-        }
-
-        //패스워드 유효성 검사
-        if (strPW.isEmpty()) {
-            pw.setError("비밀번호를 입력해주세요.");
-            focusView = pw;
-            cancel = true;
-        }
-        else if (strPW.length() < 6) {
-            pw.setError("6자 이상의 비밀번호를 입력해주세요.");
-            focusView = pw;
             cancel = true;
         }
 
@@ -130,11 +131,14 @@ public class LogInActivity extends Activity {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                 LoginResponse result = response.body();
+
                 Toast.makeText(LogInActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
                 showProgress(false);
-                if (result.getCode() == 200) {  //해당 회원 정보가 있는 경우
-                    //Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
+                if (result.getCode() == 200) {  //해당 회원 정보가 있는 경우 user 데이터를 MainActivity로 넘겨주며 액티비티 전환
+                    User user = new User(result.getUserID(), result.getUserName(), result.getUserSex(),
+                            result.getUserAge(), result.getUserPhone(), result.getUserEmail()); //systemData에 넣어줄 user 데이터
                     Intent intent = new Intent(LogInActivity.this, MainActivity.class);
+                    intent.putExtra("user", user);  //user 데이터 넘겨줌
                     startActivity(intent);
                     finish();
                 }

@@ -21,6 +21,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.way_eating.R;
+import com.example.way_eating.activity.MainActivity;
 import com.example.way_eating.data.Store;
 import com.example.way_eating.data.SystemData;
 import com.example.way_eating.network.GetStore;
@@ -72,7 +73,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
     public ParsedData parsedData=new ParsedData();
 
     // 시스템 정보를 저장할 클래스 선언
-    public SystemData systemData=null;
+    public static SystemData systemData=null;
     TextView tvData;
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // create 2 kinds of async thread and Handler for searching function
@@ -177,8 +178,12 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
 
         // 만약 시스템 데이터 정보가 없다면 이를 생성한다.
         if(systemData==null) systemData=new SystemData();
+        // 만약 유저 정보가 생성되지 않았다면 이를 생성한다.
+        if(systemData.user==null){
+            systemData.user= MainActivity.userInMain;
+            Toast.makeText(getActivity(), systemData.user.getName() + " 님 안녕하세요!", Toast.LENGTH_SHORT).show();
+        }
         // 만약 상점 데이터 정보가 없다면 시스템 내에 상점 정보를 받아온다.
-
         if(systemData.stores==null){
             GetStore getStore=new GetStore(new GetStore.AsyncResponse() {
                 @Override
