@@ -1,7 +1,9 @@
-package com.example.way_eating;
+package com.example.way_eating.data;
+
+import java.io.Serializable;
 
 /* 유저가 로그인에 성공한다면 만들어질 클래스 */
-public class User {
+public class User implements Serializable {
     private Integer id;
     private String name;
     private String sex;
@@ -10,7 +12,7 @@ public class User {
     private String email;
     // user History
     // user Favorite
-    public User(Integer id,String name,String sex,Integer age,String phoneNum,String email){
+    public User(Integer id, String name, String sex, Integer age, String phoneNum, String email) {
         this.id=id;
         this.name=name;
         this.sex=sex;
@@ -18,7 +20,7 @@ public class User {
         this.phoneNum=phoneNum;
         this.email=email;
     }
-    /*
+
     public Integer getId(){
         return this.id;
     }
@@ -37,5 +39,5 @@ public class User {
     public String getEmail(){
         return this.email;
     }
-     */
+
 }

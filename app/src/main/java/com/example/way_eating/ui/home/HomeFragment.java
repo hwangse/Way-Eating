@@ -22,8 +22,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.way_eating.R;
-import com.example.way_eating.Store;
-import com.example.way_eating.SystemData;
+import com.example.way_eating.activity.MainActivity;
+import com.example.way_eating.data.Store;
+import com.example.way_eating.data.SystemData;
 import com.example.way_eating.network.GetStore;
 import com.google.gson.Gson;
 import com.naver.maps.geometry.LatLng;
@@ -187,6 +188,18 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
         adapter = new SearchAdapter(list,getContext());
         // 리스트뷰에 아답터를 연결한다.
         listView.setAdapter(adapter);
+
+        // 만약 시스템 데이터 정보가 없다면 이를 생성한다.
+        if(systemData==null) systemData=new SystemData();
+        // 만약 유저 정보가 생성되지 않았다면 이를 생성한다.
+        if(systemData.user==null){
+            systemData.user= MainActivity.userInMain;
+            Toast.makeText(getActivity(), systemData.user.getName() + " 님 안녕하세요!", Toast.LENGTH_SHORT).show();
+        }
+        // 만약 상점 데이터 정보가 없다면 시스템 내에 상점 정보를 받아온다.
+        if(systemData.stores==null){
+            makeStoreClasses();
+        }
 
         return root;
     }

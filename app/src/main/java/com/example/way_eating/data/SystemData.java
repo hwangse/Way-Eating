@@ -1,5 +1,4 @@
-package com.example.way_eating;
-
+package com.example.way_eating.data;
 
 import com.naver.maps.map.overlay.Marker;
 import java.util.ArrayList;
