@@ -30,7 +30,7 @@ public class JoinActivity extends Activity {
     private RadioButton sexSelected;
     private EditText phone;
     private Button join;
-    private Button master;
+    //private Button master;
     private ProgressBar progress;
     private ServiceApi service;
 
@@ -46,7 +46,7 @@ public class JoinActivity extends Activity {
         sex = (RadioGroup) findViewById(R.id.joinSex);
         phone = (EditText) findViewById(R.id.joinPhone);
         join = (Button) findViewById(R.id.joinJoin);
-        master = (Button) findViewById(R.id.joinMaster);
+        //master = (Button) findViewById(R.id.joinMaster);
         progress = (ProgressBar) findViewById(R.id.joinProgress);
         service = RetrofitClient.getClient().create(ServiceApi.class);
 
@@ -67,13 +67,13 @@ public class JoinActivity extends Activity {
         });
 
         //마스터 버튼
-        master.setOnClickListener(new View.OnClickListener() {
+        /*master.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startJoin(new JoinData("admin", "admin@way", "123456", 24, "여", "01012345678"));
                 showProgress(true);
             }
-        });
+        });*/
     }
 
     //회원가입 양식 유효성 검사
@@ -182,7 +182,7 @@ public class JoinActivity extends Activity {
             //통신이 실패했을 경우 호출되는 메소드
             @Override
             public void onFailure(Call<JoinResponse> call, Throwable t) {
-                Toast.makeText(JoinActivity.this, "회원가입 에러 발생", Toast.LENGTH_SHORT).show();
+                Toast.makeText(JoinActivity.this, "서버에 접속할 수 없습니다", Toast.LENGTH_SHORT).show();
                 Log.e("회원가입 에러 발생", t.getMessage());
                 showProgress(false);
             }

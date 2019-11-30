@@ -132,7 +132,7 @@
                                 android:layout_toRightOf="@id/customerEmailImage"
                                 android:text="이메일" />
                             <TextView
-                                android:id="@+id/customerEmailAddress"
+                                android:id="@+id/customerEmail"
                                 style="@style/mypage_details_miniText"
                                 android:layout_toRightOf="@id/customerEmailImage" />
                         </RelativeLayout>
