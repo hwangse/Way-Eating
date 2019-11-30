@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.way_eating.R;
-import com.example.way_eating.Store;
+import com.example.way_eating.data.Store;
 import com.example.way_eating.activity.InfoActivity;
 
 import java.util.ArrayList;
