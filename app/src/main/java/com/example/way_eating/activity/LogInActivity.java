@@ -54,6 +54,11 @@ public class LogInActivity extends Activity {
                 switch (v.getId()) {
                     case R.id.loginMaster:  //마스터버튼
                         startLogin(new LoginData("way@eating", "123456"));
+                        User user = new User(7, "관리자", "여", 24, "01012345678", "way@eating");
+                        Intent intent2 = new Intent(LogInActivity.this, MainActivity.class);
+                        intent2.putExtra("user", user);  //user 데이터 넘겨줌
+                        startActivity(intent2);
+                        finish();
                         break;
                     case R.id.loginLogin: //로그인
                         attemptLogin();

@@ -7,7 +7,6 @@ import android.widget.Toast;
 import com.example.way_eating.R;
 import com.example.way_eating.data.User;
 import com.example.way_eating.event.BackPressCloseHandler;
-import com.example.way_eating.ui.info.InfoFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,7 +16,6 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 public class MainActivity extends AppCompatActivity {
-    InfoFragment infoFragment;
     static public User userInMain;
     private BackPressCloseHandler backPressCloseHandler;
 
@@ -43,12 +41,6 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
-        infoFragment = new InfoFragment();
-    }
-
-    //fragment교체 버튼용
-    public void onFragmentChanged(){
-        getSupportFragmentManager().beginTransaction().replace(R.id.container,infoFragment).commit();
     }
 
     //뒤로 버튼 눌렸을 때 이벤트 처리

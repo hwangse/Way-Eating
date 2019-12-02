@@ -1,4 +1,4 @@
-package com.example.way_eating.ui.info;
+package com.example.way_eating.event;
 
 import android.content.Context;
 import android.view.LayoutInflater;
