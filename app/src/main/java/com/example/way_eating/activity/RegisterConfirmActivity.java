@@ -16,6 +16,10 @@ import com.example.way_eating.ui.home.HomeFragment;
 
 public class RegisterConfirmActivity extends Activity {
     private TextView name;
+    private TextView numOfPeopleTxt;
+    private TextView menuSelected;
+    private TextView timeRemain;
+    private int timeExpected=15;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,11 +28,21 @@ public class RegisterConfirmActivity extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_register_confirm);
 
+        // 앞선 RegisterInfo Activity로 부터 대기 인원 및 메뉴 정보 받아오기
+        Intent intent=getIntent();
+        String numOfPeople=intent.getStringExtra("numOfPeople");
+        String menus=intent.getStringExtra("menu");
+
         name=findViewById(R.id.name);
+        numOfPeopleTxt=findViewById(R.id.numOfPeople);
+        menuSelected=findViewById(R.id.menuSelected);
+        timeRemain=findViewById(R.id.timeRemain);
+
         name.setText("이름 : "+ HomeFragment.systemData.user.getName());
-        //데이터 가져오기
-//        Intent intent = getIntent();
-//        String data = intent.getStringExtra("data");
+        numOfPeopleTxt.setText("인원수 : "+numOfPeople);
+        menuSelected.setText(menus);
+        ///////// 임시로 대기 시간 설정
+        timeRemain.setText("예상 대기 시간 : "+timeExpected+"분");
     }
 
     //확인 버튼 클릭

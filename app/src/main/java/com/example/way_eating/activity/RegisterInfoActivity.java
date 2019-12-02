@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -12,19 +13,24 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.way_eating.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class RegisterInfoActivity extends Activity {
     TextView txtText;
     Spinner selectPeopleNum;
     // 메뉴선택을 위한 checkbox  -> 나중에 DB 메뉴와 연동시킬 예정, 아직은 아님 11/30 (세현)
-    CheckBox chk1,chk2,chk3;
+    //CheckBox chk1,chk2,chk3;
+    List<CheckBox> menus = new ArrayList<>();
     int menuChecked=0;
-    int menuNum=3;
+    int menuNum=5; // 나중에 음식점 DB 연동해서 메뉴 개수 받아오기
     //////////////
 
     @Override
@@ -35,12 +41,18 @@ public class RegisterInfoActivity extends Activity {
         setContentView(R.layout.activity_register_info);
 
         /////// 메뉴 선택을 위한 checkbox, 나중에 수정할 예정 by 세현
-        chk1=findViewById(R.id.menuChk1);
-        chk2=findViewById(R.id.menuChk2);
-        chk3=findViewById(R.id.menuChk3);
-        chk1.setText("메뉴1");
-        chk2.setText("메뉴2");
-        chk3.setText("메뉴3");
+        // 음식점의 메뉴 개수에 따라 동적으로 메뉴 체크 박스를 생성한다.
+        LinearLayout layout = findViewById(R.id.menuLayout);
+        for(int i = 0; i < menuNum; i++) {
+            CheckBox cb = new CheckBox(this);
+            cb.setText("메뉴 " + (i+1));
+            cb.setId(i);
+            cb.setTextColor(Color.BLACK);
+            cb.setOnClickListener(this::onCheckboxClicked);
+            menus.add(cb);
+            layout.addView(cb);
+        }
+
         /////////////////////////////////////////////
 
         txtText = findViewById(R.id.numText);
@@ -70,7 +82,9 @@ public class RegisterInfoActivity extends Activity {
     public void onCheckboxClicked(View v){
         boolean checked=((CheckBox)v).isChecked();
 
-        if(checked) menuChecked++;
+        if(checked) {
+            menuChecked++;
+        }
         else menuChecked--;
     }
     //확인 버튼 클릭
@@ -79,8 +93,15 @@ public class RegisterInfoActivity extends Activity {
         if(menuChecked>0) {
             // 대기 등록 확인 액티비티로 이동
             Intent intent = new Intent(this, RegisterConfirmActivity.class);
-            // 이동전에 선택된 정보 값 전달하기
+            // 이동전에 선택된 정보 값 (인원과 메뉴) 전달하기
             intent.putExtra("numOfPeople", selectPeopleNum.getSelectedItem().toString()); // 대기 인원수
+            String menuTxt="";
+            for(CheckBox menu:menus){
+                if(menu.isChecked())
+                    menuTxt += menu.getText().toString()+"\n";
+            }
+            intent.putExtra("menu",menuTxt);
+
             // 선택된 메뉴
             startActivityForResult(intent, 1);
             finish();

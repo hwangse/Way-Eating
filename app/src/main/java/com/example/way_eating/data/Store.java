@@ -8,12 +8,16 @@ public class Store {
     private String email;
     private String phoneNum;
     private String address;
+    private String homepage;
+    private double openTime;
+    private double closeTime;
     public double locX,locY; // 위도 경도 정보
     private Integer waitTimeLunch;
     private Integer waitTimeDinner;
-    // store location
+    public boolean isOpen;
+
     // store Menu
-    public Store(Integer id,String name,String type,String email,String phoneNum,Integer waitTimeLunch,Integer waitTimeDinner,double x,double y){
+    public Store(Integer id,String name,String type,String email,String phoneNum,Integer waitTimeLunch,Integer waitTimeDinner,double x,double y,String address,String homepage,double open,double close,boolean isOpen){
         this.id=id;
         this.name=name;
         this.type=type;
@@ -24,6 +28,11 @@ public class Store {
         this.waitTimeDinner=waitTimeDinner;
         this.locX=x;
         this.locY=y;
+        this.address=address;
+        this.homepage=homepage;
+        this.openTime=open;
+        this.closeTime=close;
+        this.isOpen=isOpen;
     }
     public Integer getId(){
         return this.id;
@@ -49,4 +58,7 @@ public class Store {
     public Integer waitTimeDinner(){
         return this.waitTimeDinner;
     }
+    public String getHomepage() {return this.homepage;}
+    public double getOpenTime() {return this.openTime;}
+    public double getCloseTime() {return this.closeTime;}
 }

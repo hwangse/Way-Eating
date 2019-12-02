@@ -78,7 +78,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
     // 외부에서 사용할 경우 반드시 SystemData클래스를 생성하는게 아닌, homefragment의 systemdata를 가져와서 하도록!!!
     static public SystemData systemData=null;
     // 테스트용 textView
-
     TextView tvData;
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // create 2 kinds of async thread and Handler for searching function
@@ -102,7 +101,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
         camLocation.setLatitude(37.6);
 
         ////////테스트용 textData
-        tvData= (TextView)root.findViewById(R.id.textView);
+        tvData= root.findViewById(R.id.textView);
 
         // 만약 시스템 데이터 정보가 없다면 이를 생성한다.
         if(systemData==null) systemData=new SystemData();
@@ -164,7 +163,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
             }
         });
         // setting search engine adapter (검색시에 아래 나오는 음식점 리스트를 제어해줄 어댑터)
-        listView = (ListView) root.findViewById(R.id.listView);
+        listView =  root.findViewById(R.id.listView);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -232,9 +231,15 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                             String tmpPhone=jsonObj.getString("phone");
                             Integer tmpLunch=jsonObj.getInt("timeLunch");
                             Integer tmpDinner=jsonObj.getInt("timeDinner");
+                            String tmpAddr=jsonObj.getString("address");
+                            String tmpHomepage=jsonObj.getString("homepage");
+                            double tmpOpen=jsonObj.getDouble("open");
+                            double tmpClose=jsonObj.getDouble("close");
                             double tmpX=location.getDouble("x");
                             double tmpY=location.getDouble("y");
-                            systemData.stores.add(new Store(tmpId,tmpName,tmpType,tmpEmail,tmpPhone,tmpLunch,tmpDinner,tmpX,tmpY));
+                            boolean tmpIsOpen=jsonObj.getBoolean("isOpen");
+                            tvData.setText(tmpAddr);
+                            systemData.stores.add(new Store(tmpId,tmpName,tmpType,tmpEmail,tmpPhone,tmpLunch,tmpDinner,tmpX,tmpY,tmpAddr,tmpHomepage,tmpOpen,tmpClose,tmpIsOpen));
 
                             // time marker 생성
                             Marker marker=new Marker();
