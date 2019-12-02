@@ -27,11 +27,18 @@
         <activity
             android:name = ".activity.JoinActivity"/>
         <activity
-            android:name = ".activity.InfoActivity"/>
+            android:name = ".activity.InfoActivity">
+        </activity>
+        <activity
+            android:name = ".activity.SearchRestaurantActivity">
+        </activity>
+
         <activity
             android:name = ".activity.RegisterInfoActivity" android:theme="@android:style/Theme.Dialog" />
         <activity
             android:name = ".activity.RegisterConfirmActivity" android:theme="@android:style/Theme.Dialog" />
+
+
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
             android:value="lvd8yed6xo" />

@@ -16,8 +16,6 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import static com.example.way_eating.ui.home.HomeFragment.systemData;
-
 public class MainActivity extends AppCompatActivity {
     InfoFragment infoFragment;
     static public User userInMain;
@@ -32,10 +30,7 @@ public class MainActivity extends AppCompatActivity {
         //LogInActivity로부터 user 데이터 수신 -> home fragment로 넘겨주기
         Intent intent = getIntent();
         userInMain = (User) intent.getSerializableExtra("user");
-
-
-//        systemData.user = user;
-//        Toast.makeText(MainActivity.this, systemData.user.getName() + " 님 안녕하세요!", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(MainActivity.this, userInMain.getName() + " 님 안녕하세요!", Toast.LENGTH_SHORT).show();
 
         backPressCloseHandler = new BackPressCloseHandler(this);
 

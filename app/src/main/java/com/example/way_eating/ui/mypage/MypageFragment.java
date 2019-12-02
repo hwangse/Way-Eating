@@ -15,6 +15,8 @@ import com.example.way_eating.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.way_eating.ui.home.HomeFragment.systemData;
+
 
 public class MypageFragment extends Fragment {
     //이미지 리스트 생성
@@ -23,9 +25,9 @@ public class MypageFragment extends Fragment {
     private MypageViewModel mypageViewModel;
     //현선 추가
     public TextView customerNameBig = null;
-    public TextView nameTextView2 = null;
-    public TextView mobilePhoneView = null;
-    public TextView emailView = null;
+    public TextView customerName = null;
+    public TextView customerPhoneNumber = null;
+    public TextView customerEmail = null;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -33,27 +35,31 @@ public class MypageFragment extends Fragment {
                 ViewModelProviders.of(this).get(MypageViewModel.class);
         View root = inflater.inflate(R.layout.fragment_mypage, container, false);
 
-
         //text값 넣기 - 기본 설정 by 지안
-        TextView customerName = (TextView) root.findViewById(R.id.customerName);
-        TextView customerPhoneNumber = (TextView) root.findViewById(R.id.customerPhoneNumber);
-        TextView customerEmailAddress  = (TextView) root.findViewById(R.id.customerEmailAddress);
+        customerNameBig = (TextView)root.findViewById(R.id.customerNameBig);
+        customerName = (TextView) root.findViewById(R.id.customerName);
+        customerPhoneNumber = (TextView) root.findViewById(R.id.customerPhoneNumber);
+        customerEmail  = (TextView) root.findViewById(R.id.customerEmail);
 
-        customerName.setText(getResources().getString(R.string.customerName));
+        /*customerName.setText(getResources().getString(R.string.customerName));
         customerPhoneNumber.setText(getResources().getString(R.string.customerPhoneNumber));
-        customerEmailAddress.setText(getResources().getString(R.string.customerEmailAddress));
+        customerEmailAddress.setText(getResources().getString(R.string.customerEmailAddress));*/
 
 
         //systemData 대신 더미 클래스 만들어서 보여주기 by 현선
-        if(customerNameBig == null)  customerNameBig = (TextView)root.findViewById(R.id.customerNameBig);
+        /*if(customerNameBig == null) customerNameBig = (TextView)root.findViewById(R.id.customerNameBig);
         if(customerName == null) customerName = (TextView)root.findViewById(R.id.customerName);
         if(customerPhoneNumber == null) customerPhoneNumber = (TextView)root.findViewById(R.id.customerPhoneNumber);
-        if(customerEmailAddress == null) customerEmailAddress = (TextView)root.findViewById(R.id.customerEmailAddress);
+        if(customerEmail == null) customerEmail = (TextView)root.findViewById(R.id.customerEmail);*/
 
-        customerNameBig.setText(UserInfoTemp.name);
+        customerNameBig.setText(systemData.user.getName());
+        customerName.setText(systemData.user.getName());
+        customerPhoneNumber.setText(systemData.user.getPhoneNum());
+        customerEmail.setText(systemData.user.getEmail());
+        /*customerNameBig.setText(UserInfoTemp.name);
         customerName.setText(UserInfoTemp.name);
         customerPhoneNumber.setText(UserInfoTemp.phoneNum);
-        customerEmailAddress.setText(UserInfoTemp.email);
+        customerEmail.setText(UserInfoTemp.email);*/
         /*
         if(HomeFragment.systemData != null){
             t.setText(HomeFragment.systemData.user.getName());
@@ -103,11 +109,11 @@ public class MypageFragment extends Fragment {
     }
 }
 
-class UserInfoTemp{ //삭제할 예정
+/*class UserInfoTemp{ //삭제할 예정
     public static Integer id = 0;
     public static String name = "김펭수";
     public static String sex = "M";
     public static Integer age = 10;
     public static String phoneNum = "01012345678";
     public static String email = "pengsu@sogang.ac.kr";
-}
+}*/

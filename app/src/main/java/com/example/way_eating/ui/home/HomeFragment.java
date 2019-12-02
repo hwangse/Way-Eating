@@ -106,6 +106,11 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
 
         // 만약 시스템 데이터 정보가 없다면 이를 생성한다.
         if(systemData==null) systemData=new SystemData();
+        // 만약 유저 정보가 생성되지 않았다면 이를 생성한다.
+        if(systemData.user==null){
+            systemData.user= MainActivity.userInMain;
+            Toast.makeText(getActivity(), systemData.user.getName() + " 님 안녕하세요!", Toast.LENGTH_SHORT).show();
+        }
         // 안드로이드 시스템 상에 store정보가 없다면 GetStore 호출을 통해 store array를 생성해준다.
         if(systemData.stores==null){
             makeStoreClasses();
@@ -190,16 +195,16 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
         listView.setAdapter(adapter);
 
         // 만약 시스템 데이터 정보가 없다면 이를 생성한다.
-        if(systemData==null) systemData=new SystemData();
+        //if(systemData==null) systemData=new SystemData();
         // 만약 유저 정보가 생성되지 않았다면 이를 생성한다.
-        if(systemData.user==null){
-            systemData.user= MainActivity.userInMain;
-            Toast.makeText(getActivity(), systemData.user.getName() + " 님 안녕하세요!", Toast.LENGTH_SHORT).show();
-        }
+        //if(systemData.user==null){
+        //    systemData.user= MainActivity.userInMain;
+        //    Toast.makeText(getActivity(), systemData.user.getName() + " 님 안녕하세요!", Toast.LENGTH_SHORT).show();
+        //}
         // 만약 상점 데이터 정보가 없다면 시스템 내에 상점 정보를 받아온다.
-        if(systemData.stores==null){
-            makeStoreClasses();
-        }
+        //if(systemData.stores==null){
+        //    makeStoreClasses();
+        //}
 
         return root;
     }

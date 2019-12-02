@@ -53,7 +53,7 @@ public class LogInActivity extends Activity {
             public void onClick(View v) {
                 switch (v.getId()) {
                     case R.id.loginMaster:  //마스터버튼
-                        startLogin(new LoginData("admin@way", "123456"));
+                        startLogin(new LoginData("way@eating", "123456"));
                         break;
                     case R.id.loginLogin: //로그인
                         attemptLogin();
@@ -146,7 +146,7 @@ public class LogInActivity extends Activity {
 
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
-                Toast.makeText(LogInActivity.this, "로그인 에러 발생", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LogInActivity.this, "서버에 접속할 수 없습니다", Toast.LENGTH_SHORT).show();
                 Log.e("로그인 에러 발생", t.getMessage());
                 showProgress(false);
             }
