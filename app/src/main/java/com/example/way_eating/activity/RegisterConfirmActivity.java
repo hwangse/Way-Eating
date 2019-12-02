@@ -12,10 +12,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.way_eating.R;
+import com.example.way_eating.ui.home.HomeFragment;
 
 public class RegisterConfirmActivity extends Activity {
-    TextView txtText;
-    Spinner selectPeopleNum;
+    private TextView name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,43 +24,16 @@ public class RegisterConfirmActivity extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_register_confirm);
 
-        //UI 객체생성
-        txtText = (TextView)findViewById(R.id.numText);
-        // 인원수 고르는 spinner 생성
-        selectPeopleNum=findViewById(R.id.numSpinner);
-
-        String[] str = getResources().getStringArray(R.array.spinnerArray);
-        //2번에서 생성한 spinner_item.xml과 str을 인자로 어댑터 생성.
-        ArrayAdapter<String> adapter= new ArrayAdapter<>(this,R.layout.spinner_item,str);
-        //adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
-        selectPeopleNum.setAdapter(adapter);
-
-        //spinner 이벤트 리스너
-        selectPeopleNum.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if(selectPeopleNum.getSelectedItemPosition() > 0){
-                    //선택된 항목
-                    //Log.v("알림",selectPeopleNum.getSelectedItem().toString()+ "is selected");
-                }
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-            }
-        });
-
+        name=findViewById(R.id.name);
+        name.setText("이름 : "+ HomeFragment.systemData.user.getName());
         //데이터 가져오기
-        Intent intent = getIntent();
-        String data = intent.getStringExtra("data");
-        txtText.setText(data);
+//        Intent intent = getIntent();
+//        String data = intent.getStringExtra("data");
     }
 
     //확인 버튼 클릭
     public void mOnClose(View v){
-        //데이터 전달하기
-        Intent intent = new Intent();
-        intent.putExtra("result", "Close Popup");
-        setResult(RESULT_OK, intent);
+
 
         //액티비티(팝업) 닫기
         finish();

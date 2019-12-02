@@ -83,6 +83,7 @@ public class RegisterInfoActivity extends Activity {
             intent.putExtra("numOfPeople", selectPeopleNum.getSelectedItem().toString()); // 대기 인원수
             // 선택된 메뉴
             startActivityForResult(intent, 1);
+            finish();
             //setResult(RESULT_OK, intent);
         }else{ // 메뉴가 한개도 선택되지 않았을 때
             AlertDialog.Builder alert = new AlertDialog.Builder(this);
