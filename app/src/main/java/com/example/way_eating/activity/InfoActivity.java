@@ -13,8 +13,7 @@ import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.way_eating.R;
-import com.example.way_eating.ui.info.InfoViewModel;
-import com.example.way_eating.ui.info.ViewPagerAdapter;
+import com.example.way_eating.event.ViewPagerAdapter;
 
 import static com.example.way_eating.ui.home.HomeFragment.systemData;
 
@@ -23,8 +22,6 @@ public class InfoActivity extends Activity {
     LinearLayout sliderDotspanel_selected;
     private int dotscount;
     private ImageView[] dots;
-    private InfoViewModel listViewModel;
-    private InfoViewModel infoViewModel;
     private Button btnRegister;
 
     @Override
@@ -59,7 +56,7 @@ public class InfoActivity extends Activity {
         //이미지뷰어용
         viewPager_selected = (ViewPager) findViewById(R.id.viewPager_selected);
         sliderDotspanel_selected = (LinearLayout) findViewById(R.id.sliderDotspanel_selected);
-        com.example.way_eating.ui.info.ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(this);
+        com.example.way_eating.event.ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(this);
         viewPager_selected.setAdapter(viewPagerAdapter);
         dotscount = viewPagerAdapter.getCount();
         dots = new ImageView[dotscount];
