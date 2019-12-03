@@ -12,13 +12,13 @@ import androidx.viewpager.widget.ViewPager;
 import com.example.way_eating.R;
 
 
-public class ViewPagerAdapterNearby extends PagerAdapter {
+public class ViewPagerAdapterPrefer extends PagerAdapter {
 
     private Context context;
     private LayoutInflater layoutInflater;
-    private Integer [] images = {R.drawable.food1,R.drawable.food2,R.drawable.food3,R.drawable.food4};
+    private Integer [] images = {R.drawable.food9,R.drawable.food6,R.drawable.food7,R.drawable.food8};
 
-    public ViewPagerAdapterNearby(Context context) {
+    public ViewPagerAdapterPrefer(Context context) {
         this.context = context;
     }
 
@@ -54,4 +54,3 @@ public class ViewPagerAdapterNearby extends PagerAdapter {
 
     }
 }
-

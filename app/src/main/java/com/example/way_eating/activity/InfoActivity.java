@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
@@ -29,29 +30,22 @@ public class InfoActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_info);
 
-        Intent intent1 = getIntent();
-        int position = intent1.getIntExtra("position",1);
+        Intent intent = getIntent();
+        int position = intent.getIntExtra("position", 0);   //ListFragment에서 선택된 페이지 받아옴
+        //Toast.makeText(InfoActivity.this, Integer.toString(position), Toast.LENGTH_SHORT).show(); ///////////////
 
-        //text값 넣기
         TextView restaurantName = (TextView) findViewById(R.id.restaurantName);
         TextView restaurantContactNumber = (TextView) findViewById(R.id.restaurantContactNumber);
         TextView restaurantLocation = (TextView) findViewById(R.id.restaurantLocation);
         TextView restaurantMenu = (TextView) findViewById(R.id.restaurantMenu);
         TextView restaurantSite = (TextView) findViewById(R.id.restaurantSite);
 
-        restaurantName.setText(systemData.stores.get(position - 1).name);
-        restaurantContactNumber.setText(systemData.stores.get(position - 1).getPhoneNum());
-        restaurantLocation.setText(getResources().getString(R.string.restaurantLocation)); //store 클래스에 address가 없음
-        restaurantMenu.setText(getResources().getString(R.string.restaurantMenu)); //store 클래스에 menu가 없음
-        restaurantSite.setText(getResources().getString(R.string.restaurantSite)); //store 클래스에 email이 없음
-        /*
-        restaurantName.setText(getResources().getString(R.string.restaurantName));
-        restaurantContactNumber.setText(getResources().getString(R.string.restaurantContactNumber));
-        restaurantLocation.setText(getResources().getString(R.string.restaurantLocation));
-        restaurantMenu.setText(getResources().getString(R.string.restaurantMenu));
-        restaurantSite.setText(getResources().getString(R.string.restaurantSite));
-        */
-
+        //text값 넣기
+        restaurantName.setText(systemData.stores.get(position).getName());
+        restaurantContactNumber.setText(systemData.stores.get(position).getPhoneNum());
+        restaurantLocation.setText("address"); //store 클래스에 address가 없음
+        restaurantMenu.setText("menu"); //store 클래스에 menu가 없음
+        restaurantSite.setText(systemData.stores.get(position).getEmail()); //store 클래스에 email이 없음
 
         //이미지뷰어용
         viewPager_selected = (ViewPager) findViewById(R.id.viewPager_selected);
@@ -66,9 +60,9 @@ public class InfoActivity extends Activity {
         btnRegister.setOnClickListener((View v)->{
             ////////////////////////////////이 부분 대기 등록하기 전에 유효성 검사할 수 있도록 수정하기(중복 대기 등록 여부)/////////////////////////////////
             //데이터 담아서 팝업(액티비티) 호출
-            Intent intent = new Intent(this, RegisterInfoActivity.class);
-          //  intent.putExtra("data", "Test Popup");
-            startActivityForResult(intent, 1);
+            Intent intent2 = new Intent(this, RegisterInfoActivity.class);
+            intent.putExtra("data", "Test Popup");
+            startActivityForResult(intent2, 1);
         });
 
         for (int i = 0; i < dotscount; i++) {
