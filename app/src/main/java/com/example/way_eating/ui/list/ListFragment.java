@@ -3,6 +3,7 @@ package com.example.way_eating.ui.list;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -19,20 +20,29 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.way_eating.R;
 import com.example.way_eating.activity.InfoActivity;
+import com.example.way_eating.activity.MainActivity;
 import com.example.way_eating.activity.SearchRestaurantActivity;
+
+import static com.example.way_eating.ui.home.HomeFragment.systemData;
 
 
 public class ListFragment extends Fragment {
     public static String parameterToSearchRestaurantActivity;
-    ViewPager viewPager_nearby;
-    ViewPager viewPager_suggest;
-    LinearLayout sliderDotspanel_nearby;
-    LinearLayout sliderDotspanel_suggest;
-    private int dotscount_nearby;
-    private int dotscount_suggest;
-    private ImageView[] dots_nearby;
-    private ImageView[] dots_suggest;
+    ViewPager viewPagerSuggest;
+    ViewPager viewPagerPrefer;
+    LinearLayout sliderDotsPanelSuggest;
+    LinearLayout sliderDotsPanelPrefer;
+    private int dotsCountSuggest;
+    private int dotsCountPrefer;
+    private ImageView[] dotsSuggest;
+    private ImageView[] dotsPrefer;
     private ListViewModel listViewModel;
+
+    int selectedPosition = 0;
+    //음식점 버튼들
+    private Button suggest1, suggest2, suggest3, suggest4;
+    private Button prefer1, prefer2, prefer3, prefer4;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -40,120 +50,164 @@ public class ListFragment extends Fragment {
                 ViewModelProviders.of(this).get(ListViewModel.class);
         View root = inflater.inflate(R.layout.fragment_list, container, false);
 
+        TextView suggestRestaurantName = (TextView) root.findViewById(R.id.suggestRestaurantName);
+        TextView preferRestaurantList = (TextView) root.findViewById(R.id.preferRestaurantList);
+
         //text값 넣기
-        TextView nearbyRestaurantName = (TextView) root.findViewById(R.id.nearbyRestaurantName);
-        TextView suggestRestaurantList = (TextView) root.findViewById(R.id.suggestRestaurantList);
+        suggestRestaurantName.setText(systemData.user.getName() + " 님께 추천하는 맛집");
+        preferRestaurantList.setText(systemData.user.getName() + " 님이 선호하는 맛집");
 
-        nearbyRestaurantName.setText(getResources().getString(R.string.nearbyRestaurantName));
-        suggestRestaurantList.setText(getResources().getString(R.string.customerName) + "님께 추천하는 주변 맛집");
-
-        //이미지뷰어용
-        viewPager_nearby = (ViewPager) root.findViewById(R.id.viewPager_nearby);
-        viewPager_suggest = (ViewPager) root.findViewById(R.id.viewPager_suggest);
-        sliderDotspanel_nearby = (LinearLayout) root.findViewById(R.id.sliderDotspanel_nearby);
-        sliderDotspanel_suggest = (LinearLayout) root.findViewById(R.id.sliderDotspanel_suggest);
-        ViewPagerAdapterNearby viewPagerAdapterNearby = new ViewPagerAdapterNearby(getContext());
+        //이미지뷰어용 변수 설정
+        viewPagerSuggest = (ViewPager) root.findViewById(R.id.viewPager_suggest);
+        viewPagerPrefer = (ViewPager) root.findViewById(R.id.viewPager_prefer);
+        sliderDotsPanelSuggest = (LinearLayout) root.findViewById(R.id.sliderDotspanel_suggest);
+        sliderDotsPanelPrefer = (LinearLayout) root.findViewById(R.id.sliderDotspanel_prefer);
         ViewPagerAdapterSuggest viewPagerAdapterSuggest = new ViewPagerAdapterSuggest(getContext());
-        viewPager_nearby.setAdapter(viewPagerAdapterNearby);
-        viewPager_suggest.setAdapter(viewPagerAdapterSuggest);
-        dotscount_nearby = viewPagerAdapterNearby.getCount();
-        dotscount_suggest = viewPagerAdapterSuggest.getCount();
-        dots_nearby = new ImageView[dotscount_nearby];
-        dots_suggest = new ImageView[dotscount_suggest];
+        ViewPagerAdapterPrefer viewPagerAdapterPrefer = new ViewPagerAdapterPrefer(getContext());
+        viewPagerSuggest.setAdapter(viewPagerAdapterSuggest);
+        viewPagerPrefer.setAdapter(viewPagerAdapterPrefer);
+        dotsCountSuggest = viewPagerAdapterSuggest.getCount();
+        dotsCountPrefer = viewPagerAdapterPrefer.getCount();
+        dotsSuggest = new ImageView[dotsCountSuggest];
+        dotsPrefer = new ImageView[dotsCountPrefer];
 
-        //nearby 사진
-        for(int i = 0; i < dotscount_nearby; i++){
+        //버튼들 설정
+        prefer1 = (Button) root.findViewById(R.id.btnPrefer1);
+        prefer2 = (Button) root.findViewById(R.id.btnPrefer2);
+        prefer3 = (Button) root.findViewById(R.id.btnPrefer3);
+        prefer4 = (Button) root.findViewById(R.id.btnPrefer4);
+        suggest1 = (Button) root.findViewById(R.id.btnSuggest1);
+        suggest2 = (Button) root.findViewById(R.id.btnSuggest2);
+        suggest3 = (Button) root.findViewById(R.id.btnSuggest3);
+        suggest4 = (Button) root.findViewById(R.id.btnSuggest4);
 
-            dots_nearby[i] = new ImageView(getContext());
-            dots_nearby[i].setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.non_active_dot));
-
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-
-            params.setMargins(8, 0, 8, 0);
-
-            sliderDotspanel_nearby.addView(dots_nearby[i], params);
-        }
-
-        dots_nearby[0].setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.active_dot));
-
-        viewPager_nearby.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-
-                for(int i = 0; i< dotscount_nearby; i++){
-                    dots_nearby[i].setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.non_active_dot));
-                }
-
-                dots_nearby[position].setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.active_dot));
-
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
-
-        //suggest 사진
-        for(int i = 0; i < dotscount_suggest; i++){
-
-            dots_suggest[i] = new ImageView(getContext());
-            dots_suggest[i].setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.non_active_dot));
+        /*************suggest(추천하는 맛집) 부분*****************/
+        for(int i = 0; i < dotsCountSuggest; i++){
+            dotsSuggest[i] = new ImageView(getContext());
+            dotsSuggest[i].setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.non_active_dot));
 
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
             params.setMargins(8, 0, 8, 0);
 
-            sliderDotspanel_suggest.addView(dots_suggest[i], params);
+            sliderDotsPanelSuggest.addView(dotsSuggest[i], params);
         }
+        dotsSuggest[0].setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.active_dot));
 
-        dots_suggest[0].setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.active_dot));
-
-        viewPager_suggest.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        viewPagerSuggest.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
             }
 
             @Override
             public void onPageSelected(int position) {
-
-                for(int i = 0; i< dotscount_suggest; i++){
-                    dots_suggest[i].setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.non_active_dot));
+                for(int i = 0; i< dotsCountSuggest; i++){
+                    dotsSuggest[i].setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.non_active_dot));
                 }
-
-                dots_suggest[position].setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.active_dot));
-
+                dotsSuggest[position].setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.active_dot));
             }
 
             @Override
             public void onPageScrollStateChanged(int state) {
+            }
+        });
+        /////////////////////
 
+        /****************prefer(선호하는 맛집) 부분***************/
+        for(int i = 0; i < dotsCountPrefer; i++){
+            dotsPrefer[i] = new ImageView(getContext());
+            dotsPrefer[i].setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.non_active_dot));
+
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            params.setMargins(8, 0, 8, 0);
+
+            sliderDotsPanelPrefer.addView(dotsPrefer[i], params);
+        }
+        dotsPrefer[0].setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.active_dot));
+
+        //페이지 변화가 생겼을 때 호출되는 리스너
+        viewPagerPrefer.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            //state : 페이지의 상태 (IDLE, DRAGGING, SETTLING)
+            @Override
+            public void onPageScrollStateChanged(int state) {
+            }
+
+            //스크롤 효과가 나는 동안 호출되는 부분
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
+
+            //페이지의 변화가 생겼을 때 선택된 페이지를 알려줌 (스크롤이 아닌 선택 결과!)
+            @Override
+            public void onPageSelected(int position) {
+                selectedPosition = position;
+                /*for(int i = 0; i< dotsCountPrefer; i++){
+                    dotsPrefer[i].setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.non_active_dot));
+                }
+                dotsPrefer[position].setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.active_dot));
+                */
             }
         });
 
-/*
-        viewPager_nearby.setOnClickListener(new View.OnClickListener(){
+        //음식점 버튼 클릭 이벤트 처리
+        View.OnClickListener listener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent(getActivity(), InfoActivity.class);
-                startActivity(intent1);
+                switch (v.getId()) {
+                    case R.id.btnSuggest1:
+                    case R.id.btnPrefer1:   //음식점1
+                        Intent intent1 = new Intent(getActivity(), InfoActivity.class);
+                        intent1.putExtra("position", 0);
+                        startActivity(intent1);
+                        break;
+                    case R.id.btnSuggest2:
+                    case R.id.btnPrefer2:   //음식점2
+                        Intent intent2 = new Intent(getActivity(), InfoActivity.class);
+                        intent2.putExtra("position", 1);
+                        startActivity(intent2);
+                        break;
+                    case R.id.btnSuggest3:
+                    case R.id.btnPrefer3:   //음식점3
+                        Intent intent3 = new Intent(getActivity(), InfoActivity.class);
+                        intent3.putExtra("position", 2);
+                        startActivity(intent3);
+                        break;
+                    case R.id.btnSuggest4:
+                    case R.id.btnPrefer4:   //음식점1
+                        Intent intent4 = new Intent(getActivity(), InfoActivity.class);
+                        intent4.putExtra("position", 3);
+                        startActivity(intent4);
+                        break;
+                }
+            }
+        };
+        suggest1.setOnClickListener(listener);
+        suggest2.setOnClickListener(listener);
+        suggest3.setOnClickListener(listener);
+        suggest4.setOnClickListener(listener);
+        prefer1.setOnClickListener(listener);
+        prefer2.setOnClickListener(listener);
+        prefer3.setOnClickListener(listener);
+        prefer4.setOnClickListener(listener);
+
+        /*viewPagerPrefer.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), InfoActivity.class);
+                intent.putExtra("position", selectedPosition);
+                startActivity(intent);
             }
         });*/
 
-        Button btnInfo = (Button) root.findViewById(R.id.btnInfo);
+        //INFO용 버튼
+        /*Button btnInfo = (Button) root.findViewById(R.id.btnInfo);
         btnInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent1 = new Intent(getActivity(), InfoActivity.class);
                 startActivity(intent1);
             }
-        });
+        });*/
 
         //검색기능 by 현선
         SearchView sv = (SearchView) root.findViewById(R. id. listSearchRestaurant);
