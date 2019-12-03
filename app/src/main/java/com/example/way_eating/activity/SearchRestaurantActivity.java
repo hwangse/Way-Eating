@@ -42,7 +42,8 @@ public class SearchRestaurantActivity extends Activity {
                         systemData.stores.get(i).getHomepage(),
                         systemData.stores.get(i).getOpenTime(),
                         systemData.stores.get(i).getCloseTime(),
-                        systemData.stores.get(i).isOpen));
+                        systemData.stores.get(i).isOpen,
+                        systemData.stores.get(i).menu));
             }
         }
 

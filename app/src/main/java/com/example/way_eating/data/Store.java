@@ -1,5 +1,7 @@
 package com.example.way_eating.data;
 
+import org.json.JSONObject;
+
 /* 서버가 DB에서 Store 정보를 가져와서 각각의 상점에 대해 생성할 class */
 public class Store {
     public Integer id;
@@ -15,15 +17,15 @@ public class Store {
     private Integer waitTimeLunch;
     private Integer waitTimeDinner;
     public boolean isOpen;
+    public JSONObject menu;
 
     // store Menu
-    public Store(Integer id,String name,String type,String email,String phoneNum,Integer waitTimeLunch,Integer waitTimeDinner,double x,double y,String address,String homepage,double open,double close,boolean isOpen){
+    public Store(Integer id,String name,String type,String email,String phoneNum,Integer waitTimeLunch,Integer waitTimeDinner,double x,double y,String address,String homepage,double open,double close,boolean isOpen,JSONObject menu){
         this.id=id;
         this.name=name;
         this.type=type;
         this.email=email;
         this.phoneNum=phoneNum;
-        //this.address=address;
         this.waitTimeLunch=waitTimeLunch;
         this.waitTimeDinner=waitTimeDinner;
         this.locX=x;
@@ -33,6 +35,7 @@ public class Store {
         this.openTime=open;
         this.closeTime=close;
         this.isOpen=isOpen;
+        this.menu=menu;
     }
     public Integer getId(){
         return this.id;

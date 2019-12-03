@@ -223,6 +223,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                         for(int i=0;i<jsonObject.length();i++){
                             JSONObject jsonObj= jsonObject.getJSONObject(i+"");
                             JSONObject location=jsonObj.getJSONObject("location");
+                            JSONObject menu=jsonObj.getJSONObject("menu");
 
                             Integer tmpId=jsonObj.getInt("id");
                             String tmpName=jsonObj.getString("name");
@@ -238,8 +239,9 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                             double tmpX=location.getDouble("x");
                             double tmpY=location.getDouble("y");
                             boolean tmpIsOpen=jsonObj.getBoolean("isOpen");
-                            tvData.setText(tmpAddr);
-                            systemData.stores.add(new Store(tmpId,tmpName,tmpType,tmpEmail,tmpPhone,tmpLunch,tmpDinner,tmpX,tmpY,tmpAddr,tmpHomepage,tmpOpen,tmpClose,tmpIsOpen));
+                            tvData.setText(menu.toString());
+//                            Log.v("menu",menu.toString());
+                            systemData.stores.add(new Store(tmpId,tmpName,tmpType,tmpEmail,tmpPhone,tmpLunch,tmpDinner,tmpX,tmpY,tmpAddr,tmpHomepage,tmpOpen,tmpClose,tmpIsOpen,menu));
 
                             // time marker 생성
                             Marker marker=new Marker();

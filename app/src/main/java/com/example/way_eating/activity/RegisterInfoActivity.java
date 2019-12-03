@@ -6,7 +6,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
@@ -18,9 +17,15 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.way_eating.R;
+import com.example.way_eating.data.Store;
+
+import org.json.JSONException;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+
+import static com.example.way_eating.ui.home.HomeFragment.systemData;
 
 
 public class RegisterInfoActivity extends Activity {
@@ -28,9 +33,10 @@ public class RegisterInfoActivity extends Activity {
     Spinner selectPeopleNum;
     // 메뉴선택을 위한 checkbox  -> 나중에 DB 메뉴와 연동시킬 예정, 아직은 아님 11/30 (세현)
     //CheckBox chk1,chk2,chk3;
-    List<CheckBox> menus = new ArrayList<>();
+    Store selected=systemData.stores.get(3);  ///////////////// 이거 나중에 수정되어야한다.
+    List<CheckBox> menus = new ArrayList<>(); // 메뉴를 전시할 checkbox 배열
     int menuChecked=0;
-    int menuNum=5; // 나중에 음식점 DB 연동해서 메뉴 개수 받아오기
+    int menuNum=selected.menu.length();
     //////////////
 
     @Override
@@ -43,14 +49,22 @@ public class RegisterInfoActivity extends Activity {
         /////// 메뉴 선택을 위한 checkbox, 나중에 수정할 예정 by 세현
         // 음식점의 메뉴 개수에 따라 동적으로 메뉴 체크 박스를 생성한다.
         LinearLayout layout = findViewById(R.id.menuLayout);
-        for(int i = 0; i < menuNum; i++) {
+        Iterator<String> iter = selected.menu.keys();
+        while (iter.hasNext()) {
             CheckBox cb = new CheckBox(this);
-            cb.setText("메뉴 " + (i+1));
-            cb.setId(i);
-            cb.setTextColor(Color.BLACK);
-            cb.setOnClickListener(this::onCheckboxClicked);
-            menus.add(cb);
-            layout.addView(cb);
+            String key = iter.next();
+            try {
+                Integer value = (Integer)selected.menu.get(key);
+                cb.setText(key+" : "+value+"원");
+                cb.setTextColor(Color.BLACK);
+                cb.setOnClickListener(this::onCheckboxClicked);
+                menus.add(cb);
+                layout.addView(cb);
+
+            } catch (JSONException e) {
+                // Something went wrong!
+                e.printStackTrace();
+            }
         }
 
         /////////////////////////////////////////////
