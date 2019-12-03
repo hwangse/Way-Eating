@@ -2,6 +2,7 @@ package com.example.way_eating.ui.list;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -16,7 +17,7 @@ public class ViewPagerAdapterSuggest extends PagerAdapter {
 
     private Context context;
     private LayoutInflater layoutInflater;
-    private Integer [] images = {R.drawable.food9,R.drawable.food6,R.drawable.food7,R.drawable.food8};
+    private Integer [] images = {R.drawable.food1, R.drawable.food2, R.drawable.food3, R.drawable.food4};
 
     public ViewPagerAdapterSuggest(Context context) {
         this.context = context;
@@ -40,6 +41,12 @@ public class ViewPagerAdapterSuggest extends PagerAdapter {
         ImageView imageView = (ImageView) view.findViewById(R.id.imageView);
         imageView.setImageResource(images[position]);
 
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
+
         ViewPager vp = (ViewPager) container;
         vp.addView(view, 0);
         return view;
@@ -54,3 +61,4 @@ public class ViewPagerAdapterSuggest extends PagerAdapter {
 
     }
 }
+
