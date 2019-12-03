@@ -31,7 +31,7 @@ public class InfoActivity extends Activity {
         setContentView(R.layout.fragment_info);
 
         Intent intent = getIntent();
-        int position = intent.getIntExtra("position", 1);   //ListFragment에서 선택된 페이지 받아옴
+        int position = intent.getIntExtra("position", 0);   //ListFragment에서 선택된 페이지 받아옴
         //Toast.makeText(InfoActivity.this, Integer.toString(position), Toast.LENGTH_SHORT).show(); ///////////////
 
         TextView restaurantName = (TextView) findViewById(R.id.restaurantName);
@@ -46,14 +46,6 @@ public class InfoActivity extends Activity {
         restaurantLocation.setText("address"); //store 클래스에 address가 없음
         restaurantMenu.setText("menu"); //store 클래스에 menu가 없음
         restaurantSite.setText(systemData.stores.get(position).getEmail()); //store 클래스에 email이 없음
-        /*
-        restaurantName.setText(getResources().getString(R.string.restaurantName));
-        restaurantContactNumber.setText(getResources().getString(R.string.restaurantContactNumber));
-        restaurantLocation.setText(getResources().getString(R.string.restaurantLocation));
-        restaurantMenu.setText(getResources().getString(R.string.restaurantMenu));
-        restaurantSite.setText(getResources().getString(R.string.restaurantSite));
-        */
-
 
         //이미지뷰어용
         viewPager_selected = (ViewPager) findViewById(R.id.viewPager_selected);
