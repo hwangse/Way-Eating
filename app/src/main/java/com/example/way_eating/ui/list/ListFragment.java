@@ -94,24 +94,29 @@ public class ListFragment extends Fragment {
         }
         dotsSuggest[0].setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.active_dot));
 
+        //페이지 변화가 생겼을 때 호출되는 리스너
         viewPagerSuggest.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            //state : 페이지의 상태 (IDLE, DRAGGING, SETTLING)
+            @Override
+            public void onPageScrollStateChanged(int state) {
+            }
+
+            //스크롤 효과가 나는 동안 호출되는 부분
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
             }
 
+            //페이지의 변화가 생겼을 때 선택된 페이지를 알려줌 (스크롤이 아닌 선택 결과!)
             @Override
             public void onPageSelected(int position) {
+                //update indicator
                 for(int i = 0; i< dotsCountSuggest; i++){
                     dotsSuggest[i].setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.non_active_dot));
                 }
                 dotsSuggest[position].setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.active_dot));
             }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-            }
         });
-        /////////////////////
+        ///////////////////////
 
         /****************prefer(선호하는 맛집) 부분***************/
         for(int i = 0; i < dotsCountPrefer; i++){
@@ -141,13 +146,15 @@ public class ListFragment extends Fragment {
             @Override
             public void onPageSelected(int position) {
                 selectedPosition = position;
-                /*for(int i = 0; i< dotsCountPrefer; i++){
+
+                //update indicator
+                for(int i = 0; i< dotsCountPrefer; i++){
                     dotsPrefer[i].setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.non_active_dot));
                 }
                 dotsPrefer[position].setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.active_dot));
-                */
             }
         });
+        //////////////////////////
 
         //음식점 버튼 클릭 이벤트 처리
         View.OnClickListener listener = new View.OnClickListener() {
@@ -173,7 +180,7 @@ public class ListFragment extends Fragment {
                         startActivity(intent3);
                         break;
                     case R.id.btnSuggest4:
-                    case R.id.btnPrefer4:   //음식점1
+                    case R.id.btnPrefer4:   //음식점4
                         Intent intent4 = new Intent(getActivity(), InfoActivity.class);
                         intent4.putExtra("position", 3);
                         startActivity(intent4);
