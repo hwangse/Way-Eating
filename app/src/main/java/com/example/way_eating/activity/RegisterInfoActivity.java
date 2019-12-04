@@ -15,13 +15,16 @@ import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.way_eating.R;
 import com.example.way_eating.data.Store;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
@@ -33,11 +36,12 @@ public class RegisterInfoActivity extends Activity {
     Spinner selectPeopleNum;
     // 메뉴선택을 위한 checkbox  -> 나중에 DB 메뉴와 연동시킬 예정, 아직은 아님 11/30 (세현)
     //CheckBox chk1,chk2,chk3;
-    Store selected=systemData.stores.get(3);  ///////////////// 이거 나중에 수정되어야한다.
+    Store selected; // 선택된 음식점 (클릭된 음식점)
     List<CheckBox> menus = new ArrayList<>(); // 메뉴를 전시할 checkbox 배열
     int menuChecked=0;
-    int menuNum=selected.menu.length();
+    //int menuNum=selected.menu.length();
     //////////////
+    int position; // 이전 activity 에서 음식점 index를 받아올 변수
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +49,11 @@ public class RegisterInfoActivity extends Activity {
         //타이틀바 없애기
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_register_info);
+
+        // 이전 activity에서 선택된 음식점 정보 받아오기
+        Intent intent = getIntent();
+        position = intent.getIntExtra("position", 0);
+        selected=systemData.stores.get(position);
 
         /////// 메뉴 선택을 위한 checkbox, 나중에 수정할 예정 by 세현
         // 음식점의 메뉴 개수에 따라 동적으로 메뉴 체크 박스를 생성한다.
@@ -109,13 +118,19 @@ public class RegisterInfoActivity extends Activity {
             Intent intent = new Intent(this, RegisterConfirmActivity.class);
             // 이동전에 선택된 정보 값 (인원과 메뉴) 전달하기
             intent.putExtra("numOfPeople", selectPeopleNum.getSelectedItem().toString()); // 대기 인원수
+            intent.putExtra("position",position);
+            // 선택된 메뉴를 서버에 전송하기 위한 Json array
+            ArrayList<String> tmpArr=new ArrayList<>();
             String menuTxt="";
             for(CheckBox menu:menus){
-                if(menu.isChecked())
-                    menuTxt += menu.getText().toString()+"\n";
+                if(menu.isChecked()) {
+                    menuTxt += menu.getText().toString() + "\n";
+                    tmpArr.add(menu.getText().toString().split(":")[0].substring(0,menu.getText().toString().split(":")[0].length()-1));
+                }
             }
+            intent.putExtra("menuArr",tmpArr);
             intent.putExtra("menu",menuTxt);
-
+            intent.putExtra("position",position);
             // 선택된 메뉴
             startActivityForResult(intent, 1);
             finish();

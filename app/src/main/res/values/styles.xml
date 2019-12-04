@@ -16,6 +16,11 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="EditTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorAccent">@color/normal</item>
+        <item name="colorControlNormal">@color/my_dark_gray</item>
+    </style>
+
     <style name="TransparentText" parent="@android:style/TextAppearance">
         <item name="android:textColor">#00000000</item>
     </style>
