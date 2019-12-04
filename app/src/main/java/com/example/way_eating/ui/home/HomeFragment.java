@@ -26,6 +26,7 @@ import com.example.way_eating.activity.MainActivity;
 import com.example.way_eating.data.Store;
 import com.example.way_eating.data.SystemData;
 import com.example.way_eating.network.GetStore;
+import com.example.way_eating.network.UpdateStore;
 import com.google.gson.Gson;
 import com.naver.maps.geometry.LatLng;
 import com.naver.maps.map.CameraUpdate;
@@ -45,6 +46,7 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
@@ -113,6 +115,8 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
         // 안드로이드 시스템 상에 store정보가 없다면 GetStore 호출을 통해 store array를 생성해준다.
         if(systemData.stores==null){
             makeStoreClasses();
+        }else{
+            updateStoreClasses();
         }
 
         // this is for the Showing the Naver Map
@@ -208,6 +212,32 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
         return root;
     }
 
+    // store 클래스가 이미 생성된 상태에서 store 대기 시간 정보를 update해주는 메소드
+    public void updateStoreClasses(){
+        // get 요청을 하고 난 뒤 => 각 마커의 시간 정보를 수정한다.
+        UpdateStore updateStore=new UpdateStore((String output)->{
+            try{
+                JSONObject jsonObject=new JSONObject(output);
+                String arr=jsonObject.getString("times");
+                // 현재 대기 시간을 받아옴.
+                arr=arr.substring(1,arr.length()-1);
+                ArrayList<String> timeList = new ArrayList<>(Arrays.asList(arr.split(",")));
+                for(int i=0;i<timeList.size();i++){
+                    systemData.markers.get(i).setCaptionText(timeList.get(i)+"분");
+                }
+             //   Toast.makeText(getActivity(),jsonObject.getString("times"),Toast.LENGTH_SHORT).show();
+//                marker.setPosition(new LatLng(tmpY, tmpX));
+//                marker.setCaptionAligns(Align.Top);
+//                marker.setCaptionColor(Color.BLUE);
+//                marker.setCaptionHaloColor(Color.rgb(200, 255, 200));
+//                marker.setCaptionTextSize(16);
+//                systemData.markers.add(marker);
+            }catch(JSONException e){
+                e.printStackTrace();
+            }
+        });
+        updateStore.execute();
+    }
     // 어플리케이션내에 storeData를 생성하는 메소드
     public void makeStoreClasses(){
         GetStore getStore=new GetStore((String output)->{
@@ -246,9 +276,9 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                             // time marker 생성
                             Marker marker=new Marker();
                             //////이거 대모용으로 만들어놓은 임시 대기 시간임!!!!/////
-                            Random r=new Random();
-                            int num=r.nextInt(20)+5;
-                            marker.setCaptionText(num+"분");
+                            //Random r=new Random();
+                            //int num=r.nextInt(20)+5;
+                            marker.setCaptionText(0+"분");
                             ///////////////////////////////////////////
                             marker.setPosition(new LatLng(tmpY, tmpX));
                             marker.setCaptionAligns(Align.Top);
