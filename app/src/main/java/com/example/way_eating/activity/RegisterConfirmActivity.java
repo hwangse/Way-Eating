@@ -112,7 +112,7 @@ public class RegisterConfirmActivity extends Activity {
             final Integer ppl=people;
             waitingInfo.put("numOfPeople",people); // 대기 고객 명수
             waitingInfo.put("menu",new JSONArray(menuArr)); // 요청 메뉴
-            //Toast.makeText(this,waitingInfo.toString(),Toast.LENGTH_SHORT).show();
+            waitingInfo.put("flag",1); // 대기 등록인지 대기 취소인지 알려주는 flag (1일경우 대기 등록, 0일경우 대기 취소)
 
             // 서버 통신하는 클래스 호출
             RegisterWaiting registerWaiting=new RegisterWaiting((String output)->{

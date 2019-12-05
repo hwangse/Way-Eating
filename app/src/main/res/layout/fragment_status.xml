@@ -14,7 +14,8 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintBottom_toTopOf="@id/statusAvatars"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="20dp">
 
             <TextView
                 android:id="@+id/restaurantName"
@@ -29,52 +30,53 @@
                 style="@style/status_detail_miniText" />
         </LinearLayout>
         <!--아바타-->
-        <LinearLayout
-            android:id="@+id/statusAvatars"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/statusDetail">
+    <LinearLayout
+        android:id="@+id/statusAvatars"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/statusDetail"
+        tools:layout_editor_absoluteX="20dp">
 
-            <TableLayout
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                <ImageView
+                    style="@style/status_avatars"
+                    android:src="@drawable/avatar_01" />
 
-                    <ImageView
-                        style="@style/status_avatars"
-                        android:src="@drawable/avatar_01" />
+                <ImageView
+                    style="@style/status_avatars"
+                    android:src="@drawable/avatar_02" />
 
-                    <ImageView
-                        style="@style/status_avatars"
-                        android:src="@drawable/avatar_02" />
+                <ImageView
+                    style="@style/status_avatars"
+                    android:src="@drawable/avatar_03" />
+            </TableRow>
 
-                    <ImageView
-                        style="@style/status_avatars"
-                        android:src="@drawable/avatar_03" />
-                </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                <ImageView
+                    style="@style/status_avatars"
+                    android:src="@drawable/avatar_04" />
 
-                    <ImageView
-                        style="@style/status_avatars"
-                        android:src="@drawable/avatar_04" />
+                <ImageView
+                    style="@style/status_avatars"
+                    android:background="@color/colorPrimary"
+                    android:src="@drawable/avatar_05" />
+            </TableRow>
 
-                    <ImageView
-                        style="@style/status_avatars"
-                        android:background="@color/colorPrimary"
-                        android:src="@drawable/avatar_05" />
-                </TableRow>
-
-            </TableLayout>
-        </LinearLayout>
+        </TableLayout>
+    </LinearLayout>
 
     <TextView
         android:id="@+id/waitingStatus"
@@ -86,4 +88,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnCancelWaiting"
+        android:layout_width="334dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="8dp"
+        android:text="웨이팅 취소"
+        android:onClick="cancelWaiting"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/statusAvatars"
+        app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>
