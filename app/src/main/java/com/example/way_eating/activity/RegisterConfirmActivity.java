@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.way_eating.R;
 import com.example.way_eating.network.RegisterWaiting;
+import com.example.way_eating.ui.status.StatusFragment;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
@@ -23,6 +24,9 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import static com.example.way_eating.ui.home.HomeFragment.systemData;
 
@@ -44,6 +48,7 @@ public class RegisterConfirmActivity extends Activity {
         //타이틀바 없애기
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_register_confirm);
+
 
         // 이전 activity에서 음식점 정보(인덱스) 받아오기
         Intent intent2 = getIntent();
@@ -137,6 +142,9 @@ public class RegisterConfirmActivity extends Activity {
                     // 다이얼로그 보여주기
                     alertDialog.show();
 
+//                    // 대기 상태를 나타내는 Status Fragment의 메소드 호출 -> 이거 시도하다가 망함. 걍 안할래
+//                    StatusFragment sf=(StatusFragment) getSupportFragmentManager().findFragmentById(R.id.navigation_status);
+//                    sf.setWaitingStatus(position,time,rank);
                 }catch(JSONException e){
                     e.printStackTrace();
                 }

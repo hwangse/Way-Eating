@@ -36,7 +36,9 @@
         <activity
             android:name = ".activity.RegisterInfoActivity" android:theme="@android:style/Theme.Dialog" />
         <activity
-            android:name = ".activity.RegisterConfirmActivity" android:theme="@android:style/Theme.Dialog" />
+            android:name = ".activity.RegisterConfirmActivity"
+            android:theme="@android:style/Theme.Dialog"
+            />
 
 
         <meta-data

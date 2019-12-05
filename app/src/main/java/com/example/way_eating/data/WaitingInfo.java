@@ -22,4 +22,7 @@ public class WaitingInfo {
         this.timeRemain=time;
         this.orderInLine=order;
     }
+    public Integer getStoreId() {return this.storeId;}
+    public Integer getTimeTotal() {return this.timeTotal;}
+    public Integer getOrderInLine() {return this.orderInLine;}
 }

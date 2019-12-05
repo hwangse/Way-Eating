@@ -13,7 +13,7 @@ public class User implements Serializable {
     private String email;
 
     // 유저의 waiting information 을 저장할 클래스
-    private WaitingInfo waitingInfo;
+    public WaitingInfo waitingInfo;
 
     // 유저 히스토리
     // user History
