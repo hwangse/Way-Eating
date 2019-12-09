@@ -26,7 +26,7 @@ public class SearchRestaurantActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_list2);
 
-        storeArr = new ArrayList<Store>();s
+        storeArr = new ArrayList<Store>();
         for(int i=0;i<systemData.stores.size();i++){
             if(systemData.stores.get(i).getName().contains(ListFragment.parameterToSearchRestaurantActivity)) {
                 storeArr.add(new Store(systemData.stores.get(i).getId(),
