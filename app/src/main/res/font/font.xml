@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <font-family xmlns:android="http://schemas.android.com/apk/res/android">
-    <font
+   <!-- <font
         android:fontStyle = "normal"
         android:fontWeight = "400"
         android:font = "@font/uto_bold"/>
@@ -11,5 +11,5 @@
     <font
         android:fontStyle = "normal"
         android:fontWeight = "400"
-        android:font = "@font/uto_regular"/>
+        android:font = "@font/uto_regular"/>-->
 </font-family>

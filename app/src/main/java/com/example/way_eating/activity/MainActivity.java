@@ -1,5 +1,6 @@
 package com.example.way_eating.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -8,6 +9,7 @@ import com.example.way_eating.R;
 import com.example.way_eating.data.User;
 import com.example.way_eating.event.BackPressCloseHandler;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.tsengvn.typekit.TypekitContextWrapper;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -48,4 +50,10 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
         backPressCloseHandler.onBackPressed();
     }
+
+    @Override 
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(TypekitContextWrapper.wrap(newBase));
+    }
+
 }

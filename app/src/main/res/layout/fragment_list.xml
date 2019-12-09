@@ -20,7 +20,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-
         <!--추천 맛집-->
         <LinearLayout
             android:id="@+id/listSuggest"

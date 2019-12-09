@@ -10,7 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_main_logo_round"
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:name=".ui.ApplicationBase">
 
         <activity
             android:name=".activity.LogInActivity"
