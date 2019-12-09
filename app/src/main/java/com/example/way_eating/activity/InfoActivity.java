@@ -1,59 +1,69 @@
 package com.example.way_eating.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import androidx.annotation.Nullable;
-import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.way_eating.R;
-import com.example.way_eating.ui.info.InfoViewModel;
-import com.example.way_eating.ui.info.ViewPagerAdapter;
+import com.example.way_eating.event.ViewPagerAdapter;
+
+import static com.example.way_eating.ui.home.HomeFragment.systemData;
 
 public class InfoActivity extends Activity {
     ViewPager viewPager_selected;
     LinearLayout sliderDotspanel_selected;
     private int dotscount;
     private ImageView[] dots;
-    private InfoViewModel listViewModel;
-    private InfoViewModel infoViewModel;
+    private Button btnRegister;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_info);
 
-        //text값 넣기
-        TextView restaurantName = (TextView) findViewById(R.id.restaurantName);
-        TextView restaurantContactNumber = (TextView) findViewById(R.id.restaurantContactNumber);
-        TextView restaurantLocation = (TextView) findViewById(R.id.restaurantLocation);
-        TextView restaurantMenu = (TextView) findViewById(R.id.restaurantMenu);
-        TextView restaurantSite = (TextView) findViewById(R.id.restaurantSite);
+        Intent intent = getIntent();
+        int position = intent.getIntExtra("position", 0);   //ListFragment에서 선택된 페이지 받아옴
+        //Toast.makeText(InfoActivity.this, Integer.toString(position), Toast.LENGTH_SHORT).show(); ///////////////
 
-        restaurantName.setText(getResources().getString(R.string.restaurantName));
-        restaurantContactNumber.setText(getResources().getString(R.string.restaurantContactNumber));
-        restaurantLocation.setText(getResources().getString(R.string.restaurantLocation));
-        restaurantMenu.setText(getResources().getString(R.string.restaurantMenu));
-        restaurantSite.setText(getResources().getString(R.string.restaurantSite));
+        TextView restaurantName = findViewById(R.id.restaurantName);
+        TextView restaurantContactNumber =  findViewById(R.id.restaurantContactNumber);
+        TextView restaurantLocation =  findViewById(R.id.restaurantLocation);
+        TextView restaurantMenu =  findViewById(R.id.restaurantMenu);
+        TextView restaurantSite = findViewById(R.id.restaurantSite);
+
+        //음식점 상세 정보 설정
+        restaurantName.setText(systemData.stores.get(position).getName());
+        restaurantContactNumber.setText(systemData.stores.get(position).getPhoneNum());
+        restaurantLocation.setText(systemData.stores.get(position).getAddress()); //store 클래스에 address가 없음
+        restaurantMenu.setText(systemData.stores.get(position).menu.toString()); //store 클래스에 menu가 없음
+        restaurantSite.setText(systemData.stores.get(position).getEmail()); //store 클래스에 email이 없음
 
         //이미지뷰어용
         viewPager_selected = (ViewPager) findViewById(R.id.viewPager_selected);
         sliderDotspanel_selected = (LinearLayout) findViewById(R.id.sliderDotspanel_selected);
-        com.example.way_eating.ui.info.ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(this);
+        com.example.way_eating.event.ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(this);
         viewPager_selected.setAdapter(viewPagerAdapter);
         dotscount = viewPagerAdapter.getCount();
         dots = new ImageView[dotscount];
+
+        // 대기 등록버튼 클릭시 -> 정보 입력 팝업을 띄워준다.
+        btnRegister= findViewById(R.id.btnRegister);
+        btnRegister.setOnClickListener((View v)->{
+            ////////////////////////////////이 부분 대기 등록하기 전에 유효성 검사할 수 있도록 수정하기(중복 대기 등록 여부)/////////////////////////////////
+            //데이터 담아서 팝업(액티비티) 호출
+            Intent intent2 = new Intent(this, RegisterInfoActivity.class);
+            intent2.putExtra("position", position);
+            startActivityForResult(intent2, 1);
+        });
 
         for (int i = 0; i < dotscount; i++) {
 

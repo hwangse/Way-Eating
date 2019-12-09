@@ -9,18 +9,53 @@ public class LoginResponse {
     @SerializedName("message")
     private String message;
 
-    @SerializedName("userId")
-    private int userId;
+    @SerializedName("userID")
+    private Integer userID;
+
+    @SerializedName("userName")
+    private String userName;
+
+    @SerializedName("userSex")
+    private String userSex;
+
+    @SerializedName("userAge")
+    private Integer userAge;
+
+    @SerializedName("userPhone")
+    private String userPhone;
+
+    @SerializedName("userEmail")
+    private String userEmail;
 
     public int getCode() {
-        return code;
+        return this.code;
     }
 
     public String getMessage() {
-        return message;
+        return this.message;
     }
 
-    public int getUserId() {
-        return userId;
+    public Integer getUserID() {
+        return this.userID;
+    }
+
+    public String getUserName() {
+        return this.userName;
+    }
+
+    public String getUserSex() {
+        return this.userSex;
+    }
+
+    public Integer getUserAge() {
+        return this.userAge;
+    }
+
+    public String getUserPhone() {
+        return this.userPhone;
+    }
+
+    public String getUserEmail() {
+        return this.userEmail;
     }
 }

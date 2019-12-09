@@ -1,55 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:gravity="center"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <EditText
+        android:id="@+id/loginEmail"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_margin="50dp"
-        android:orientation="vertical">
-        <!--이메일-->
-        <EditText
-            android:id="@+id/loginEmail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="이메일"
-            android:inputType = "textEmailAddress"/>
-        <!--비밀번호-->
-        <EditText
-            android:id="@+id/loginPW"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="비밀번호"
-            android:inputType = "textPassword"/>
+        android:layout_marginTop="270dp"
+        android:background="@drawable/stroke_box"
+        android:drawableLeft="@drawable/ic_person_black_24dp"
+        android:drawablePadding="10dp"
+        android:drawableTint="#939393"
+        android:ems="10"
+        android:hint="  이메일"
+        android:inputType="textEmailAddress"
+        android:padding="10dp"
+        android:theme="@style/EditTheme"
+        app:layout_constraintBottom_toTopOf="@+id/loginPW"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-            <!--로그인 버튼-->
-            <Button
-                android:id="@+id/loginLogin"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:hint="로그인"/>
-            <!--회원가입 버튼-->
-            <Button
-                android:id="@+id/loginJoin"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:hint="회원가입"/>
-            <!--마스터 버튼-->
-            <Button
-                android:id="@+id/loginMaster"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:hint="마스터"/>
-        </LinearLayout>
+    <EditText
+        android:id="@+id/loginPW"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="380dp"
+        android:background="@drawable/stroke_box"
+        android:drawableLeft="@drawable/ic_vpn_key_black_24dp"
+        android:drawablePadding="10dp"
+        android:drawableTint="#939393"
+        android:ems="10"
+        android:hint="  비밀번호"
+        android:inputType="textPassword"
+        android:padding="10dp"
+        android:theme="@style/EditTheme"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+   />
+
+    <LinearLayout
+        android:id="@+id/linearLayout5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="330dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginPW">
+        <!--로그인 버튼-->
+        <Button
+            android:id="@+id/loginLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:hint="로그인" />
+        <!--회원가입 버튼-->
+        <Button
+            android:id="@+id/loginJoin"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:hint="회원가입" />
+        <!--마스터 버튼-->
+        <Button
+            android:id="@+id/loginMaster"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:hint="마스터" />
     </LinearLayout>
 
     <ProgressBar
@@ -59,4 +86,4 @@
         android:layout_gravity="center"
         android:visibility="gone" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

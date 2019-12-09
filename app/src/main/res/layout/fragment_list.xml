@@ -5,85 +5,169 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-<androidx.constraintlayout.widget.ConstraintLayout
-    style="@style/body">
 
-    <SearchView
-        android:id="@+id/listSearchRestaurant"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:queryHint="찾으시려는 장소를 입력하세요"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        style="@style/body"
+        app:layout_constraintBottom_toBottomOf="@+id/listSuggest"
+        app:layout_constraintTop_toBottomOf="@+id/listSuggest">
 
+        <SearchView
+            android:id="@+id/listSearchRestaurant"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:queryHint="찾으시려는 장소를 입력하세요"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <!--주변 맛집-->
-    <LinearLayout
-        style="@style/list_layout"
-        android:id="@+id/listNearby"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/listSearchRestaurant">
-
-        <TextView
-            android:id="@+id/nearbyRestaurantName"
-            style="@style/list_mainText" />
-
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/viewPager_nearby"
-            android:layout_width="250dp"
-            android:layout_height="250dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginBottom="8dp"
-            android:gravity="center" />
-
+        <!--추천 맛집-->
         <LinearLayout
-            android:id="@+id/sliderDotspanel_nearby"
+            android:id="@+id/listSuggest"
+            style="@style/list_layout"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/listSearchRestaurant">
+
+            <TextView
+                android:id="@+id/suggestRestaurantName"
+                style="@style/list_mainText" />
+
+            <LinearLayout
+                android:id="@+id/suggestLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/viewPager_suggest"
+                    android:layout_width="250dp"
+                    android:layout_height="250dp"
+                    android:layout_marginBottom="8dp"
+                    android:gravity="center" />
+
+                <LinearLayout
+                    android:id="@+id/suggestLayout2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <Button
+                        android:id="@+id/btnSuggest1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="7dp"
+                        android:layout_marginTop="7dp"
+                        android:text="음식점1"/>
+                    <Button
+                        android:id="@+id/btnSuggest2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="7dp"
+                        android:text="음식점2"/>
+                    <Button
+                        android:id="@+id/btnSuggest3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="7dp"
+                        android:text="음식점3"/>
+                    <Button
+                        android:id="@+id/btnSuggest4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="7dp"
+                        android:text="음식점4"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/sliderDotspanel_suggest"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/viewPager_suggest"
+                android:gravity="center_vertical|center_horizontal"
+                android:orientation="horizontal" />
+        </LinearLayout>
+
+
+        <!--선호 맛집-->
+        <LinearLayout
+            android:id="@+id/listPrefer"
+            style="@style/list_layout"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/listSuggest">
+
+            <TextView
+                android:id="@+id/preferRestaurantList"
+                style="@style/list_mainText" />
+
+            <LinearLayout
+                android:id="@+id/preferLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/viewPager_prefer"
+                    android:layout_width="250dp"
+                    android:layout_height="250dp"
+                    android:layout_marginBottom="8dp"
+                    android:gravity="center_vertical" />
+
+                <LinearLayout
+                    android:id="@+id/preferLayout2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <Button
+                        android:id="@+id/btnPrefer1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="7dp"
+                        android:layout_marginTop="7dp"
+                        android:text="음식점1"/>
+                    <Button
+                        android:id="@+id/btnPrefer2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="7dp"
+                        android:text="음식점2"/>
+                    <Button
+                        android:id="@+id/btnPrefer3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="7dp"
+                        android:text="음식점3"/>
+                    <Button
+                        android:id="@+id/btnPrefer4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="7dp"
+                        android:text="음식점4"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/sliderDotspanel_prefer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/viewPager_prefer"
+                android:gravity="center_vertical|center_horizontal"
+                android:orientation="horizontal" />
+
+        </LinearLayout>
+
+        <!--
+        <Button
+            android:id="@+id/btnInfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/viewPager_nearby"
-            android:gravity="center_vertical|center_horizontal"
-            android:orientation="horizontal" />
-    </LinearLayout>
-
-    <!--주변 추천 맛집-->
-    <LinearLayout
-        style="@style/list_layout"
-        android:id="@+id/listSuggest"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/listNearby">
-
-        <TextView
-            android:id="@+id/suggestRestaurantList"
-            style="@style/list_mainText" />
-
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/viewPager_suggest"
-            android:layout_width="250dp"
-            android:layout_height="250dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginBottom="8dp"
-            android:gravity="center_vertical" />
-
-        <LinearLayout
-            android:id="@+id/sliderDotspanel_suggest"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/viewPager_suggest"
-            android:gravity="center_vertical|center_horizontal"
-            android:orientation="horizontal" />
-    </LinearLayout>
-    <Button
-        android:id="@+id/btnInfo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="info용"
-        android:onClick="onClick"
-        app:layout_constraintTop_toBottomOf="@id/listSuggest"
-        app:layout_constraintBottom_toBottomOf="parent"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+            android:onClick="onClick"
+            android:text="info용"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/listPrefer" /> -->
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

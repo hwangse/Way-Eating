@@ -52,7 +52,6 @@
                     android:text="\김펭수"
                     android:textSize="@dimen/mypage_customer_text"
                     android:textStyle="bold" />
-
             </LinearLayout>
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
@@ -85,7 +84,6 @@
                 app:layout_constraintBottom_toTopOf="parent">
 
                         <RelativeLayout style="@style/mypage_details_layout">
-
                             <ImageView
                                 android:id="@+id/customerNameImage"
                                 style="@style/mypage_details_image"
@@ -101,52 +99,44 @@
                                 android:id="@+id/customerName"
                                 style="@style/mypage_details_miniText"
                                 android:layout_toRightOf="@id/customerNameImage" />
-
                         </RelativeLayout>
 
                         <View style="@style/mypage_details_view" />
 
                         <RelativeLayout style="@style/mypage_details_layout">
-
                             <ImageView
                                 android:id="@+id/customerPhoneImage"
                                 style="@style/mypage_details_image"
                                 android:src="@drawable/ic_mobile" />
-
                             <TextView
                                 android:id="@+id/customerPhoneTitle"
                                 style="@style/mypage_details_mainText"
                                 android:layout_toRightOf="@id/customerPhoneImage"
                                 android:text="연락처" />
-
                             <TextView
                                 android:id="@+id/customerPhoneNumber"
                                 style="@style/mypage_details_miniText"
                                 android:layout_toRightOf="@id/customerPhoneImage" />
-
                         </RelativeLayout>
 
                         <View style="@style/mypage_details_view" />
 
                         <RelativeLayout style="@style/mypage_details_layout">
-
                             <ImageView
                                 android:id="@+id/customerEmailImage"
                                 style="@style/mypage_details_image"
                                 android:src="@drawable/ic_email" />
-
                             <TextView
                                 android:id="@+id/customerEmailTitle"
                                 style="@style/mypage_details_mainText"
                                 android:layout_toRightOf="@id/customerEmailImage"
                                 android:text="이메일" />
-
                             <TextView
-                                android:id="@+id/customerEmailAddress"
+                                android:id="@+id/customerEmail"
                                 style="@style/mypage_details_miniText"
                                 android:layout_toRightOf="@id/customerEmailImage" />
-
                         </RelativeLayout>
+              
             </LinearLayout>
 
             <!-- 예약 히스토리 -->

@@ -10,9 +10,10 @@ import retrofit2.http.Body;
 import retrofit2.http.POST;
 
 public interface ServiceApi {
-    @POST("/user/login")
+    @POST("/android_user_login")
     Call<LoginResponse> userLogin(@Body LoginData data);
 
-    @POST("/user/join")
+    @POST("/android_user_join")
     Call<JoinResponse> userJoin(@Body JoinData data);
+
 }

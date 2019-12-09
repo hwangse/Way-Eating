@@ -1,4 +1,4 @@
-package com.example.way_eating.ui.list;
+package com.example.way_eating.event;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,13 +12,13 @@ import androidx.viewpager.widget.ViewPager;
 import com.example.way_eating.R;
 
 
-public class ViewPagerAdapterNearby extends PagerAdapter {
+public class ViewPagerAdapter extends PagerAdapter {
 
     private Context context;
     private LayoutInflater layoutInflater;
     private Integer [] images = {R.drawable.food1,R.drawable.food2,R.drawable.food3,R.drawable.food4};
 
-    public ViewPagerAdapterNearby(Context context) {
+    public ViewPagerAdapter(Context context) {
         this.context = context;
     }
 
@@ -34,7 +34,6 @@ public class ViewPagerAdapterNearby extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, final int position) {
-
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = layoutInflater.inflate(R.layout.custom_layout, null);
         ImageView imageView = (ImageView) view.findViewById(R.id.imageView);
@@ -54,4 +53,3 @@ public class ViewPagerAdapterNearby extends PagerAdapter {
 
     }
 }
-

@@ -24,15 +24,23 @@
         </activity>
 
         <activity
-            android:name = ".activity.MainActivity">
-        </activity>
-
+            android:name = ".activity.MainActivity"/>
         <activity
-            android:name = ".activity.JoinActivity">
-        </activity>
+            android:name = ".activity.JoinActivity"/>
         <activity
             android:name = ".activity.InfoActivity">
         </activity>
+        <activity
+            android:name = ".activity.SearchRestaurantActivity">
+        </activity>
+
+        <activity
+            android:name = ".activity.RegisterInfoActivity" android:theme="@android:style/Theme.Dialog" />
+        <activity
+            android:name = ".activity.RegisterConfirmActivity"
+            android:theme="@android:style/Theme.Dialog"
+            />
+
 
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
@@ -42,4 +50,5 @@
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 </manifest>
