@@ -9,4 +9,8 @@
     style="?android:attr/spinnerItemStyle"
     android:paddingTop="4dp"
     android:paddingBottom="4dp"
+<<<<<<< Updated upstream
     />
+=======
+    />
+>>>>>>> Stashed changes

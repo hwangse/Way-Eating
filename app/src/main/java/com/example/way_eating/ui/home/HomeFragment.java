@@ -241,6 +241,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
     // 어플리케이션내에 storeData를 생성하는 메소드
     public void makeStoreClasses(){
         GetStore getStore=new GetStore((String output)->{
+<<<<<<< Updated upstream
                 // 받아온 상점 JSON 파일을 파싱하여 class를 생성한다.
                 if(output!=null){
                     try {
@@ -290,10 +291,53 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
 
                     }catch(JSONException e){
                         e.printStackTrace();
+=======
+            // 받아온 상점 JSON 파일을 파싱하여 class를 생성한다.
+            if(output!=null){
+                try {
+                    // 서버로부터 받아온 JSON 객체
+                    JSONObject jsonObject = new JSONObject(output);
+                    // 시스템 데이터의 Store과 Marker 리스트를 생성한다.
+                    systemData.stores=new ArrayList<>();
+                    systemData.markers=new ArrayList<>();
+
+                    for(int i=0;i<jsonObject.length();i++){
+                        JSONObject jsonObj= jsonObject.getJSONObject(i+"");
+                        JSONObject location=jsonObj.getJSONObject("location");
+
+                        Integer tmpId=jsonObj.getInt("id");
+                        String tmpName=jsonObj.getString("name");
+                        String tmpType=jsonObj.getString("type");
+                        String tmpEmail=jsonObj.getString("email");
+                        String tmpPhone=jsonObj.getString("phone");
+                        Integer tmpLunch=jsonObj.getInt("timeLunch");
+                        Integer tmpDinner=jsonObj.getInt("timeDinner");
+                        double tmpX=location.getDouble("x");
+                        double tmpY=location.getDouble("y");
+                        systemData.stores.add(new Store(tmpId,tmpName,tmpType,tmpEmail,tmpPhone,tmpLunch,tmpDinner,tmpX,tmpY));
+
+                        // time marker 생성
+                        Marker marker=new Marker();
+                        //////이거 대모용으로 만들어놓은 임시 대기 시간임!!!!/////
+                        Random r=new Random();
+                        int num=r.nextInt(20)+5;
+                        marker.setCaptionText(num+"분");
+                        ///////////////////////////////////////////
+                        marker.setPosition(new LatLng(tmpY, tmpX));
+                        marker.setCaptionAligns(Align.Top);
+                        marker.setCaptionColor(Color.BLUE);
+                        marker.setCaptionHaloColor(Color.rgb(200, 255, 200));
+                        marker.setCaptionTextSize(16);
+                        systemData.markers.add(marker);
+>>>>>>> Stashed changes
                     }
-                }else{
-                    Toast.makeText(getActivity(),"Error : 서버 접속 불가",Toast.LENGTH_SHORT).show();
+
+                }catch(JSONException e){
+                    e.printStackTrace();
                 }
+            }else{
+                Toast.makeText(getActivity(),"Error : 서버 접속 불가",Toast.LENGTH_SHORT).show();
+            }
         });
         getStore.execute();
     }
