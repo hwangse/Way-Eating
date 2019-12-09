@@ -35,6 +35,7 @@
             android:id="@+id/viewPager_nearby"
             android:layout_width="250dp"
             android:layout_height="250dp"
+            android:layout_marginLeft="40dp"
             android:layout_marginBottom="8dp"
             android:gravity="center" />
 
@@ -64,6 +65,7 @@
             android:id="@+id/viewPager_suggest"
             android:layout_width="250dp"
             android:layout_height="250dp"
+            android:layout_marginLeft="40dp"
             android:layout_marginBottom="8dp"
             android:gravity="center_vertical" />
 

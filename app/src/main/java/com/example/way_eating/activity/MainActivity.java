@@ -1,10 +1,12 @@
 package com.example.way_eating.activity;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import com.example.way_eating.R;
 import com.example.way_eating.ui.info.InfoFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.tsengvn.typekit.TypekitContextWrapper;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -36,4 +38,10 @@ public class MainActivity extends AppCompatActivity {
     public void onFragmentChanged(){
         getSupportFragmentManager().beginTransaction().replace(R.id.container,infoFragment).commit();
     }
+
+    @Override 
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(TypekitContextWrapper.wrap(newBase));
+    }
+
 }
