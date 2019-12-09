@@ -3,7 +3,6 @@ package com.example.way_eating.ui.list;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -11,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
@@ -20,7 +20,6 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.way_eating.R;
 import com.example.way_eating.activity.InfoActivity;
-import com.example.way_eating.activity.MainActivity;
 import com.example.way_eating.activity.SearchRestaurantActivity;
 
 import static com.example.way_eating.ui.home.HomeFragment.systemData;
@@ -42,6 +41,7 @@ public class ListFragment extends Fragment {
     //음식점 버튼들
     private Button suggest1, suggest2, suggest3, suggest4;
     private Button prefer1, prefer2, prefer3, prefer4;
+    private Button layoutPrefer;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -60,8 +60,8 @@ public class ListFragment extends Fragment {
         //이미지뷰어용 변수 설정
         viewPagerSuggest = (ViewPager) root.findViewById(R.id.viewPager_suggest);
         viewPagerPrefer = (ViewPager) root.findViewById(R.id.viewPager_prefer);
-        sliderDotsPanelSuggest = (LinearLayout) root.findViewById(R.id.sliderDotspanel_suggest);
-        sliderDotsPanelPrefer = (LinearLayout) root.findViewById(R.id.sliderDotspanel_prefer);
+        sliderDotsPanelSuggest = (LinearLayout) root.findViewById(R.id.sliderDotsPanel_suggest);
+        sliderDotsPanelPrefer = (LinearLayout) root.findViewById(R.id.sliderDotsPanel_prefer);
         ViewPagerAdapterSuggest viewPagerAdapterSuggest = new ViewPagerAdapterSuggest(getContext());
         ViewPagerAdapterPrefer viewPagerAdapterPrefer = new ViewPagerAdapterPrefer(getContext());
         viewPagerSuggest.setAdapter(viewPagerAdapterSuggest);
@@ -118,6 +118,7 @@ public class ListFragment extends Fragment {
         });
         ///////////////////////
 
+
         /****************prefer(선호하는 맛집) 부분***************/
         for(int i = 0; i < dotsCountPrefer; i++){
             dotsPrefer[i] = new ImageView(getContext());
@@ -161,6 +162,9 @@ public class ListFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 switch (v.getId()) {
+                    case R.id.preferLayout:
+                        Toast.makeText(getActivity(), "prefer", Toast.LENGTH_SHORT).show();
+                        break;
                     case R.id.btnSuggest1:
                     case R.id.btnPrefer1:   //음식점1
                         Intent intent1 = new Intent(getActivity(), InfoActivity.class);
@@ -203,16 +207,6 @@ public class ListFragment extends Fragment {
                 Intent intent = new Intent(getActivity(), InfoActivity.class);
                 intent.putExtra("position", selectedPosition);
                 startActivity(intent);
-            }
-        });*/
-
-        //INFO용 버튼
-        /*Button btnInfo = (Button) root.findViewById(R.id.btnInfo);
-        btnInfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent1 = new Intent(getActivity(), InfoActivity.class);
-                startActivity(intent1);
             }
         });*/
 
