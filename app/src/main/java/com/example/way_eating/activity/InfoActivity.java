@@ -3,12 +3,12 @@ package com.example.way_eating.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
@@ -41,6 +41,7 @@ public class InfoActivity extends Activity {
         TextView restaurantSite = findViewById(R.id.restaurantSite);
 
         //음식점 상세 정보 설정
+        Log.v("태그","position : "+position);
         restaurantName.setText(systemData.stores.get(position).getName());
         restaurantContactNumber.setText(systemData.stores.get(position).getPhoneNum());
         restaurantLocation.setText(systemData.stores.get(position).getAddress()); //store 클래스에 address가 없음
