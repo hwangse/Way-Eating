@@ -57,12 +57,13 @@ public class SearchListAdapter extends BaseAdapter {
         TextView searchRestaurantPhone = (TextView)convertView.findViewById(R.id.searchRestaurantPhone);
         searchRestaurantPhone.setText(storeArr.get(0).getPhoneNum());
 
+        //'도꼭지' 검색하면 나오는 리스트에서 INFO 버튼
         Button btnInfo = (Button)convertView.findViewById(R.id.btnInfo);
         btnInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent1 = new Intent(context, InfoActivity.class);
-                intent1.putExtra("position", storeArr.get(0).getId());
+                intent1.putExtra("position", storeArr.get(0).getId() - 1);
                 context.startActivity(intent1);
             }
         });
