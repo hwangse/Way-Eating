@@ -2,7 +2,6 @@ package com.example.way_eating.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -55,8 +54,6 @@ public class SearchRestaurantActivity extends Activity {
             tempTextView.setVisibility(View.VISIBLE);
         }
         else {
-            Log.v("태그","storeArrSize : "+storeArr.size());
-            Log.v("태그","storeArr(0) : "+storeArr.get(0).getName());
             TextView tempTextView = findViewById(R.id.textView);
             tempTextView.setVisibility(View.INVISIBLE);
             mAdapter = new SearchListAdapter(this, R.layout.searchlist_itemlist, storeArr);
