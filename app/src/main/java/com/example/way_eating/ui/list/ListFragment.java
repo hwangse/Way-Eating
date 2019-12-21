@@ -81,6 +81,15 @@ public class ListFragment extends Fragment {
         suggest3 = (Button) root.findViewById(R.id.btnSuggest3);
         suggest4 = (Button) root.findViewById(R.id.btnSuggest4);
 
+        prefer1.setText(systemData.stores.get(0).getName());
+        prefer2.setText(systemData.stores.get(1).getName());
+        prefer3.setText(systemData.stores.get(2).getName());
+        prefer4.setText(systemData.stores.get(3).getName());
+        suggest1.setText(systemData.stores.get(0).getName());
+        suggest2.setText(systemData.stores.get(1).getName());
+        suggest3.setText(systemData.stores.get(2).getName());
+        suggest4.setText(systemData.stores.get(3).getName());
+
         /*************suggest(추천하는 맛집) 부분*****************/
         for(int i = 0; i < dotsCountSuggest; i++){
             dotsSuggest[i] = new ImageView(getContext());

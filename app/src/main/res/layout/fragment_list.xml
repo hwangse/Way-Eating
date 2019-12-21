@@ -57,25 +57,25 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="7dp"
                         android:layout_marginTop="7dp"
-                        android:text="음식점1"/>
+                        />
                     <Button
                         android:id="@+id/btnSuggest2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="7dp"
-                        android:text="음식점2"/>
+                        />
                     <Button
                         android:id="@+id/btnSuggest3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="7dp"
-                        android:text="음식점3"/>
+                        />
                     <Button
                         android:id="@+id/btnSuggest4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="7dp"
-                        android:text="음식점4"/>
+                        />
                 </LinearLayout>
 
             </LinearLayout>
@@ -127,25 +127,25 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="7dp"
                         android:layout_marginTop="7dp"
-                        android:text="음식점1"/>
+                        />
                     <Button
                         android:id="@+id/btnPrefer2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="7dp"
-                        android:text="음식점2"/>
+                        />
                     <Button
                         android:id="@+id/btnPrefer3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="7dp"
-                        android:text="음식점3"/>
+                        />
                     <Button
                         android:id="@+id/btnPrefer4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="7dp"
-                        android:text="음식점4"/>
+                        />
                 </LinearLayout>
 
             </LinearLayout>
