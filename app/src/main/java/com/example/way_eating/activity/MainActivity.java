@@ -3,7 +3,6 @@ package com.example.way_eating.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import com.example.way_eating.R;
 import com.example.way_eating.data.User;

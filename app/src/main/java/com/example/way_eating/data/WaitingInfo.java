@@ -22,7 +22,13 @@ public class WaitingInfo {
         this.timeRemain=time;
         this.orderInLine=order;
     }
+    // 대기 순서 및 시간을 업데이트하는 메소드
+    public void updateWaitingInfo(Integer time,Integer order){
+        this.timeRemain=time;
+        this.orderInLine=order;
+    }
     public Integer getStoreId() {return this.storeId;}
+    public Integer getTimeRemain(){return this.timeRemain;}
     public Integer getTimeTotal() {return this.timeTotal;}
     public Integer getOrderInLine() {return this.orderInLine;}
 }

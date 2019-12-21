@@ -3,6 +3,7 @@ package com.example.way_eating.ui.status;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,7 +60,7 @@ public class StatusFragment extends Fragment {
                     waitingInfo.put("userId",systemData.user.getId()); // 유저 아이디
                     waitingInfo.put("name",systemData.user.getName()); // 유저 이름
                     waitingInfo.put("order",systemData.user.waitingInfo.getOrderInLine()); // 유저 순서 (대기 목록에서 취소할 때 필요함)
-                    waitingInfo.put("flag",0); // 대기 등록인지 대기 취소인지 알려주는 flag (1일경우 대기 등록, 0일경우 대기 취소)
+                    waitingInfo.put("flag",2); // 대기 등록인지 대기 취소인지 알려주는 flag (1일경우 대기 등록, 2일경우 대기 취소, 3일경우 대기 업데이트)
 
                     RegisterWaiting registerWaiting=new RegisterWaiting((String output)->{
                         try{
@@ -97,8 +98,39 @@ public class StatusFragment extends Fragment {
         // 대기 현황 정보를 설정한다.
         if(systemData.user.isAlreadyRegistered()) {
             isWaitingRegistered=true;
-            WaitingInfo waitingInfo=systemData.user.waitingInfo;
-            setWaitingStatus(waitingInfo.getStoreId(),waitingInfo.getTimeTotal(),waitingInfo.getOrderInLine());
+            WaitingInfo waitingInfo=systemData.user.waitingInfo; // systemData상에 등록된 사용자의 웨이팅 정보를 가져온다.
+
+            // 만약 웨이팅이 등록되어있는 사용자라면, 대기 현황을 지속적으로 업데이트 해야하기 때문에, status fragment 클릭 순간에 서버에 업데이트 요청을 보낸다.
+            try{
+                // 웨이팅 업데이트 정보시 보낼 정보
+                JSONObject waitingUpdate=new JSONObject();
+                waitingUpdate.put("storeId",systemData.user.waitingInfo.getStoreId()); // 상점 아이디
+                waitingUpdate.put("userId",systemData.user.getId()); // 유저 아이디
+                waitingUpdate.put("name",systemData.user.getName()); // 유저 이름
+                waitingUpdate.put("order",systemData.user.waitingInfo.getOrderInLine()); // 유저 순서 (대기 목록에서 취소할 때 필요함)
+                waitingUpdate.put("flag",3); // 대기 등록인지 대기 취소인지 알려주는 flag (1일경우 대기 등록, 2일경우 대기 취소, 3일경우 대기 업데이트)
+
+                RegisterWaiting registerWaiting=new RegisterWaiting((String output)->{
+                    try{
+                        // 업데이트 요청에 대한 서버의 응답을 다시 parsing
+                        JSONObject jsonObject=new JSONObject(output);
+                        Integer code=jsonObject.getInt("code");
+                        if(code==200){ // 대기 업데이트가 설공했다면
+                            // 안드로이드 시스템 상의 정보도 업데이트 해준다.
+                            Integer time=jsonObject.getInt("time");
+                            Integer order=jsonObject.getInt("rank");
+                            waitingInfo.updateWaitingInfo(time,order);
+                        }
+                    }catch(JSONException e){
+                        e.printStackTrace();
+                    }
+                },waitingUpdate);
+                registerWaiting.execute();
+            }catch(JSONException e){
+                e.printStackTrace();
+            }
+            // 서버에서 새롭게 가져온 정보를 바탕으로 웨이팅 정보를 설정한다.
+            setWaitingStatus(waitingInfo.getStoreId(),waitingInfo.getTimeRemain(),waitingInfo.getOrderInLine());
         }else { // 대기 현황이 없다.
             isWaitingRegistered=false;
             myWaitingStatus.setVisibility(View.VISIBLE);
